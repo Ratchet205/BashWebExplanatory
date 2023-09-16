@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    background-color: black;
+}
+
+#blinkBalken {
+    position: relative;
+    animation-name: blinken;
+    animation-duration: 1s;
+    animation-timing-function: steps(2, start);
+    animation-iteration-count: infinite;
+}
+
+@keyframes blinken {
+    0%, 25% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+@media screen and (min-width: 1600) {
+    
+}
+
+@media screen and (max-width: 1599) {
+    #language-bash {
+        font-size: 0.1em;
+    }
+}
+

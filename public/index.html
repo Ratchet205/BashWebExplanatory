@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="img/Bash_Logo_white_icon_only.svg.ico">
+    <link rel="stylesheet" href="css/index.css">
+    <title>String Maniküre</title>
+</head>
+<body>
+
+    <div id="OAlles">
+        <div id="IMGlinks">
+            <img src="img/Bash_Logo_white_icon_only.svg.png" alt="BashIcon" title="Home" onclick="changeIframeSource('html/home.html','Home')" style="position: relative; left: 1px;">
+            <span style="display: none;" id="Home">Home</span>
+        </div>
+        <div id="LISTrechts">
+            <div id="umgebung">
+                <div id="umgebungO">
+                    Aktuelles Dokument:
+                </div>
+                <div id="umgebungU">
+                    Home
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Ulinks">
+        <ul>
+            <li onclick="changeIframeSource('html/split.html','Split')" id="Split">
+                <span>Split</span>
+            </li>
+            <li onclick="changeIframeSource('html/comparison.html','Comparison')" id="Comparison">
+                <span>Comparison</span>
+            </li>
+            <li onclick="changeIframeSource('html/multi-line.html','Multi-line')" id="Multi-line">
+                <span>Multi-Line</span>
+            </li>
+            <li onclick="changeIframeSource('html/replacement.html','Replacement')" id="Replacement">
+                <span>Replacement</span>
+            </li>
+            <li onclick="changeIframeSource('html/subextraction.html','Substring-Extraction')" id="Substring-Extraction">
+                <span>Substring-Extraction</span>
+            </li>
+            <li onclick="changeIframeSource('html/gesamtmanp.html','Manipulations-Bibliothek')" style="margin-top: 100%;" id="Manipulations-Bibliothek">
+                <span>Manipulations-Bibliothek</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="Urechts">
+        <iframe src="html/home.html" width="100%" height="100%" frameborder="0" zoom="100%" id="DASiframe"></iframe>
+    </div>
+
+    <div id="Lbottom">
+        <button type="button" onclick="changeIframeSource('html/ServerSettings.html','Einstellungen')">
+            Einstellungen
+        </button>
+    </div>
+
+    <div id="Rbottom">
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

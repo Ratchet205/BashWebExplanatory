@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/split.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash String Comparison<pre class="pdfErsatz">
+In Bash kannst du Zeichenfolgen mithilfe verschiedener Vergleichsoperatoren vergleichen. Hier sind einige gängige Methoden zum Vergleichen von Zeichenfolgen in Bash:
+<ul style="list-style: circle;"><li>Gleichheit (==): Du kannst das doppelte Gleichheitszeichen (==) verwenden, um zu überprüfen, ob zwei Zeichenketten gleich sind:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [ "$string1" == "$string2" ]; then
+        echo "Die Zeichenketten sind gleich"
+    fi
+    </code>
+</pre>
+</li><li>Ungleichheit (!=): Der "Ungleich"-Operator (!=) überprüft, ob zwei Zeichenketten nicht gleich sind:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [ "$string1" != "$string2" ]; then
+        echo "Die Zeichenketten sind nicht gleich"
+    fi
+    </code>
+</pre>
+</li><li>Größer als (>), kleiner als (<), größer oder gleich (>=), kleiner oder gleich (<=): Diese Operatoren vergleichen die Zeichenketten lexikographisch, basierend auf ihrer alphabetischen Reihenfolge. Zum Beispiel:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [[ "$string1" > "$string2"]]; then
+        echo "Zeichenkette 1 ist größer als Zeichenkette 2"
+    fi
+    </code>
+</pre>
+</li><li>Längenvergleich: Du kannst die Längen von zwei Zeichenketten vergleichen, indem du die -z (leer) und -n (nicht leer) Optionen des test-Kommandos verwendest:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [ -z "$string" ]; then
+        echo "Die Zeichenkette ist leer"
+    fi
+
+    if [ -n "$string" ]; then
+        echo "Die Zeichenkette ist nicht leer"
+    fi
+    </code>
+</pre>
+</li><li>Musterabgleich: Bash unterstützt Musterabgleiche mit dem == Operator und der [[ ... ]] Konstruktion. Du kannst Platzhalterzeichen (* und ?) verwenden, um Muster abzugleichen. Zum Beispiel:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [[ "$string" == "Hallo"* ]]; then
+        echo "Die Zeichenkette beginnt mit 'Hallo'"
+    fi
+    </code>
+</pre>
+</li>
+</ul>
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../js/index.js"></script>
+    <script src="../js/prism.js"></script>
+</body>
+</html>

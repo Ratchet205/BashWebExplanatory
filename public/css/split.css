@@ -1,0 +1,62 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 95%;
+    grid-template-areas: 
+    "oben"
+    "unten";
+    color: #bebebe;
+    font-size: 120%;
+}
+
+body:hover #Boben {
+    font-size: 100%;
+}
+
+#Boben {
+    grid-area: oben;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s;
+}
+
+#Boben button {
+    background-color: #38383d;
+    border: none;
+    color: #bebebe;
+    font-size: 0;
+    cursor: pointer;
+}
+
+#Boben button:hover {
+    background-color: #3a3a3f;
+}
+
+#Bunten {
+    grid-area: unten;
+    width: 100%;
+    height: 100%;
+}
+
+.pdfInahlt {
+    margin: 1% 10%;
+    white-space: pre-wrap;
+}
+
+.pdfErsatzÜberschrift {
+    margin: 1% 6%;
+    white-space: pre-wrap;
+}
+
+.pdfErsatz {
+    margin: 1% 10%;
+    white-space: pre-wrap;
+}

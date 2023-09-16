@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/split.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Substring-Extraction<pre class="pdfErsatz">
+Hier sind die Beispiele zum Extrahieren von Teilstrings in Bash auf Deutsch:
+<ul style="list-style: circle;"><li>Mit Parameter-Erweiterung:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string="Hallo, Welt!"
+    teilstring=${string:7:5}
+    echo $teilstring
+</code>
+</pre>
+Ausgabe: Welt!
+In diesem Beispiel bedeutet ${string:7:5}, dass ein Teilstring ab dem 7. Index (inklusiv) mit einer Länge von 5 Zeichen extrahiert wird.
+
+</li><li>Mit dem expr-Befehl:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string="Hallo, Welt!"
+    teilstring=$(expr substr "$string" 8 5)
+    echo $teilstring
+</code>
+</pre>
+Ausgabe: Welt!
+Der expr-Befehl ermöglicht es, einen Teilstring mit der Funktion substr zu extrahieren. In diesem Fall wird ab der Position 8 gestartet und es werden 5 Zeichen extrahiert.
+</li><li>Mit dem cut-Befehl:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string="Hallo, Welt!"
+    teilstring=$(echo "$string" | cut -c 8-12)
+    echo $teilstring
+</code>
+</pre>
+Ausgabe: Welt!
+Der cut-Befehl kann ebenfalls verwendet werden, um einen Teilstring zu extrahieren. -c 8-12 gibt den Bereich der Zeichen an, die extrahiert werden sollen, beginnend ab der 8. Position bis zur 12. Position.
+</li>
+</ul>
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../js/index.js"></script>
+    <script src="../js/prism.js"></script>
+</body>
+</html>

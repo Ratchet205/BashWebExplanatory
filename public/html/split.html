@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/split.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash String Split<pre class="pdfErsatz">
+In Bash kannst du einen String in ein Array aufteilen, indem du die Variable IFS (Internal Field Separator) und den Befehl read verwendest. Hier ist ein Beispiel:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string="Hallo Welt"
+    IFS=" " read -ra array <<< "$string"
+
+    # Gib jedes Element des Arrays aus
+    for element in "${array[@]}"
+    do
+    
+        echo "$element"
+    done
+</code>
+</pre>
+In diesem Beispiel setzen wir die Variable IFS auf ein Leerzeichen, um anzuzeigen, dass wir den String an jeder Leerstelle aufteilen möchten. Dann verwenden wir den Befehl read mit der Option -a, um den Eingabestring zu lesen und die aufgeteilten Teile in einem Array namens array zu speichern. Schließlich durchlaufen wir die Elemente des Arrays in einer Schleife und geben sie aus. Du kannst den Wert von IFS anpassen, um den String mit verschiedenen Trennzeichen, wie Kommas oder Tabs, aufzuteilen. Mit <<< geben wir den Inhalt von string an read weiter, so dass read den String verarbeiten kann. read liest den übergebenen String und teilt ihn an den Trennzeichen, die durch IFS festgelegt sind, auf. Die Optionen -r und -a haben folgende Bedeutungen:
+<ul style="list-style: circle;"><li>-r: Verhindert, dass read den Backslash () als Escape-Zeichen interpretiert. Das bedeutet, dass Backslashes in der Eingabe als normale Zeichen behandelt werden.</li><li>-a array: Weist den aufgeteilten Teilen der Variable array zu. Dabei wird ein Array erstellt, das die einzelnen Teile des aufgeteilten Strings enthält.</li></ul>
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../js/index.js"></script>
+    <script src="../js/prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/split.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Multi-Line Strings<pre class="pdfErsatz">
+In Bash kannst du Mehrzeilige Strings auf verschiedene Arten erstellen. Hier sind einige Methoden:
+<ul style="list-style: circle;">
+<li>Mit einem einfachen String und Zeilenumbrüchen in einfachen Anführungszeichen:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string='Das ist ein mehrzeiliger
+    String in Bash.
+    Du kannst einfache Anführungszeichen
+    verwenden, um Zeilenumbrüche beizubehalten.'
+</code>
+</pre>
+</li><li>Mit einem doppelten String und escaped (maskierten) Zeilenumbrüchen:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string="Das ist ein mehrzeiliger \
+    String in Bash \
+    Du kannst doppelte Anführungszeichen \
+    mit escaped Zeilenumbrüchen verwenden."
+</code>
+</pre>
+</li><li>Mit einem sogenannten "Here Document":
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    string=$(cat <<&#x200B;EOF
+    Das ist eine mehrzeiliger
+    String in Bash.
+    Du kannst ein Here Document
+    verwenden, um mehrzeilige String zu definieren.
+    EOF
+    )
+</code>
+</pre>
+EOF: Dies ist das Endemarkierungsschlüsselwort des "Here Document". Es gibt an, dass das "Here Document" abgeschlossen ist und der Inhalt bis hierhin in die Variable "string" geschrieben wird. Beachte, dass das Schlüsselwort EOF, das im "Here Document" verwendet wird, beliebig gewählt werden kann, solange es auf beiden Zeilen gleich ist.
+</li>
+</ul>
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../js/index.js"></script>
+    <script src="../js/prism.js"></script>
+</body>
+</html>
