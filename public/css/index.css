@@ -76,15 +76,15 @@ iframe {
     /*border: solid black 1px;*/
     grid-area: OAlles;
     display: grid;
-    grid-template-columns: 9% 91%;
+    grid-template-columns: 9% 82% 9%;
     grid-template-rows: 100%;
     grid-template-areas: 
-    "IMGlinks LISTrechts";
+    "LISTlinks IMGrechts";
     border-bottom: 1px solid #212121;
 }
 
-#IMGlinks {
-    grid-area: IMGlinks;
+#IMGrechts {
+    grid-area: IMGrechts;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,24 +94,26 @@ iframe {
     height: 100%;
 }
 
-#IMGlinks img:hover {
+#IMGrechts img:hover {
     transition: 0.3s;
     background-color: #303030;
 }
 
-#IMGlinks img {
+#IMGrechts img {
     height: calc(100% - 5px);
     /*border: solid black 1px;*/
     border-radius: 6px;
     cursor: pointer;
+    height: 68px;
+    width: 60px;
 }
 
-#LISTrechts {
-    grid-area: LISTrechts;
+#LISTlinks {
+    grid-area: LISTlinks;
     background-color: #222222;
 }
 
-#LISTrechts input[type="checkbox"]{
+#LISTlinks input[type="checkbox"]{
     display: none;
 }
 
@@ -159,21 +161,6 @@ iframe {
 #Rbottom {
     grid-area: rbottom;
     background-color: #292929;
-}
-
-#toggle-hamburger {
-    width: 30px;
-    height: 23px;
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#toggle-hamburger:hover {
-    background-color: #bebebe;
 }
 
 .bar {
