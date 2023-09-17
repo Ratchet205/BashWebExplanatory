@@ -45,6 +45,10 @@ body {
     #Urechts iframe {
         border-radius: 6px;
     }
+
+    .full-burger {
+        display: none;
+    }
 }
 
 @media screen and (max-width:1599px) { /*Mobile*/
@@ -53,6 +57,10 @@ body {
         "OAlles OAlles"
         "urechts urechts"
         "lbottom rbottom";
+    }
+
+    .full-burger {
+        display: inline-block;
     }
 }
 
@@ -79,8 +87,69 @@ iframe {
     grid-template-columns: 9% 82% 9%;
     grid-template-rows: 100%;
     grid-template-areas: 
-    "LISTlinks IMGrechts";
+    "BurgerArea LISTlinks IMGrechts";
     border-bottom: 1px solid #212121;
+}
+
+#Burger {
+    grid-area: BurgerArea;
+    background-color: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-burger {
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.full-burger.active {
+    transform: rotate(45deg);
+}
+
+.burger-part {
+    fill:none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke:#bebebe;
+    stroke-width:5.5;
+    stroke-linecap:round;
+}
+
+.full-burger #burger-top {
+    stroke-dasharray: 40 160;
+}
+
+.full-burger #burger-middle {
+    stroke-dasharray: 40 142;
+    transform-origin: 50%;
+    transition: transform 400ms;
+}
+
+.full-burger #burger-bottom {
+    stroke-dasharray: 40 85;
+    transform-origin: 50%;
+    transition: transform 400ms, stroke-dashoffset 400ms;
+}
+
+.full-burger.active #burger-top {
+    stroke-dashoffset: -64px;
+}
+
+.full-burger.active #burger-middle {
+    transform: rotate(90deg);
+}
+
+.full-burger.active #burger-bottom {
+    stroke-dashoffset: -64px;
+    stroke-dashoffset: -64px;
 }
 
 #IMGrechts {
@@ -161,13 +230,6 @@ iframe {
 #Rbottom {
     grid-area: rbottom;
     background-color: #292929;
-}
-
-.bar {
-    height: 4px;
-    width: 100%;
-    background-color: #bebebe;
-    border-radius: 100px;
 }
 
 #umgebung {
