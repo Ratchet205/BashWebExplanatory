@@ -45,16 +45,7 @@ body {
     * TODO: make header (burger, title text, icon) dynamically resize
     * when this width is reached, text will wrap around at this point
     */
-    #title-head {
-        font-size: 10px;
-    }
-    
-    #title-page {
-        font-size: 15px;
-    }
 }
-  
-
 
 
 
@@ -73,7 +64,8 @@ body {
 
 iframe {
     overflow: auto;
-    overscroll-behavior: none;
+    overscroll-behavior: none; /* IN CASE OF ERROR REMOVE */
+    background-color: #292929;
 }
 
 #page-header {

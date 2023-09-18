@@ -77,12 +77,26 @@ function loadNav() {
     }
 }
 
-document.body.addEventListener('touchmove', function (e) {
-    e.preventDefault();
-  }, { passive: false });
-  
-  window.addEventListener('touchmove', function (e) {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
+function updateNav() {
+    var isActive = document.getElementById("full-burger").classList.contains('active');
+
+    if (document.body.clientWidth > 600) {
+        if (isActive) {
+            document.getElementById("nav").style.width = "250px";
+            document.getElementById("page-content").style.marginLeft = "250px";
+        } else {
+            document.getElementById("nav").style.width = "0px";
+            document.getElementById("page-content").style.marginLeft = "0px";
+        }
+    } else {
+        if (isActive) {
+            document.getElementById("nav").style.width = "100%";
+            document.getElementById("page-content").style.marginLeft = "100%";
+        } else {
+            document.getElementById("nav").style.width = "0px";
+            document.getElementById("page-content").style.marginLeft = "0px";
+        }
     }
-  }, { passive: false });
+}
+
+window.addEventListener('resize', updateNav);
