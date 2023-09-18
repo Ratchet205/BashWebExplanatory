@@ -22,3 +22,28 @@ function changeIframeSource(url, self) {
         }
     });
 }
+
+function interactNav(burgerButton) {
+    var isActive = burgerButton.classList.contains('active');
+
+    burgerButton.classList.toggle('active');
+
+    if(document.body.clientWidth > 600){
+        if(!isActive){
+            document.getElementById("nav").style.width = "250px";
+            document.getElementById("page-content").style.marginLeft = "250px";
+        } else {
+            document.getElementById("nav").style.width = "0px";
+            document.getElementById("page-content").style.marginLeft = "0px";
+        }
+    } else {
+        if(!isActive){
+            document.getElementById("nav").style.width = "100%";
+            document.getElementById("page-content").style.marginLeft = "100%";
+        } else {
+            document.getElementById("nav").style.width = "0px";
+            document.getElementById("page-content").style.marginLeft = "0px";
+        } 
+    }
+
+}

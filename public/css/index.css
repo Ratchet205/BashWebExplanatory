@@ -26,35 +26,36 @@ body {
     grid-template-columns:  250px calc(100% - 250px);
     grid-template-rows: 75px calc(100% - 75px);
     justify-content: space-between;
+    grid-template-areas: 
+    "page-header page-header"
+    "page-content page-content";
 }
 
 @media screen and (min-width:1000px) { /*PC*/
-    body {
-        grid-template-areas: 
-        "page-header page-header"
-        "nav page-content";
-    }
 
     #page-content {
-        grid-area: page-content;
-        border-radius: 6px;
-        border: 1px solid #bebebe;
+        margin-left: 250px;
     }
 
-    #page-content iframe {
-        border-radius: 6px;
+    nav {
+        width: 250px;
     }
 
+/*
     .full-burger {
         display: none;
     }
+*/
 }
 
 @media screen and (max-width:999px) { /*Mobile*/
-    body {
-        grid-template-areas: 
-        "page-header page-header"
-        "page-content page-content";
+
+    #page-content {
+        margin-left: 0px;
+    }
+
+    nav {
+        width:0px;
     }
 
     .full-burger {
@@ -77,7 +78,16 @@ body {
 
 
 
+#page-content {
+    grid-area: page-content;
+    border-radius: 6px;
+    border: 1px solid #bebebe;
+    transition: margin-left .5s;
+}
 
+#page-content iframe {
+    border-radius: 6px;
+}
 
 iframe {
     overflow: auto;
@@ -94,16 +104,16 @@ iframe {
     border-bottom: 1px solid #212121;
 }
 
-#burger-button {
+#burger-area {
     grid-area: burger-button;
     background-color: #222222;
     align-items: center;
     justify-content: center;
+    width: 80px;
+    height: 80px;
 }
 
 .full-burger {
-    width: 80px;
-    height: 80px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: transform 400ms;
@@ -179,15 +189,11 @@ iframe {
     width: 60px;
 }
 
-#page-content {
-    grid-area: page-content;
-}
-
 nav {
     /*border: solid black 1px;*/
-    grid-area: nav;
+    grid-area: page-content;
     background-color: #292929;
-    width: 250px;
+    transition: 0.5s; 
 }
 
 nav ul {
@@ -216,6 +222,7 @@ nav ul li:hover {
 nav ul li span {
     overflow: hidden;
     font-size: 20px;
+    transition: 0.3s;
 }
 
 #title {
