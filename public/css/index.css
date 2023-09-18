@@ -24,25 +24,24 @@ body {
     object-fit: cover;
     display: grid;
     grid-template-columns:  9% 91%;
-    grid-template-rows: 8% 84% 8%;
+    grid-template-rows: 75px calc(90% - 75px/2) calc(10% - 75px/2);
     justify-content: space-between;
 }
 
-@media screen and (min-width:1600px) { /*PC*/
+@media screen and (min-width:1000px) { /*PC*/
     body {
         grid-template-areas: 
-        "OAlles OAlles"
-        "ulinks urechts"
-        "lbottom rbottom";
+        "page-header page-header"
+        "nav page-content";
     }
 
-    #Urechts {
-        grid-area: urechts;
+    #page-content {
+        grid-area: page-content;
         border-radius: 6px;
         border: 1px solid #bebebe;
     }
 
-    #Urechts iframe {
+    #page-content iframe {
         border-radius: 6px;
     }
 
@@ -51,12 +50,11 @@ body {
     }
 }
 
-@media screen and (max-width:1599px) { /*Mobile*/
+@media screen and (max-width:999px) { /*Mobile*/
     body {
         grid-template-areas: 
-        "OAlles OAlles"
-        "urechts urechts"
-        "lbottom rbottom";
+        "page-header page-header"
+        "page-content page-content";
     }
 
     .full-burger {
@@ -64,7 +62,12 @@ body {
     }
 }
 
-
+@media screen and (min-width:450) { /*Smallest Possible Size*/
+    /*
+    * TODO: make header (burger, title text, icon) dynamically resize
+    * when this width is reached, text will wrap around at this point
+    */
+}
 
 
 
@@ -80,28 +83,27 @@ iframe {
     overflow: auto;
 }
 
-#OAlles {
+#page-header {
     /*border: solid black 1px;*/
-    grid-area: OAlles;
+    grid-area: page-header;
     display: grid;
-    grid-template-columns: 9% 82% 9%;
+    grid-template-columns: 80px calc(100% - 160px) 80px;
     grid-template-rows: 100%;
     grid-template-areas: 
-    "BurgerArea LISTlinks IMGrechts";
+    "burger-button title icon";
     border-bottom: 1px solid #212121;
 }
 
-#Burger {
-    grid-area: BurgerArea;
+#burger-button {
+    grid-area: burger-button;
     background-color: #222222;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .full-burger {
-    width: fit-content;
-    height: fit-content;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: transform 400ms;
@@ -152,8 +154,8 @@ iframe {
     stroke-dashoffset: -64px;
 }
 
-#IMGrechts {
-    grid-area: IMGrechts;
+#icon {
+    grid-area: icon;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,12 +165,12 @@ iframe {
     height: 100%;
 }
 
-#IMGrechts img:hover {
+#icon img:hover {
     transition: 0.3s;
     background-color: #303030;
 }
 
-#IMGrechts img {
+#icon img {
     height: calc(100% - 5px);
     /*border: solid black 1px;*/
     border-radius: 6px;
@@ -177,33 +179,24 @@ iframe {
     width: 60px;
 }
 
-#LISTlinks {
-    grid-area: LISTlinks;
-    background-color: #222222;
+#page-content {
+    grid-area: page-content;
 }
 
-#LISTlinks input[type="checkbox"]{
-    display: none;
-}
-
-#Ulinks {
+nav {
     /*border: solid black 1px;*/
-    grid-area: ulinks;
+    grid-area: nav;
     background-color: #292929;
 }
 
-#Urechts {
-    grid-area: urechts;
-}
-
-#Ulinks ul {
+nav ul {
     list-style: none;
     text-align: center;
     padding: 0;
     margin: 0;
 }
 
-#Ulinks ul li {
+nav ul li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -214,55 +207,48 @@ iframe {
     cursor: pointer;
 }
 
-#Ulinks ul li:hover {
+nav ul li:hover {
     transition: 0.5s;
     transform: translateY(-5px);
 }
 
-#Ulinks ul li span {
+nav ul li span {
     overflow: hidden;
 }
 
-#Lbottom {
-    grid-area: lbottom;
-}
-
-#Rbottom {
-    grid-area: rbottom;
-    background-color: #292929;
-}
-
-#umgebung {
+#title {
+    grid-area: title;
+    background-color: #222222;
     display: grid;
     height: 100%;
     /*border: dashed red 1px;*/
     justify-content: center;
     align-items: center;
     grid-template-columns: 100%;
-    grid-template-rows: 45% 55%;
+    grid-template-rows: fit-content fit-content;
     grid-template-areas:
-    "umO"
-    "umU";
+    "title-head"
+    "title-page";
 }
 
-#umgebung * {
+#title * {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
-#umgebungO {
-    grid-area: umO;
+#title-head {
+    grid-area: title-head;
     /*border: dashed green 1px;*/
     align-items: end;
-    font-size: 0.5vw;
+    font-size: 30px;
 }
 
-#umgebungU {
-    grid-area: umU;
+#title-page {
+    grid-area: title-page;
     /*border: dashed blue 1px;*/
     align-items: start;
     color: #f08d49;
-    font-size: 1vw;
+    font-size: 35px;
 }

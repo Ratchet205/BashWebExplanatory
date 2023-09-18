@@ -3,8 +3,8 @@ function PopBashFunktion() {
 };
 
 function changeIframeSource(url, self) {
-    var iframe = document.getElementById('DASiframe');
-    var umgebung = document.getElementById('umgebungU');
+    var iframe = document.getElementById('content-iframe');
+    var umgebung = document.getElementById('title-page');
     var ausgewählt = document.getElementById(self)
 
     iframe.src = url;
