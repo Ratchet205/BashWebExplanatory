@@ -34,37 +34,14 @@ body {
 
 @media screen and (min-width:1000px) { /*PC*/
 
-    #page-content {
-        margin-left: 250px;
-    }
-
-    nav {
-        width: 250px;
-    }
-
-/*
-    .full-burger {
-        display: none;
-    }
-*/
 }
 
 @media screen and (max-width:999px) { /*Mobile*/
 
-    #page-content {
-        margin-left: 0px;
-    }
-
-    nav {
-        width:0px;
-    }
-
-    .full-burger {
-        display: inline-block;
-    }
 }
 
-@media screen and (min-width:450) { /*Smallest Possible Size*/
+
+@media screen and (max-width:450) { /*Smallest Possible Size 360*/
     /*
     * TODO: make header (burger, title text, icon) dynamically resize
     * when this width is reached, text will wrap around at this point
@@ -93,6 +70,7 @@ body {
 
 iframe {
     overflow: auto;
+    overscroll-behavior: none;
 }
 
 #page-header {
