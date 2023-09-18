@@ -29,6 +29,7 @@ body {
     grid-template-areas: 
     "page-header page-header"
     "page-content page-content";
+    overflow: hidden;
 }
 
 @media screen and (min-width:1000px) { /*PC*/
@@ -83,6 +84,7 @@ body {
     border-radius: 6px;
     border: 1px solid #bebebe;
     transition: margin-left .5s;
+    z-index: +1;
 }
 
 #page-content iframe {
@@ -193,7 +195,8 @@ nav {
     /*border: solid black 1px;*/
     grid-area: page-content;
     background-color: #292929;
-    transition: 0.5s; 
+    transition: 0.5s;
+    overflow: hidden;
 }
 
 nav ul {
@@ -223,6 +226,7 @@ nav ul li span {
     overflow: hidden;
     font-size: 20px;
     transition: 0.3s;
+    position: absolute;
 }
 
 #title {

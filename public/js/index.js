@@ -21,6 +21,8 @@ function changeIframeSource(url, self) {
             element.style.backgroundColor = '#292929';
         }
     });
+
+    closeNav();
 }
 
 function interactNav(burgerButton) {
@@ -46,4 +48,17 @@ function interactNav(burgerButton) {
         } 
     }
 
+}
+
+function closeNav() {
+    var burgerButton = document.getElementById("full-burger");
+    burgerButton.classList.remove('active');
+
+    if(document.body.clientWidth > 600){
+        document.getElementById("nav").style.width = "0px";
+        document.getElementById("page-content").style.marginLeft = "0px";
+    } else {
+        document.getElementById("nav").style.width = "0px";
+        document.getElementById("page-content").style.marginLeft = "0px";
+    }
 }
