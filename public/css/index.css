@@ -23,8 +23,8 @@ body {
     height: 100%;
     object-fit: cover;
     display: grid;
-    grid-template-columns:  9% 91%;
-    grid-template-rows: 75px calc(90% - 75px/2) calc(10% - 75px/2);
+    grid-template-columns:  250px calc(100% - 250px);
+    grid-template-rows: 75px calc(100% - 75px);
     justify-content: space-between;
 }
 
@@ -187,6 +187,7 @@ nav {
     /*border: solid black 1px;*/
     grid-area: nav;
     background-color: #292929;
+    width: 250px;
 }
 
 nav ul {
@@ -214,6 +215,7 @@ nav ul li:hover {
 
 nav ul li span {
     overflow: hidden;
+    font-size: 20px;
 }
 
 #title {
