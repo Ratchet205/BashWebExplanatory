@@ -4,12 +4,12 @@ function PopBashFunktion() {
 
 function changeIframeSource(url, self) {
     var iframe = document.getElementById('content-iframe');
-    var umgebung = document.getElementById('title-page');
-    var ausgewählt = document.getElementById(self)
+    var titlePage = document.getElementById('title-page');
+    var selected = document.getElementById(self)
 
     iframe.src = url;
-    umgebung.textContent = self
-    ausgewählt.style.backgroundColor = '#303030'
+    titlePage.textContent = self;
+    selected.style.backgroundColor = '#303030';
 
     var idList = [
         'Split', 'Comparison', 'Multi-line', 'Replacement', 'Substring-Extraction', 'Manipulations-Bibliothek'
@@ -76,3 +76,13 @@ function loadNav() {
         burgerButton.classList.remove('active');
     }
 }
+
+document.body.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+  }, { passive: false });
+  
+  window.addEventListener('touchmove', function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+    }
+  }, { passive: false });

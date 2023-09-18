@@ -40,16 +40,19 @@ body {
 
 }
 
-
 @media screen and (max-width:450) { /*Smallest Possible Size 360*/
     /*
     * TODO: make header (burger, title text, icon) dynamically resize
     * when this width is reached, text will wrap around at this point
     */
+    #title-head {
+        font-size: 10px;
+    }
+    
+    #title-page {
+        font-size: 15px;
+    }
 }
-
-
-
   
 
 
