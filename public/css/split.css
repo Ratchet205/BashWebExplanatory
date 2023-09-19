@@ -9,7 +9,7 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: 40px calc(100% - 40px);
     grid-template-areas: 
     "oben"
     "unten";
@@ -17,27 +17,39 @@ body {
     font-size: 120%;
 }
 
-body:hover #Boben {
-    font-size: 100%;
+body:hover #Boben button {
+    font-size: 20px;
 }
 
 #Boben {
     grid-area: oben;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 45px;
+    margin-top: -5px;
     transition: 0.3s;
+    display: flex;
+    justify-content: center;
 }
 
 #Boben button {
+    height: 100%;
+    width: 220px;
+    transition: 0.3s;
     background-color: #38383d;
     border: none;
     color: #bebebe;
     font-size: 0;
+    text-align: center;
     cursor: pointer;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 5px 17px 6px rgba(0,0,0,0.38);
 }
 
 #Boben button:hover {
     background-color: #3a3a3f;
+    margin-top: 5px;
 }
 
 #Bunten {

@@ -32,20 +32,16 @@ body {
     overflow: hidden;
 }
 
-@media screen and (min-width:1000px) { /*PC*/
-
+@media screen and (min-width:600px) {  /*PC*/
+    #title-head { font-size: 30px; }
+    #title-page { font-size: 35px; }
 }
 
-@media screen and (max-width:999px) { /*Mobile*/
-
+@media screen and (max-width:600px) { /*Mobile*/
+    #title-head { font-size: calc(0.85 * 5vw); }
+    #title-page { font-size: 5vw; }
 }
 
-@media screen and (max-width:450) { /*Smallest Possible Size 360*/
-    /*
-    * TODO: make header (burger, title text, icon) dynamically resize
-    * when this width is reached, text will wrap around at this point
-    */
-}
 
 
 
@@ -222,15 +218,12 @@ nav ul li span {
     height: 100%;
     display: flex;
     justify-content: center;
-    flex: 1 1 100px;
-    min-width: 100px;
 }
 
 #title-head {
     grid-area: title-head;
     /*border: dashed green 1px;*/
     align-items: end;
-    font-size: 30px;
 }
 
 #title-page {
@@ -238,5 +231,4 @@ nav ul li span {
     /*border: dashed blue 1px;*/
     align-items: start;
     color: #f08d49;
-    font-size: 35px;
 }
