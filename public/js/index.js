@@ -1,41 +1,47 @@
 function PopBashFunktion() {
-    window.open('../html/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=100,left=100,width=850,height=450');
-};
+    const shellWindow = window.open('../html/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450');
+    
+}
 
 function changeIframeSource(url, self) {
     var iframe = document.getElementById('content-iframe');
     var titlePage = document.getElementById('title-page');
-    var selected = document.getElementById(self)
+    var selected = document.getElementById(self);
+    var iframeCover = document.getElementById('iframe-cover');
     var typingSpeed = 30;
     var typingProgress;
     var removalProgress;
     var oldLength;
     var removedText = false;
 
-    iframe.src = url;
-    selected.style.backgroundColor = '#303030';
+    iframeCover.style.opacity = "100%";
+    window.setTimeout(function(){
+        iframe.src = url;
+        selected.style.backgroundColor = '#303030';
+    
+        var idList = [
+            'Split', 'Comparison', 'Multi-Line', 'Replacement', 'Substring-Extraction', 'Manipulations-Bibliothek'
+        ];
+    
+        idList.forEach(function (id) {
+            if (id !== self) {
+                var element = document.getElementById(id);
+                element.style.backgroundColor = '#292929';
+            }
+        });    
 
-    var idList = [
-        'Split', 'Comparison', 'Multi-line', 'Replacement', 'Substring-Extraction', 'Manipulations-Bibliothek'
-    ];
-
-    idList.forEach(function (id) {
-        if (id !== self) {
-            var element = document.getElementById(id);
-            element.style.backgroundColor = '#292929';
-        }
-    });    
+        window.setTimeout(function(){
+            iframeCover.style.opacity = "0%";
+        }, 100);
+    }, 500);
 
     closeNav();
-
 
     typingProgress = 0;
     removalProgress = 0;
     oldLength = titlePage.textContent.length;
     removedText = false;
-    const change = setInterval(changeTitle, typingSpeed);
-    
-    function changeTitle(){
+    const change = setInterval(function(){
         if(!removedText){
             titlePage.textContent = titlePage.textContent.slice(0, -1);
             removalProgress++;
@@ -48,9 +54,8 @@ function changeIframeSource(url, self) {
         if (removedText && typingProgress > self.length) {
             clearInterval(change);
         }
-    }
+    }, typingSpeed);
 }
-
 
 function closeNav() {
     var burgerButton = document.getElementById("full-burger");
