@@ -222,6 +222,8 @@ nav ul li span {
     height: 100%;
     display: flex;
     justify-content: center;
+    flex: 1 1 100px;
+    min-width: 100px;
 }
 
 #title-head {

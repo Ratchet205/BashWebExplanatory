@@ -6,9 +6,13 @@ function changeIframeSource(url, self) {
     var iframe = document.getElementById('content-iframe');
     var titlePage = document.getElementById('title-page');
     var selected = document.getElementById(self)
+    var typingSpeed = 30;
+    var typingProgress;
+    var removalProgress;
+    var oldLength;
+    var removedText = false;
 
     iframe.src = url;
-    titlePage.textContent = self;
     selected.style.backgroundColor = '#303030';
 
     var idList = [
@@ -20,10 +24,33 @@ function changeIframeSource(url, self) {
             var element = document.getElementById(id);
             element.style.backgroundColor = '#292929';
         }
-    });
+    });    
 
     closeNav();
+
+
+    typingProgress = 0;
+    removalProgress = 0;
+    oldLength = titlePage.textContent.length;
+    removedText = false;
+    const change = setInterval(changeTitle, typingSpeed);
+    
+    function changeTitle(){
+        if(!removedText){
+            titlePage.textContent = titlePage.textContent.slice(0, -1);
+            removalProgress++;
+            if(removalProgress > oldLength) removedText = true;
+        } else {
+            titlePage.textContent += self.charAt(typingProgress);
+            typingProgress++;
+        }
+
+        if (removedText && typingProgress > self.length) {
+            clearInterval(change);
+        }
+    }
 }
+
 
 function closeNav() {
     var burgerButton = document.getElementById("full-burger");
