@@ -29,7 +29,7 @@ body:hover #Boben button {
     margin-top: -5px;
     transition: 0.3s;
     display: flex;
-    justify-content: center;
+    position: fixed;
 }
 
 #Boben button {
