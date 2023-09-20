@@ -20,31 +20,53 @@ io.on('connection', (socket) => {
     const family = socket.handshake.headers['x-forwarded-for'] ? 'IPv6' : clientAddress.includes(':') ? 'IPv6' : 'IPv4';
     const ipAddress = family === 'IPv4' ? clientAddress : clientAddress.split('::ffff:')[1];
 
-    console.log(`IP:\t${ipAddress}\t\tconnected`);
-
     try {
         //const JsonIP = JSON.parse(ipAddress);
 
         // Create a JSON file with the received settings asynchronously
         const filename = `${ipAddress}.ip`;
-        fs.writeFile(filename, JSON.stringify(ipAddress, null, 2), (error) => {
-            if (error) {
-                console.error('Error saving IP:', error);
-            } else {
-                console.log(`File:\t./${filename}\tcreated`);
-            }
-        });
+
+        if (fs.existsSync(`./${ipAddress}.ip`)) {
+            path = `./${ipAddress}.ip`
+            fs.readFile(path, 'utf8', (err, data) => {
+                if (err) {
+                    console.error(`Fehler beim Lesen der Datei: ${err}`);
+                    return;
+                }
+
+                // Den Wert aus der Datei parsen und um eins erhöhen
+                const currentValue = parseInt(data, 10);
+                const newValue = currentValue + 1;
+
+                // Das erhöhte Ergebnis in die Datei schreiben
+                fs.writeFile(path, newValue.toString(), (writeErr) => {
+                    if (writeErr) {
+                        console.error(`Fehler beim Schreiben in die Datei: ${writeErr}`);
+                        return;
+                    }
+                });
+            });
+        } else {
+            fs.writeFile(filename, JSON.stringify(1, null, 2), (error) => {
+                if (error) {
+                    console.error('Error saving IP:', error);
+                } else {
+                    console.log(`File:\t./${filename}\tcreated`);
+                }
+            });
+            console.log(`IP:\t${ipAddress}\t\tconnected`);
+        }
     } catch (error) {
         console.error('Error parsing IP:', error);
     }
 
     socket.on('save settings', (settingsJson) => {
         console.log(`Received settings: ${settingsJson}`);
-    
+
         // Parse the incoming JSON string to a JavaScript object
         try {
             const settingsData = JSON.parse(settingsJson);
-    
+
             // Create a JSON file with the received settings asynchronously
             const filename = 'settings.json';
             fs.writeFile(filename, JSON.stringify(settingsData, null, 2), (error) => {
@@ -67,17 +89,43 @@ io.on('connection', (socket) => {
         const path = `./${ipAddress}.ip`
         try {
             if (fs.existsSync(path)) {
-                fs.unlink(path, (err) => {
+                /*fs.unlink(path, (err) => {
                     if (err) {
                       console.error(`Error deleting file: ${err}`);
                     } else {
                       console.log(`File:\t${path}\tdeleted`);
                     }
-                  });
+                  });*/
+                fs.readFile(path, 'utf8', (err, data) => {
+                    if (err) {
+                        console.error(`Fehler beim Lesen der Datei: ${err}`);
+                        return;
+                    }
+
+                    const currentValue = parseInt(data, 10);
+                    const newValue = currentValue - 1;
+
+                    if (newValue <= 0) {
+                        fs.unlink(path, (err) => {
+                            if (err) {
+                              console.error(`Error deleting file: ${err}`);
+                            } else {
+                              console.log(`File:\t${path}\tdeleted`);
+                              console.log(`IP:\t${ipAddress}\t\tdisconnected`);
+                            }
+                          });
+                    } else {
+                        fs.writeFile(path, newValue.toString(), (writeErr) => {
+                            if (writeErr) {
+                                console.error(`Fehler beim Schreiben in die Datei: ${writeErr}`);
+                                return;
+                            }
+                        });
+                    }
+                })
             }
         } catch {
         }
-        console.log(`IP:\t${ipAddress}\t\tdisconnected`);
     });
 });
 
