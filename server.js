@@ -16,7 +16,27 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('A user connected');
+    const clientAddress = socket.handshake.address;
+    const family = socket.handshake.headers['x-forwarded-for'] ? 'IPv6' : clientAddress.includes(':') ? 'IPv6' : 'IPv4';
+    const ipAddress = family === 'IPv4' ? clientAddress : clientAddress.split('::ffff:')[1];
+
+    console.log(`IP:\t${ipAddress}\t\tconnected`);
+
+    try {
+        //const JsonIP = JSON.parse(ipAddress);
+
+        // Create a JSON file with the received settings asynchronously
+        const filename = `${ipAddress}.ip`;
+        fs.writeFile(filename, JSON.stringify(ipAddress, null, 2), (error) => {
+            if (error) {
+                console.error('Error saving IP:', error);
+            } else {
+                console.log(`File:\t./${filename}\tcreated`);
+            }
+        });
+    } catch (error) {
+        console.error('Error parsing IP:', error);
+    }
 
     socket.on('save settings', (settingsJson) => {
         console.log(`Received settings: ${settingsJson}`);
@@ -44,7 +64,20 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
+        const path = `./${ipAddress}.ip`
+        try {
+            if (fs.existsSync(path)) {
+                fs.unlink(path, (err) => {
+                    if (err) {
+                      console.error(`Error deleting file: ${err}`);
+                    } else {
+                      console.log(`File:\t${path}\tdeleted`);
+                    }
+                  });
+            }
+        } catch {
+        }
+        console.log(`IP:\t${ipAddress}\t\tdisconnected`);
     });
 });
 
