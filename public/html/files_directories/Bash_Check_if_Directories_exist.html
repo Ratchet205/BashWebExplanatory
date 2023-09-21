@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Check if Directories exist<pre class="pdfErsatz">
+Mit dem Operator -d können Sie testen, ob eine Datei ein Verzeichnis ist oder nicht. Um zum Beispiel zu überprüfen, ob das Verzeichnis /etc/docker existiert, verwenden Sie:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    FILE=/etc/docker
+    if [ -d "$FILE" ];
+    then
+        echo "$FILE is a directory."
+    fi
+</code>
+</pre>
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>

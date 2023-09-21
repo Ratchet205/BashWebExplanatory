@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Append to File<pre class="pdfErsatz">
+<span style="text-decoration: underline;">Append to a File using the Redirection Operator (>>)</span><br>Mit der Umleitung können Sie die Ausgabe eines Befehls erfassen und als Eingabe an einen anderen Befehl oder eine andere Datei senden. Der Operator >> edirection hängt die Ausgabe an eine gegebene Datei an. Es gibt eine Reihe von Befehlen, mit denen Sie Text auf die Standardausgabe drucken und in die Datei umleiten können, wobei echo und printf die am häufigsten verwendeten sind.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ echo "this is a new line" >> file.txt
+</code>
+</pre><!--Ende des ersten Abschnitts-->
+Bei Verwendung mit der Option -e interpretiert der echo-Befehl die umgekehrten Schrägstriche wie z.B. newline \n:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ echo -e "this is a new line \nthis is another new line" >> file.txt
+</code>
+</pre><!--Ende des zweiten Abschnitts-->
+Um komplexere Ausgaben zu erzeugen, verwenden Sie den Befehl printf, mit dem Sie die Formatierung der Ausgabe festlegen können:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ printf "Hello, I'm %s.\n" $USER >> file.txt
+</code>
+</pre><!--Ende des dritten Abschnitts-->
+<span style="text-decoration: underline;">Append to a File using the tee Command</span><br>tee ist ein Befehlszeilenprogramm unter Linux, das von der Standard-Eingabe liest und sowohl in die Standard-Ausgabe als auch in eine oder mehrere Dateien gleichzeitig schreibt. Standardmäßig verwritet der Befehl tee die angegebene Datei. Um die Ausgabe an die Datei anzuhängen, verwenden Sie tee mit der Option -a (--append):
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ echo "this is a new line" | tee -a file.txt
+</code>
+</pre><!--Ende des ersten Abschnitts-->
+Wenn Sie nicht möchten, dass tee auf die Standardausgabe schreibt, leiten Sie sie nach /dev/null um:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ echo "this is a new line" | tee -a file.txt >/dev/null
+</code>
+</pre><!--Ende des zweiten Abschnitts-->
+Um Text an mehr als eine Datei anzuhängen, geben Sie die Dateien als Argumente für den tee-Befehl an:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    $ echo "this is a new line" | tee -a file1.txt file2.txt file3.txt
+</code>
+</pre><!--Ende des dritten Abschnitts-->
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>

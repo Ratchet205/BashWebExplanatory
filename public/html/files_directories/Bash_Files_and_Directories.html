@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Files & Directories<pre class="pdfErsatz">
+<span style="text-decoration: underline;">Print Current Working Directory (pwd)</span><br>Ihr aktuelles Arbeitsverzeichnis ist das Verzeichnis, in dem Ihre Befehle ausgeführt werden. Es wird normalerweise als der vollständige Pfad zum Verzeichnis ausgegeben (was bedeutet, dass Sie das übergeordnete Verzeichnis sehen können). Um den Namen des aktuellen Arbeitsverzeichnisses auszudrucken, verwenden Sie den Befehl pwd.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+</code>
+</pre> <!--Ende der Print Current Working Directory-->
+<span style="text-decoration: underline;">Change Current Working Directory (cd)</span><br>Oft möchten Sie vielleicht das aktuelle Arbeitsverzeichnis ändern, so dass Sie auf verschiedene Unterverzeichnisse und Dateien zugreifen können. Um Verzeichnisse zu ändern, verwenden Sie den Befehl cd gefolgt von dem Namen des Verzeichnisses (z.B. cd downloads). Anschließend können Sie Ihr aktuelles Arbeitsverzeichnis erneut drucken, um den neuen Pfad zu überprüfen.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd documents
+    Guest@BashStruktur~$ pwd
+                         /users/schuster/documents
+</code>
+</pre>
+You can go back to the parent directory of any current directory by usingthe command cd .., as the full path of the current working directory isunderstood by Bash.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd..
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+</code>
+</pre> <!--Ende der Change Current Working Directory-->
+<span style="text-decoration: underline;">Create a New Directory (mkdir)</span><br>Der erste Schritt beim Erstellen eines neuen Verzeichnisses besteht darin, mit cd zu dem Verzeichnis zu navigieren, das Sie als übergeordnetes Verzeichnis des neuen Verzeichnisses verwenden möchten. Dann verwenden Sie den Befehl mkdir gefolgt von dem Namen, den Sie dem neuen Verzeichnis geben möchten (z.B. mkdir directory-name).
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd documents
+    Guest@BashStruktur~$ mkdir assignments
+    Guest@BashStruktur~$ cd assignments
+    Guest@BashStruktur~$ pwd
+                         /users/schuster/documents/assignments
+</code>
+</pre> <!--Ende der Create a New Directory-->
+<span style="text-decoration: underline;">Print a List of Files and Subdirectories (ls)</span><br>Um eine Liste aller Unterverzeichnisse und Dateien innerhalb des aktuellen Arbeitsverzeichnisses zu sehen, verwenden Sie den Befehl ls.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd ~
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+    Guest@BashStruktur~$ ls
+                         addresse.txt   documents   downloads   noten.txt                   
+</code>
+</pre> <!--Ende der Print a List of Files and Subdirectories-->
+<span style="text-decoration: underline;">Delete a File (rm)</span><br>Um eine bestimmte Datei zu löschen, verwenden Sie den Befehl rm gefolgt von dem Namen der Datei, die Sie löschen möchten (z.B. rm filename).
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+    Guest@BashStruktur~$ ls
+                         addresse.txt   documents   downloads   noten.txt
+    Guest@BashStruktur~$ rm addresse.txt   
+    Guest@BashStruktur~$ ls
+                         documents   downloads   noten.txt                               
+</code>
+</pre> <!--Ende der Delete a File-->
+<span style="text-decoration: underline;">Delete a Directory (rm -r)</span><br>Um ein Verzeichnis und alle darin enthaltenen Unterverzeichnisse und Dateien zu löschen (d.h. zu entfernen), navigieren Sie zum übergeordneten Verzeichnis und verwenden dann den Befehl rm -r gefolgt von dem Namen des zu löschenden Verzeichnisses (z.B. rm -rdirectory-name).
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd ~
+    Guest@BashStruktur~$ cd documents
+    Guest@BashStruktur~$ pwd
+                         /users/schuster/documents
+    Guest@BashStruktur~$ ls
+                         assignments
+    Guest@BashStruktur~$ rm -r assignments                    
+</code>
+</pre>
+Das rm steht für remove, während das -r notwendig ist, um Bash mitzuteilen, dass es den Befehl durch eine Liste aller Dateien und Unterverzeichnisse innerhalb des übergeordneten Verzeichnisses wiederholen muss. Somit wird auch das neu erstellte Homeworks-Verzeichnis unter Zuordnungen gelöscht, wenn Zuordnungen gelöscht werden.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ pwd
+                         /users/schuster/documents
+    Guest@BashStruktur~$ ls
+    Guest@BashStruktur~$ 
+</code>
+</pre> <!--Ende der Delete a Directory-->
+<span style="text-decoration: underline;">Copy a File (cp)</span><br>Sie können auch eine bestimmte Datei in ein neues Verzeichnis kopieren, indem Sie den Befehl cp gefolgt von dem Namen der Datei, die Sie kopieren möchten, und dem Namen des Verzeichnisses, in das Sie die Datei kopieren möchten (z.B. cp filename directory-name).
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd ~
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+    Guest@BashStruktur~$ ls
+                         documents   downloads   noten.txt
+    Guest@BashStruktur~$ cp noten.txt documents  
+    Guest@BashStruktur~$ cd documents 
+    Guest@BashStruktur~$ ls
+                         noten.txt                             
+</code>
+</pre> <!--Ende der Copy a File-->
+<span style="text-decoration: underline;">Copy a Directory and Its Contents (cp -r)</span><br>Ebenso können Sie ein ganzes Verzeichnis in ein anderes Verzeichnis kopieren, indem Sie cp -r gefolgt von dem Verzeichnisnamen, das Sie kopieren möchten, und dem Namen des Verzeichnisses, in das Sie das Verzeichnis kopieren möchten (z.B. cp -r directory-name-1 directory-name-2). Ähnlich wie rm -r ist auch -r in cp -r notwendig, um Bash mitzuteilen, dass er den Befehl durch eine Liste aller Dateien und Unterverzeichnisse innerhalb des übergeordneten Verzeichnisses wiederholen muss.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd ~
+    Guest@BashStruktur~$ pwd
+                         /users/schuster
+    Guest@BashStruktur~$ ls
+                         documents   downloads   noten.txt
+    Guest@BashStruktur~$ mkdir bilder
+    Guest@BashStruktur~$ ls
+                         documents   downloads   noten.txt  bilder
+    Guest@BashStruktur~$ cp -r bilder documents  
+    Guest@BashStruktur~$ cd documents 
+    Guest@BashStruktur~$ ls
+                         noten.txt  bilder                            
+</code>
+</pre> <!--Ende der Copy a Directory and Its Contents-->
+<span style="text-decoration: underline;">Create a New File Using a Single Command (touch)</span><br>Sie können eine neue leere Datei mit dem einfachen Befehl touch erstellen (z.B. touch file-name.txt). Dieser Befehl wurde ursprünglich erstellt, um die Zeitstempel von Dateien zu verwalten. Wenn jedoch eine Datei noch nicht existiert, erstellt der Befehl die Datei. Dies ist eine unglaublich nützliche Möglichkeit, schnell und programmatisch eine neue leere Datei zu erstellen, die zu einem späteren Zeitpunkt gefüllt werden kann.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    Guest@BashStruktur~$ cd ~
+    Guest@BashStruktur~$ cd downloads
+    Guest@BashStruktur~$ pwd
+                         /users/schuster/downloads
+    Guest@BashStruktur~$ touch veg-data.txt
+    Guest@BashStruktur~$ ls
+                         veg-data.txt                
+</code>
+</pre> <!--Ende der Copy a Directory and Its Contents-->
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>
