@@ -51,17 +51,49 @@ body {
     border-radius: 6px;
     border: 1px solid #bebebe;
     transition: margin-left .5s;
-    z-index: +1;
+    z-index: 1;
 }
 
 #page-content iframe {
     border-radius: 6px;
-}
-
-iframe {
     overflow: auto;
     overscroll-behavior: none; /* IN CASE OF ERROR REMOVE */
     background-color: #292929;
+}
+
+#bash-shell-button {
+    height: 40px;
+    width: 220px;
+    position: absolute;
+    background-color: #38383d;
+    transition: 0.3s;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 5px 17px 6px rgba(0,0,0,0.38);
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+#bash-shell-button:hover {
+    height: 45px;
+}
+
+#bash-shell-button button {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff00;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0;
+    color: #bebebe;
+    text-align: center;
+}
+
+#page-content:hover #bash-shell-button button {
+    font-size: 20px;
 }
 
 #iframe-cover {

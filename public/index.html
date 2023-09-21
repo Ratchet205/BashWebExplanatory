@@ -12,7 +12,7 @@
     </script>
     <title>String Maniküre</title>
 </head>
-<body onload="loadNav()">
+<body onload="loadContent()">
     <div id="page-header">
         <nav id="burger-area">
             <svg class="full-burger" id="full-burger" viewBox="0 0 100 100" width="80" onclick="interactNav(this)">
@@ -61,6 +61,9 @@
 
     <div id="page-content">
         <div id="iframe-cover"></div>
+        <div id="bash-shell-button">
+            <button type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+        </div>
         <iframe src="html/home.html" width="100%" height="100%" frameborder="0" zoom="100%" id="content-iframe"></iframe>
     </div>
 

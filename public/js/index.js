@@ -131,4 +131,8 @@ function updateNav() {
     }
 }
 
+function loadContent() {
+    loadNav();
+}
+
 window.addEventListener('resize', updateNav);
