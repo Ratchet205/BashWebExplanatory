@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Check if Files exist<pre class="pdfErsatz">
+Wenn geprüft wird, ob eine Datei existiert, sind die am häufigsten verwendeten FILE-Operatoren -e und -f. Die erste prüft, ob eine Datei existiert, unabhängig vom Typ, während die zweite nur dann true zurückgibt, wenn die FILE eine reguläre Datei ist (kein Verzeichnis oder ein Gerät). Die am besten lesbare Option bei der Überprüfung, ob eine Datei existiert oder nicht, ist die Verwendung des test -Befehls in Verbindung mit der if -Anweisung Jedes der folgenden Snippets überprüft, ob die Datei /etc/resolv.conf existiert:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    FILE=/etc/resolv.conf
+    if test -f "$FILE"; 
+    then
+        echo "$FILE existiert."
+    fi
+</code>
+</pre> <!--Ende des ersten Abschnitts-->
+Sie können den test-Befehl auch ohne die if-Anweisung verwenden. Der Befehl nach dem &&-Operator wird nur ausgeführt, wenn der Exit-Status des test-Befehls wahr ist:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    test -f /etc/resolv.conf && echo "$FILE existiert."
+</code>
+</pre> <!--Ende des zweiten Abschnitts-->
+Anstatt komplizierte geschachtelte if/else Konstrukte zu verwenden, können Sie - a (oder && mit [[)) verwenden, um zu testen, ob mehrere Dateien existieren:
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    if [ -f /etc/resolv.conf -a -f /etc/hosts ];
+    then
+        echo "Beide Files existieren."
+    fi
+</code>
+</pre> <!--Ende des dritten Abschnitts-->
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>

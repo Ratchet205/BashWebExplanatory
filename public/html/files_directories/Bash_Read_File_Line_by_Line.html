@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Boben">
+        <button id="Boben" type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
+    </div>
+    <div id="Bunten">
+        <div class="pdfInhalt">
+        <pre class="pdfErsatzÜberschrift">
+Bash Read File Line by Line<pre class="pdfErsatz">
+<span style="text-decoration: underline;">Using read command and while loop</span><br>Wir können den read-Befehl verwenden, um den Inhalt einer Datei Zeile für Zeile zu lesen. Wir verwenden das -r-Argument für den read-Befehl, um Backslash- Escaped-Zeichen zu vermeiden.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    file="temp.txt"
+
+    while read -r line; 
+    do 
+        echo -e "$line\n"
+    done <$file
+</code>
+</pre><!--Ende der Using read command and while loop-->
+<span style="text-decoration: underline;">Using cat and for loop</span><br>Von diesem Ansatz aus können wir den Inhalt einer Datei mit dem cat-Befehl und der for-Schleife lesen. Wir verwenden für eine Schleife den gleichen Ansatz wie für die while-Schleife, aber wir speichern den Inhalt der Datei in einer Variablen mit dem cat-Befehl. Die for-Schleife iteriert über die Zeilen in der Ausgabe des cat-Befehls eine nach der anderen, bis sie EOF oder das Ende der Datei erreicht.
+<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
+    <code class="language-bash">
+    file=$(cat temp.txt)
+
+    for line in $file 
+    do 
+        echo -e "$line\n"
+    done 
+</code>
+</pre><!--Ende der Using cat and for loop-->
+</pre>
+</pre>
+</div>
+</div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>
