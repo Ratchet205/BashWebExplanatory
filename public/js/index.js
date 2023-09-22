@@ -1,5 +1,5 @@
 function PopBashFunktion() {
-    const shellWindow = window.open('../manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450');
+    const shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450');
     
 }
 
@@ -8,12 +8,14 @@ function changeIframeSource(url, self) {
     var titlePage = document.getElementById('title-page');
     var selected = document.getElementById(self);
     var iframeCover = document.getElementById('iframe-cover');
+    var burgerButton = document.getElementById("full-burger");
     var typingSpeed = 30;
     var typingProgress;
     var removalProgress;
     var oldLength;
     var removedText = false;
 
+    document.getElementById("bash-shell-button").querySelector("button").style.display = "none";
     iframeCover.style.opacity = "100%";
     window.setTimeout(function(){
         iframe.src = url;
@@ -32,10 +34,14 @@ function changeIframeSource(url, self) {
 
         window.setTimeout(function(){
             iframeCover.style.opacity = "0%";
+            document.getElementById("bash-shell-button").style.height = "40px";
+            document.getElementById("bash-shell-button").querySelector("button").style.display = "block";
         }, 100);
     }, 500);
 
-    closeNav();
+    burgerButton.classList.remove('active');
+    document.getElementById("nav").style.width = "0px";
+    document.getElementById("page-content").style.marginLeft = "0px";
 
     typingProgress = 0;
     removalProgress = 0;
@@ -57,21 +63,9 @@ function changeIframeSource(url, self) {
     }, typingSpeed);
 }
 
-function closeNav() {
-    var burgerButton = document.getElementById("full-burger");
-    burgerButton.classList.remove('active');
-
-    if (document.body.clientWidth > 600) {
-        document.getElementById("nav").style.width = "0px";
-        document.getElementById("page-content").style.marginLeft = "0px";
-    } else {
-        document.getElementById("nav").style.width = "0px";
-        document.getElementById("page-content").style.marginLeft = "0px";
-    }
-}
-
 function interactNav(burgerButton) {
     var isActive = burgerButton.classList.contains('active');
+    var bashShellButton = document.getElementById("bash-shell-button");
 
     burgerButton.classList.toggle('active');
 
@@ -79,17 +73,25 @@ function interactNav(burgerButton) {
         if (!isActive) {
             document.getElementById("nav").style.width = "250px";
             document.getElementById("page-content").style.marginLeft = "250px";
+            bashShellButton.style.height = "0px";
+            bashShellButton.querySelector("button").style.display = "none";
         } else {
             document.getElementById("nav").style.width = "0px";
             document.getElementById("page-content").style.marginLeft = "0px";
+            bashShellButton.style.height = "40px";
+            bashShellButton.querySelector("button").style.display = "block";
         }
     } else {
         if (!isActive) {
             document.getElementById("nav").style.width = "100%";
             document.getElementById("page-content").style.marginLeft = "100%";
+            bashShellButton.style.height = "0px";
+            bashShellButton.querySelector("button").style.display = "none";
         } else {
             document.getElementById("nav").style.width = "0px";
             document.getElementById("page-content").style.marginLeft = "0px";
+            bashShellButton.style.height = "40px";
+            bashShellButton.querySelector("button").style.display = "block";
         }
     }
 
@@ -97,14 +99,19 @@ function interactNav(burgerButton) {
 
 function loadNav() {
     var burgerButton = document.getElementById("full-burger");
+    var bashShellButton = document.getElementById("bash-shell-button");
 
     if (document.body.clientWidth > 600) {
         document.getElementById("nav").style.width = "250px";
         document.getElementById("page-content").style.marginLeft = "250px";
+        document.getElementById("bash-shell-button").style.height = "0px";
+        bashShellButton.querySelector("button").style.display = "none";
         burgerButton.classList.add('active');
     } else {
         document.getElementById("nav").style.width = "0px";
         document.getElementById("page-content").style.marginLeft = "0px";
+        document.getElementById("bash-shell-button").style.height = "40px";
+        bashShellButton.querySelector("button").style.display = "block";
         burgerButton.classList.remove('active');
     }
 }
@@ -136,3 +143,37 @@ function loadContent() {
 }
 
 window.addEventListener('resize', updateNav);
+
+
+/*
+var mouseX;
+var mouseY;
+onmousemove = function(e){mouseX = e.clientX, mouseY = e.clientY}
+
+setInterval(function() {
+    var bashShellButton = $document.getElementById("bash-shell-button");
+
+    var bashShellButtonOffset = $bashShellButton.offset();
+    var bashShellButtonWidth = $bashShellButton.width();
+    var bashShellButtonHeight = $bashShellButton.height();
+
+    var bashShellButtonCenterX = bashShellButtonOffset.left + bashShellButtonWidth / 2;
+    var bashShellButtonCenterY = bashShellButtonOffset.top + bashShellButtonHeight / 2;
+
+    var a = bashShellButtonCenterX - mouseX;
+    var b = bashShellButtonCenterY - onmousemove;
+    
+    var distance = Math.sqrt( a*a + b*b );
+
+    if(distance < 250) {
+        document.getElementById("bash-shell-button").style.height = "15px";
+        bashShellButton.querySelector("button").style.display = "none";
+    } else {
+        document.getElementById("bash-shell-button").style.height = "40px";
+        bashShellButton.querySelector("button").style.display = "block";
+    }
+
+    console.log("mouse location:", mouseX, mouseY);
+    console.log("button location:", bashShellButtonCenterX, bashShellButtonCenterY);
+    console.log("distance:", distance);
+}, 600);*/
