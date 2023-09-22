@@ -1,6 +1,5 @@
 function PopBashFunktion() {
-    const shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450');
-    
+    const shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
 }
 
 function changeIframeSource(url, self) {

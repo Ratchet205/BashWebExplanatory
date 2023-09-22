@@ -1,11 +1,37 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const glob = require('glob');
 const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+
+const pattern = '*.ip';
+
+glob(pattern, (err, files) => {
+  if (err) {
+    console.error('Error matching files:', err);
+    return;
+  }
+
+  if (files.length === 0) {
+    console.log('No .ip files found.');
+    return;
+  }
+
+  files.forEach((file) => {
+    fs.unlink(file, (err) => {
+      if (err) {
+        console.error(`Error deleting file ${file}:`, err);
+      } else {
+        console.log(`Deleted file: ${file}`);
+      }
+    });
+  });
+});
+
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
