@@ -3,6 +3,10 @@ const http = require('http');
 const socketIO = require('socket.io');
 const glob = require('glob');
 const fs = require('fs');
+const phpExpress = require('php-express')({
+    binPath: './php-8.2.10/php.exe',
+    router: './public/php'
+  });
 
 const app = express();
 const server = http.createServer(app);
@@ -32,7 +36,10 @@ glob(pattern, (err, files) => {
   });
 });
 
-
+app.use('/php', (req, res, next) => {
+    res.contentType('text/html'); // Set the content type to HTML
+    next();
+});
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
@@ -40,6 +47,11 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
+
+app.engine('php', phpExpress.engine);
+app.set('views', './public/php'); // Set the views directory to your PHP scripts
+
+app.use(/.+\.php$/, phpExpress.router);
 
 io.on('connection', (socket) => {
     const clientAddress = socket.handshake.address;
