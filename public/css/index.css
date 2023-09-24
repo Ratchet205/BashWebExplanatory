@@ -243,6 +243,40 @@ nav ul li span {
     position: absolute;
 }
 
+#top-level-nav {
+
+}
+
+#top-level-nav span {
+    display: grid;
+    grid-template-columns: 50 calc(100% - 50px);
+    grid-template-areas: "tln-back-button tln-text";
+}
+
+#top-level-nav span svg {
+    grid-area: tln-back-button;
+    margin-right: 5px;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#top-level-nav span svg path {
+
+}
+
+#top-level-nav span h3 {
+    grid-area: tln-text;
+}
+
 #title {
     grid-area: title;
     background-color: #222222;

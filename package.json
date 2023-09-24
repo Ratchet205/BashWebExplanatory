@@ -4,7 +4,9 @@
     "fs": "^0.0.1-security",
     "glob": "^7.2.3",
     "http": "^0.0.1-security",
+    "jquery": "^3.7.1",
     "node-gyp": "^9.4.0",
+    "require": "^2.4.20",
     "socket.io": "^4.7.2"
   }
 }

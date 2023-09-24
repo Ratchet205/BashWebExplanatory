@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const jquery = require('jquery');
 const glob = require('glob');
 const fs = require('fs');
 
