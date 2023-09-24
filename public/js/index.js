@@ -1,3 +1,6 @@
+var mouseX;
+var mouseY;
+
 function PopBashFunktion() {
     const shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
 }
@@ -116,6 +119,7 @@ function loadNav() {
 }
 
 function updateNav() {
+    if(document.getElementById("full-burger") == null) return;
     var isActive = document.getElementById("full-burger").classList.contains('active');
 
     if (document.body.clientWidth > 600) {
@@ -143,18 +147,18 @@ function loadContent() {
 
 window.addEventListener('resize', updateNav);
 
-
 /*
-var mouseX;
-var mouseY;
-onmousemove = function(e){mouseX = e.clientX, mouseY = e.clientY}
+$('#content-iframe').contents().find('html').on('mousemove', function (e) { 
+    mouseX = e.clientX; 
+    mouseY = e.clientY;
+})
 
 setInterval(function() {
-    var bashShellButton = $document.getElementById("bash-shell-button");
+    var bashShellButton = document.getElementById("bash-shell-button");
 
-    var bashShellButtonOffset = $bashShellButton.offset();
-    var bashShellButtonWidth = $bashShellButton.width();
-    var bashShellButtonHeight = $bashShellButton.height();
+    var bashShellButtonOffset = bashShellButton.offset();
+    var bashShellButtonWidth = bashShellButton.width();
+    var bashShellButtonHeight = bashShellButton.height();
 
     var bashShellButtonCenterX = bashShellButtonOffset.left + bashShellButtonWidth / 2;
     var bashShellButtonCenterY = bashShellButtonOffset.top + bashShellButtonHeight / 2;
