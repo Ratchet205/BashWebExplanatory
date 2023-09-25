@@ -145,6 +145,10 @@ function loadContent() {
     loadNav();
 }
 
+function openTopLevelNav() {
+    document.getElementById("top-level-nav-list").classList.toggle('active');
+}
+
 window.addEventListener('resize', updateNav);
 
 /*

@@ -231,7 +231,7 @@ nav ul li {
     cursor: pointer;
 }
 
-nav ul li:hover {
+nav ul li:hover:not(#top-level-nav) {
     transition: 0.5s;
     transform: translateY(-5px);
 }
@@ -243,18 +243,52 @@ nav ul li span {
     position: absolute;
 }
 
-#top-level-nav {
+#nav {
+    overflow: hidden;
+    display: block;
+    grid-template-areas: "pages-nav-list top-level-nav-list";
+    transition: 0.5s;
+    background-color: #292929;
+}
 
+#top-level-nav-list {
+    overflow: hidden;
+    position: absolute;
+    margin-left: 250px;
+    width: 0px;
+    transition: 0.5s;
+    background-color: #292929;
+}
+
+#pages-nav-list {
+    overflow: hidden;
+    transition: 0.5s;
+    background-color: #292929;
+}
+
+#top-level-nav-list.active {
+    width: 250px;
+    margin-left: 0px;
+}
+
+#top-level-nav-list.active ~ #pages-nav-list {
+    width: 0px;
+}
+
+#top-level-nav:hover span svg{
+    transform: translateX(-5px);
 }
 
 #top-level-nav span {
     display: grid;
     grid-template-columns: 50 calc(100% - 50px);
+    grid-template-rows: 100%;
     grid-template-areas: "tln-back-button tln-text";
 }
 
 #top-level-nav span svg {
     grid-area: tln-back-button;
+    margin-top: 11px;
     margin-right: 5px;
     height: 50px;
     width: 50px;
@@ -265,12 +299,14 @@ nav ul li span {
     transition: transform 400ms;
     -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
 #top-level-nav span svg path {
-
+    fill:none;
+    stroke:#bebebe;
+    stroke-width:4;
+    stroke-linecap:round;
 }
 
 #top-level-nav span h3 {
