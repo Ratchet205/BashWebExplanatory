@@ -177,7 +177,6 @@ body {
 
 .full-burger.active #burger-bottom {
     stroke-dashoffset: -64px;
-    stroke-dashoffset: -64px;
 }
 
 #icon {
@@ -231,7 +230,7 @@ nav ul li {
     cursor: pointer;
 }
 
-nav ul li:hover:not(#top-level-nav) {
+nav ul li:hover:not(#top-level-nav):not(#close-top-level-nav) {
     transition: 0.5s;
     transform: translateY(-5px);
 }
@@ -253,26 +252,16 @@ nav ul li span {
 
 #top-level-nav-list {
     overflow: hidden;
-    position: absolute;
-    margin-left: 250px;
     width: 0px;
     transition: 0.5s;
     background-color: #292929;
 }
 
-#pages-nav-list {
+.pages-nav-list {
     overflow: hidden;
+    width: 250px;
     transition: 0.5s;
     background-color: #292929;
-}
-
-#top-level-nav-list.active {
-    width: 250px;
-    margin-left: 0px;
-}
-
-#top-level-nav-list.active ~ #pages-nav-list {
-    width: 0px;
 }
 
 #top-level-nav:hover span svg{
@@ -310,6 +299,46 @@ nav ul li span {
 }
 
 #top-level-nav span h3 {
+    grid-area: tln-text;
+}
+
+#close-top-level-nav:hover span svg{
+    transform: translateX(5px);
+}
+
+#close-top-level-nav span {
+    display: grid;
+    grid-template-columns: 50 calc(100% - 50px);
+    grid-template-rows: 100%;
+    grid-template-areas: "tln-text tln-back-button";
+}
+
+#close-top-level-nav span svg {
+    grid-area: tln-back-button;
+    margin-top: 11px;
+    margin-left: 5px;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#close-top-level-nav span svg path {
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+    fill:none;
+    stroke:#bebebe;
+    stroke-width:4;
+    stroke-linecap:round;
+}
+
+#close-top-level-nav span h3 {
     grid-area: tln-text;
 }
 

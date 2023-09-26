@@ -147,6 +147,44 @@ function loadContent() {
 
 function openTopLevelNav() {
     document.getElementById("top-level-nav-list").classList.toggle('active');
+
+    tlnList = document.getElementById("top-level-nav-list");
+    pgLists = document.getElementsByClassName("pages-nav-list");
+
+    if(document.getElementById("top-level-nav-list").classList.contains('active')){
+        tlnList.style.width = "0";
+        tlnList.style.marginLeft = "250px";
+        for (let pgListItem of pgLists) {
+            pgListItem.style.width = "250px";
+        }
+    } else {
+        tlnList.style.width = "250px";
+        tlnList.style.marginLeft = "0";
+        for (let pgListItem of pgLists) {
+            pgListItem.style.width = "0";
+        }
+    }
+}
+
+function loadNav(navToLoad) {
+    switch(navToLoad) {
+        case 'string-mani':
+            document.getElementById("string-mani").style.display = "block";
+            document.getElementById("file-directories").style.display = "none";
+            document.getElementById("adrian-tim").style.display = "none";
+            break;
+        case 'file-directories':
+            document.getElementById("string-mani").style.display = "none";
+            document.getElementById("file-directories").style.display = "block";
+            document.getElementById("adrian-tim").style.display = "none";
+            break;
+        case 'adrian-tim':
+            document.getElementById("string-mani").style.display = "none";
+            document.getElementById("file-directories").style.display = "none";
+            document.getElementById("adrian-tim").style.display = "block";
+            break;
+    }
+    openTopLevelNav();
 }
 
 window.addEventListener('resize', updateNav);

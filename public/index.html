@@ -37,17 +37,27 @@
     </div>
     <nav id="nav">
         <ul id="top-level-nav-list">
-            <li onclick="" id="">
+            <li onclick="openTopLevelNav()" id="close-top-level-nav">
+                <span>
+                    <h3>Kategorien</h3>
+                    <svg>
+                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39"/>
+                    </svg>
+                </span>
+            </li>
+            <hr>
+            <li onclick="loadNav('string-mani')" id="">
                 <span>String Maniküre</span>
             </li>
-            <li onclick="" id="">
+            <li onclick="loadNav('file-directories')" id="">
                 <span>File Directories</span>
             </li>
-            <li onclick="" id="">
+            <li onclick="loadNav('adrian-tim')" id="">
                 <span>AdrianTim</span>
             </li>
         </ul>
-        <ul id="pages-nav-list">
+
+        <ul class="pages-nav-list" id="string-mani">
             <li onclick="openTopLevelNav()" id="top-level-nav">
                 <span>
                     <svg>
@@ -75,6 +85,54 @@
             <hr>
             <li onclick="changeIframeSource('html/manipulation/gesamtmanp.html','Manipulations-Bibliothek')" id="Manipulations-Bibliothek">
                 <span>Manipulations-Bibliothek</span>
+            </li>
+        </ul>
+
+        <ul class="pages-nav-list" id="file-directories" style="display: none;">
+            <li onclick="openTopLevelNav()" id="top-level-nav">
+                <span>
+                    <svg>
+                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
+                    </svg>
+                    <h3>File Directories</h3>
+                </span>
+            </li>
+            <hr>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+        </ul>
+
+        <ul class="pages-nav-list" id="adrian-tim" style="display: none;">
+            <li onclick="openTopLevelNav()" id="top-level-nav">
+                <span>
+                    <svg>
+                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
+                    </svg>
+                    <h3>Adrian Tim</h3>
+                </span>
+            </li>
+            <hr>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
+            </li>
+            <li onclick="changeIframeSource('','')" id="">
+                <span></span>
             </li>
         </ul>
     </nav>
