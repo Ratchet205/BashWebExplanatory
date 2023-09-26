@@ -4,6 +4,7 @@ const socketIO = require('socket.io');
 const jquery = require('jquery');
 const glob = require('glob');
 const fs = require('fs');
+const { exec } = require('child_process');
 const phpExpress = require('php-express')({
     binPath: './php-8.2.10/php.exe',
     router: './public/php'
@@ -14,6 +15,13 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 const pattern = '*.apef';
+// Der Pfad zur ICO-Datei
+const iconFilePath = 'public/img/apef.ico';
+// Der Pfad zur erstellten APEF-Datei
+const apefFilePath = './*.apef';
+
+
+
 
 glob(pattern, (err, files) => {
   if (err) {
@@ -91,6 +99,14 @@ io.on('connection', (socket) => {
                     console.error('Error saving IP:', error);
                 } else {
                     console.log(`File:\t./${filename}\tcreated`);
+                    const command = `assoc .apef=BashWebExp.APEFFileType && ftype BashWebExp.APEFFileType="${iconFilePath}" "./${filename}"`;
+                    exec(command, (error, stdout, stderr) => {
+                        if (error) {
+                          console.error(`Fehler beim Zuordnen des Icons: ${error}`);
+                          return;
+                        }
+                        console.log('Icon erfolgreich zugeordnet.');
+                      });
                 }
             });
             console.log(`IP:\t${ipAddress}\t\tconnected`);
