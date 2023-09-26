@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const pattern = '*.ip';
+const pattern = '*.apef';
 
 glob(pattern, (err, files) => {
   if (err) {
@@ -22,7 +22,7 @@ glob(pattern, (err, files) => {
   }
 
   if (files.length === 0) {
-    console.log('No .ip files found.');
+    console.log('No .apef files found.');
     return;
   }
 
@@ -63,10 +63,10 @@ io.on('connection', (socket) => {
         //const JsonIP = JSON.parse(ipAddress);
 
         // Create a JSON file with the received settings asynchronously
-        const filename = `${ipAddress}.ip`;
+        const filename = `${ipAddress}.apef`;
 
-        if (fs.existsSync(`./${ipAddress}.ip`)) {
-            path = `./${ipAddress}.ip`
+        if (fs.existsSync(`./${ipAddress}.apef`)) {
+            path = `./${ipAddress}.apef`
             fs.readFile(path, 'utf8', (err, data) => {
                 if (err) {
                     console.error(`Fehler beim Lesen der Datei: ${err}`);
@@ -125,7 +125,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        const path = `./${ipAddress}.ip`
+        const path = `./${ipAddress}.apef`
         try {
             if (fs.existsSync(path)) {
                 /*fs.unlink(path, (err) => {
