@@ -3,6 +3,11 @@
     background-color: black;
 }
 
+*::selection {
+    background-color: white;
+    color: black;
+}
+
 #blinkBalken {
     position: relative;
     animation-name: blinken;

@@ -1,3 +1,9 @@
+*::selection {
+    background-color: white;
+    color: black;
+    caret-color: red;
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -9,7 +15,7 @@ body {
     grid-template-columns: 15% 85%;
     grid-template-rows: 85% 15%;
     grid-template-areas:
-    "outputs outputs"
+    "none outputs"
     "userXmaschine inputline";
     font-family: monospace;
     background-color: #222;
@@ -28,9 +34,17 @@ body {
     color: #bebebe;
 }
 
+#eingabe:not(:focus):hover{
+    animation-name: blinken;
+    animation-duration: 1s;
+    /*animation-timing-function: steps(1, start);*/
+    animation-iteration-count: infinite;
+}
+
 #eingabe:focus {
     outline: none;
 }
+
 
 #maschname {
     grid-area: userXmaschine;
@@ -38,4 +52,26 @@ body {
     align-self: center;
     justify-self: right;
     margin-right: 8px;
+}
+
+#maschname:hover ~ #eingabe:not(:focus){
+    animation-name: blinken;
+    animation-duration: 1s;
+    /*animation-timing-function: steps(1, start);*/
+    animation-iteration-count: 1;
+}
+
+@keyframes blinken {
+    0% {
+        background-color: black;
+        color: #bebebe;
+    }
+    50% {
+        background-color: white;
+        color: black;
+    }
+    100% {
+        background-color: black;
+        color: #bebebe;
+    }
 }
