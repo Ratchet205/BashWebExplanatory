@@ -5,41 +5,37 @@ html {
 body {
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 85% 15%;
+    grid-template-areas:
+    "outputs outputs"
+    "userXmaschine inputline";
     font-family: monospace;
     background-color: #222;
-    color: #f7f7f7;
+    color: #bebebe;
     height: 100%;
-}
-
-#term-bod {
-    display: flex;
-    justify-content: center;
     background-color: black;
 }
 
-#con-line-container {
-    border: green dashed;
-    position: fixed;
-    bottom: 0;
-    width: 60%;
-}
-
-#outputter {
-    opacity: 100%;
-}
-
-#con-line-container::before {
+#eingabe {
+    grid-area: inputline;
+    left: 0;
+    height: 25%;
+    align-self: center;
+    border: none;
+    background-color: transparent;
     color: #bebebe;
-    content: "Guest@String-Maniküre~$";
-    width: 20%;
 }
 
-input[type="text"][id="con-line"] {
-    background-color: black;
-    border:none;
-    color: #bebebe;
-    height: 100%;
-    width: 80%;
-    border-style: none;
+#eingabe:focus {
+    outline: none;
 }
 
+#maschname {
+    grid-area: userXmaschine;
+    height: 25%;
+    align-self: center;
+    justify-self: right;
+    margin-right: 8px;
+}

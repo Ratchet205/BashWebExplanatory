@@ -99,14 +99,14 @@ io.on('connection', (socket) => {
                     console.error('Error saving IP:', error);
                 } else {
                     console.log(`File:\t./${filename}\tcreated`);
-                    const command = `assoc .apef=BashWebExp.APEFFileType && ftype BashWebExp.APEFFileType="${iconFilePath}" "./${filename}"`;
+                    /*const command = `assoc .apef=BashWebExp.APEFFileType && ftype BashWebExp.APEFFileType="${iconFilePath}" "./${filename}"`;
                     exec(command, (error, stdout, stderr) => {
                         if (error) {
                           console.error(`Fehler beim Zuordnen des Icons: ${error}`);
                           return;
                         }
                         console.log('Icon erfolgreich zugeordnet.');
-                      });
+                      });*/
                 }
             });
             console.log(`IP:\t${ipAddress}\t\tconnected`);
