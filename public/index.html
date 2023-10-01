@@ -10,6 +10,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+        window.onbeforeunload = function() {
+            CloseBashFunktion();
+        }
     </script>
     <title>String Maniküre</title>
 </head>

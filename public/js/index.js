@@ -1,8 +1,18 @@
 var mouseX;
 var mouseY;
+var shellWindow
 
 function PopBashFunktion() {
-    const shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
+    if (shellWindow) {
+        shellWindow.close();
+    }
+    shellWindow = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
+}
+
+function  CloseBashFunktion() {
+    if (shellWindow) {
+        shellWindow.close();
+    }
 }
 
 function changeIframeSource(url, self) {

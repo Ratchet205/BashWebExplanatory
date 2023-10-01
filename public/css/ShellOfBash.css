@@ -1,7 +1,7 @@
 *::selection {
     background-color: white;
     color: black;
-    caret-color: red;
+    caret-color: black;
 }
 
 html {
@@ -12,24 +12,53 @@ body {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 15% 85%;
-    grid-template-rows: 85% 15%;
+    grid-template-columns: 100%;
+    grid-template-rows: calc(100% - 50px) 50px;
     grid-template-areas:
-    "none outputs"
-    "userXmaschine inputline";
+    "outputs"
+    "hid";
     font-family: monospace;
     background-color: #222;
     color: #bebebe;
     height: 100%;
     background-color: black;
+    overflow: hidden;
+}
+
+#hid {
+    background-color: #292929;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 25000px;
+    position: fixed;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    grid-area: hid;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "userXmaschine inputline";
+}
+
+#output {
+    grid-area: outputs;
+    scrollbar-width: thin;
+    overflow-y: auto;
+    padding: 5px;
+    left: 0;
+    font-size: 17px;
+    border: none;
+    background-color: transparent;
 }
 
 #eingabe {
+    border: none;
     grid-area: inputline;
     left: 0;
-    height: 25%;
+    font-size: 17px;
     align-self: center;
-    border: none;
     background-color: transparent;
     color: #bebebe;
 }
@@ -48,10 +77,11 @@ body {
 
 #maschname {
     grid-area: userXmaschine;
-    height: 25%;
     align-self: center;
     justify-self: right;
     margin-right: 8px;
+    font-size: 17px;
+    color: #00d000;
 }
 
 #maschname:hover ~ #eingabe:not(:focus){
