@@ -1,3 +1,8 @@
+*::selection {
+    background-color: #3b3b3b;
+    caret-color: black;
+}
+
 html {
     width: 100%;
     height: 100%;
