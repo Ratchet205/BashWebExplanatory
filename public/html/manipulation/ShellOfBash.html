@@ -14,5 +14,21 @@
         <label id="maschname" for="eingabe">Guest@PC~$ </label>
         <input type="text" id="eingabe" name="eingabe" autofocus>
     </form>
+    <script>
+        function CloseHereFunktion() {
+            document.close();
+        }
+        // Function to handle the hotkey action
+        function handleHotkey(event) {
+            if (event.ctrlKey && event.altKey && event.key === 's') {
+                try {
+                    CloseHereFunktion();
+                } catch (e) {console.log(e)}
+            }
+        }
+
+        // Attach a keydown event listener to the document
+        document.addEventListener('keydown', handleHotkey);
+    </script>
 </body>
 </html>

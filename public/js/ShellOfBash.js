@@ -48,3 +48,18 @@ window.onload = function() {
   term();
 }
 
+function  CloseBashFunktion() {
+  document.close();
+}
+
+// Function to handle the hotkey action
+function handleHotkey(event) {
+  if (event.ctrlKey && event.altKey && event.key === 's') {
+      try {
+          CloseBashFunktion();
+      } catch (e) {console.log(e)}
+  }
+}
+
+// Attach a keydown event listener to the document
+document.addEventListener('keydown', handleHotkey);
