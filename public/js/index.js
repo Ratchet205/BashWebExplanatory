@@ -39,6 +39,7 @@ function changeIframeSource(url, title, selfID) {
         window.setTimeout(function(){
             iframeCover.style.opacity = "0%";
             document.getElementById("bash-shell-button").style.height = "40px";
+            document.getElementById("bash-shell-button").style.boxShadow = "0px 5px 17px 6px rgba(0,0,0,0.38)";
             document.getElementById("bash-shell-button").querySelector("button").style.display = "block";
         }, 100);
     }, 500);
@@ -84,20 +85,24 @@ function interactNav(burgerButton) {
     if (document.body.clientWidth > 600) {
         if (!isActive) {
             document.getElementById("page-content").style.marginLeft = "250px";
+            bashShellButton.style.boxShadow = "none";
             bashShellButton.style.height = "0px";
             bashShellButton.querySelector("button").style.display = "none";
         } else {
             document.getElementById("page-content").style.marginLeft = "0px";
+            bashShellButton.style.boxShadow = "0px 5px 17px 6px rgba(0,0,0,0.38)";
             bashShellButton.style.height = "40px";
             bashShellButton.querySelector("button").style.display = "block";
         }
     } else {
         if (!isActive) {
             document.getElementById("page-content").style.marginLeft = "100%";
+            bashShellButton.style.boxShadow = "none";
             bashShellButton.style.height = "0px";
             bashShellButton.querySelector("button").style.display = "none";
         } else {
             document.getElementById("page-content").style.marginLeft = "0px";
+            bashShellButton.style.boxShadow = "0px 5px 17px 6px rgba(0,0,0,0.38)";
             bashShellButton.style.height = "40px";
             bashShellButton.querySelector("button").style.display = "block";
         }
@@ -122,11 +127,13 @@ function loadNav() {
 
     if (document.body.clientWidth > 600) {
         document.getElementById("page-content").style.marginLeft = "250px";
+        bashShellButton.style.boxShadow = "none";
         document.getElementById("bash-shell-button").style.height = "0px";
         bashShellButton.querySelector("button").style.display = "none";
         burgerButton.classList.add('active');
     } else {
         document.getElementById("page-content").style.marginLeft = "0px";
+        bashShellButton.style.boxShadow = "0px 5px 17px 6px rgba(0,0,0,0.38)";
         document.getElementById("bash-shell-button").style.height = "40px";
         bashShellButton.querySelector("button").style.display = "block";
         burgerButton.classList.remove('active');
