@@ -39,108 +39,122 @@
                 </div>
             </div>
     </div>
-    <nav id="nav">
-        <ul id="top-level-nav-list">
-            <li onclick="openTopLevelNav()" id="close-top-level-nav">
+
+    <!--
                 <span>
                     <h3>Kategorien</h3>
                     <svg>
                         <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39"/>
                     </svg>
                 </span>
-            </li>
-            <hr>
-            <li onclick="loadNav('string-mani')" id="">
-                <span>String Maniküre</span>
-            </li>
-            <li onclick="loadNav('file-directories')" id="">
-                <span>File Directories</span>
-            </li>
-            <li onclick="loadNav('adrian-tim')" id="">
-                <span>AdrianTim</span>
-            </li>
-        </ul>
 
-        <ul class="pages-nav-list" id="string-mani">
-            <li onclick="openTopLevelNav()" id="top-level-nav">
                 <span>
                     <svg>
                         <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
                     </svg>
                     <h3>String Maniküre</h3>
                 </span>
-            </li>
-            <hr>
-            <li onclick="changeIframeSource('html/manipulation/split.html','Split')" id="Split">
-                <span>Split</span>
-            </li>
-            <li onclick="changeIframeSource('html/manipulation/comparison.html','Comparison')" id="Comparison">
-                <span>Comparison</span>
-            </li>
-            <li onclick="changeIframeSource('html/manipulation/multi-line.html','Multi-Line')" id="Multi-Line">
-                <span>Multi-Line</span>
-            </li>
-            <li onclick="changeIframeSource('html/manipulation/replacement.html','Replacement')" id="Replacement">
-                <span>Replacement</span>
-            </li>
-            <li onclick="changeIframeSource('html/manipulation/subextraction.html','Substring-Extraction')" id="Substring-Extraction">
-                <span>Substring-Extraction</span>
-            </li>
-            <hr>
-            <li onclick="changeIframeSource('html/manipulation/gesamtmanp.html','Manipulations-Bibliothek')" id="Manipulations-Bibliothek">
-                <span>Manipulations-Bibliothek</span>
-            </li>
-        </ul>
 
-        <ul class="pages-nav-list" id="file-directories" style="display: none;">
-            <li onclick="openTopLevelNav()" id="top-level-nav">
                 <span>
                     <svg>
                         <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
                     </svg>
                     <h3>File Directories</h3>
                 </span>
-            </li>
-            <hr>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-        </ul>
+    -->
 
-        <ul class="pages-nav-list" id="adrian-tim" style="display: none;">
-            <li onclick="openTopLevelNav()" id="top-level-nav">
-                <span>
-                    <svg>
-                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
-                    </svg>
+    <div id="nav">
+        <div id="top-level-nav">
+                <div onclick="switchTLNandCN()" class="navHeader">
+                        <h3>&#x25C4; Kategorien</h3>
+                </div>
+                <hr>
+            <ul>
+                <li>
+                    <span onclick="changeNavCategory('stringManikure')">String Maniküre</span>
+                </li>
+                <li>
+                    <span onclick="changeNavCategory('filesDirectiories')">Files and Directories</span>
+                </li>
+                <li>
+                    <span onclick="changeNavCategory('adrianTim')">Adrian Tim</span>
+                </li>
+            </ul>
+        </div>
+        <div id="stringManikure" class="content-nav">
+                <div onclick="switchTLNandCN()" class="navHeader">
+                        <h3>String Maniküre &#9658;</h3>
+                </div>
+                <hr>
+            <ul>
+                <li onclick="changeIframeSource('html/manipulation/split.html','Split', 'split')" id="split" class="content-nav-item">
+                    <span>Split</span>
+                </li>
+                <li onclick="changeIframeSource('html/manipulation/comparison.html','Comparison', 'comparison')" id="comparison" class="content-nav-item">
+                    <span>Comparison</span>
+                </li>
+                <li onclick="changeIframeSource('html/manipulation/multi-line.html','Multi-Line', 'multiLine')" id="multiLine" class="content-nav-item">
+                    <span>Multi-Line</span>
+                </li>
+                <li onclick="changeIframeSource('html/manipulation/replacement.html','Replacement', 'replacement')" id="replacement" class="content-nav-item">
+                    <span>Replacement</span>
+                </li>
+                <li onclick="changeIframeSource('html/manipulation/subextraction.html','Substring-Extraction', 'substringExtraction')" id="substringExtraction" class="content-nav-item">
+                    <span>Substring-Extraction</span>
+                </li>
+                <hr>
+                <li onclick="changeIframeSource('html/manipulation/gesamtmanp.html','Manipulations-Bibliothek', 'manipulationsBibliothek')" id="manipulationsBibliothek" class="content-nav-item">
+                    <span>Manipulations-Bibliothek</span>
+                </li>
+            </ul>
+        </div>
+        <div id="adrianTim" class="content-nav">
+            <div onclick="switchTLNandCN()" class="navHeader">
                     <h3>Adrian Tim</h3>
-                </span>
-            </li>
+            </div>
             <hr>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-            <li onclick="changeIframeSource('','')" id="">
-                <span></span>
-            </li>
-        </ul>
-    </nav>
-
+            <ul>
+                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
+                    <span>1</span>
+                </li>
+                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
+                    <span>2</span>
+                </li>
+                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
+                    <span>3-Line</span>
+                </li>
+                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
+                    <span>4</span>
+                </li>
+                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
+                    <span>Substring-5</span>
+                </li>
+            </ul>
+        </div>
+        <div id="filesDirectiories" class="content-nav">
+            <div onclick="switchTLNandCN()" class="navHeader">
+                    <h3>Files and Directories</h3>
+            </div>
+            <hr>
+            <ul>
+                <li onclick="changeIframeSource('html/files_directories/Bash_Append_to_File.html','Append to File','appendFile')" id="appendFile" class="content-nav-item">
+                    <span>Append to File</span>
+                </li>
+                <li onclick="changeIframeSource('html/files_directories/Bash_Check_if_Directories_exist.html','Check if Directories Exist','checkDirsExist')" id="checkDirsExist" class="content-nav-item">
+                    <span>Check if Directories exist</span>
+                </li>
+                <li onclick="changeIframeSource('html/files_directories/Bash_Check_if_Files_exist.html','Check if Files Exist','checkFilesExist')" id="checkFilesExist" class="content-nav-item">
+                    <span>Check if Files exist</span>
+                </li>
+                <li onclick="changeIframeSource('html/files_directories/Bash_Files_and_Directories.html','Files and Directories','filesAndDirs')" id="filesAndDirs" class="content-nav-item">
+                    <span>Files and Directories</span>
+                </li>
+                <li onclick="changeIframeSource('html/files_directories/Bash_Read_File_Line_by_Line.html','Read File Line by Line','readFileLineByLine')" id="readFileLineByLine" class="content-nav-item">
+                    <span>Read File Line by Line</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div id="page-content">
         <div id="iframe-cover"></div>

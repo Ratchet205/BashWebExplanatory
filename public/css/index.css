@@ -209,142 +209,56 @@ body {
     width: 60px;
 }
 
-nav {
-    /*border: solid black 1px;*/
-    grid-area: page-content;
+#nav {
+    position: absolute;
+    text-align: center;
+    left: 0px;
+    top: 75px;
+    display: grid;
     background-color: #292929;
-    transition: 0.5s;
     overflow: hidden;
+    width: 500px;
+    height: 100vh;
+    grid-template-columns: 250px 250px;
+    grid-template-areas: "top-level-nav content-nav";
+    transition: 0.5s;
+    font-size: 20px;
 }
 
-nav ul {
+#top-level-nav {
+    position: relative;
+    width: 250px;
+    grid-area: top-level-nav;
+}
+
+.content-nav {
+    position: relative;
+    width: 250px;
+    grid-area: content-nav;
+    display: none;
+}
+
+.navHeader {
+    cursor: pointer;
+}
+
+#nav ul {
     list-style: none;
-    text-align: center;
     padding: 0;
     margin: 0;
-}
-
-nav ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width:100%;
-    height: 50px;
-    margin-top: 15px;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
-nav ul li:hover:not(#top-level-nav):not(#close-top-level-nav) {
-    transition: 0.5s;
-    transform: translateY(-5px);
-}
-
-nav ul li span {
-    overflow: hidden;
-    font-size: 20px;
-    transition: 0.3s;
-    position: absolute;
-}
-
-#nav {
-    overflow: hidden;
-    display: block;
-    grid-template-areas: "pages-nav-list top-level-nav-list";
-    transition: 0.5s;
-    background-color: #292929;
-}
-
-#top-level-nav-list {
-    overflow: hidden;
-    width: 0px;
-    transition: 0.5s;
-    background-color: #292929;
-}
-
-.pages-nav-list {
-    overflow: hidden;
-    width: 250px;
-    transition: 0.5s;
-    background-color: #292929;
-}
-
-#top-level-nav:hover span svg{
-    transform: translateX(-5px);
-}
-
-#top-level-nav span {
+#nav ul li {
     display: grid;
-    grid-template-columns: 50 calc(100% - 50px);
-    grid-template-rows: 100%;
-    grid-template-areas: "tln-back-button tln-text";
-}
-
-#top-level-nav span svg {
-    grid-area: tln-back-button;
-    margin-top: 11px;
-    margin-right: 5px;
     height: 50px;
-    width: 50px;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 400ms;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+    transition: 0.5s;
+    align-content: center;
 }
 
-#top-level-nav span svg path {
-    fill:none;
-    stroke:#bebebe;
-    stroke-width:4;
-    stroke-linecap:round;
-}
-
-#top-level-nav span h3 {
-    grid-area: tln-text;
-}
-
-#close-top-level-nav:hover span svg{
-    transform: translateX(5px);
-}
-
-#close-top-level-nav span {
-    display: grid;
-    grid-template-columns: 50 calc(100% - 50px);
-    grid-template-rows: 100%;
-    grid-template-areas: "tln-text tln-back-button";
-}
-
-#close-top-level-nav span svg {
-    grid-area: tln-back-button;
-    margin-top: 11px;
-    margin-left: 5px;
-    height: 50px;
-    width: 50px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 400ms;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-#close-top-level-nav span svg path {
-    transform: rotate(180deg);
-    transform-origin: 50% 50%;
-    fill:none;
-    stroke:#bebebe;
-    stroke-width:4;
-    stroke-linecap:round;
-}
-
-#close-top-level-nav span h3 {
-    grid-area: tln-text;
+#nav ul li:hover {
+    transform: translateY(-3px);
 }
 
 #title {
