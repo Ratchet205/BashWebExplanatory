@@ -18,7 +18,6 @@ function sendMessage(message) {
 
 window.onload = function() {
   function term() {
-    const form = document.getElementById("hid");
     const inputfield = document.getElementById("eingabe");
     const output = document.getElementById("output");
     
@@ -39,7 +38,7 @@ window.onload = function() {
           const toremove = output.querySelector("#bottom");
           toremove.removeAttribute('id');
         } catch (e) { console.log(e) };
-        output.innerHTML = output.innerHTML + `<span>Guest@PC~$ ${inputfield.value}</span><br><br id="bottom">`;
+        output.innerHTML = output.innerHTML + `<span><span style="color: #7ec699;">Guest@PC~$</span> ${inputfield.value}</span><br><br id="bottom">`;
         output.querySelector('#bottom').scrollIntoView({ behavior: 'smooth' });
         inputfield.value = null;
       }

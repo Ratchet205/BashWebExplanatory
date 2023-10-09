@@ -83,7 +83,7 @@ body {
     justify-self: right;
     margin-right: 8px;
     font-size: 17px;
-    color: #00d000;
+    color: #7ec699;
 }
 
 #maschname:hover ~ #eingabe:not(:focus){
