@@ -1,3 +1,5 @@
+var shellOutput = "";
+
 const socket = new WebSocket('ws://192.168.2.106:8081');
 
 socket.onopen = (event) => {
@@ -38,7 +40,7 @@ window.onload = function() {
           const toremove = output.querySelector("#bottom");
           toremove.removeAttribute('id');
         } catch (e) { console.log(e) };
-        output.innerHTML = output.innerHTML + `<span><span style="color: #7ec699;">Guest@PC~$</span> ${inputfield.value}</span><br><br id="bottom">`;
+        output.innerHTML = output.innerHTML + `<span><span style="color: #7ec699;">Guest@PC~$</span> ${inputfield.value}</span><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${shellOutput}<br id="bottom">`;
         output.querySelector('#bottom').scrollIntoView({ behavior: 'smooth' });
         inputfield.value = null;
       }
