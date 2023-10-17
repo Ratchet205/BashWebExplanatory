@@ -1,17 +1,21 @@
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const socketIO = require('socket.io');
 const jquery = require('jquery');
 const glob = require('glob');
 const fs = require('fs');
 const { exec } = require('child_process');
 const phpExpress = require('php-express')({
-    binPath: './php-8.2.10/php.exe',
-    router: './public/php'
+    binPath: 'php-8.2.10/php.exe',
+    router: 'public/php'
   });
 
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer({
+    key: fs.readFileSync('./certificates/server.key'), // Pfad zum privaten Schlüssel
+    cert: fs.readFileSync('./certificates/server.crt') // Pfad zum Zertifikat
+}, app);
+
 const io = socketIO(server);
 
 const pattern = '*.apef';
@@ -185,7 +189,7 @@ io.on('connection', (socket) => {
 });
 
 // Start the server on port 80
-const port = 80;
+const port = 443;
 server.listen(port, () => {
     console.log(`Server listening on http://localhost`);
 });

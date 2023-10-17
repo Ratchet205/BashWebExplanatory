@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://192.168.2.106:8081');
+/*const socket = new WebSocket('ws://192.168.2.106:8081');
 
 socket.onopen = (event) => {
   console.log("WebSocket connection opened:", event);
@@ -14,7 +14,7 @@ socket.onclose = (event) => {
 
 function sendMessage(message) {
   socket.send(message);
-}
+}*/
 
 window.onload = function() {
   function term() {
