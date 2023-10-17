@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +6,8 @@
 </head>
 <body>
     <?php
-        echo "Willkommen!";
+        $NAME="PAUL"
+        echo "Willkommen!" . $NAME;
     ?>
 </body>
 </html>

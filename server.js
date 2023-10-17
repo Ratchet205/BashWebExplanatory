@@ -6,8 +6,7 @@ const glob = require('glob');
 const fs = require('fs');
 const { exec } = require('child_process');
 const phpExpress = require('php-express')({
-    binPath: 'php-8.2.10/php.exe',
-    router: 'public/php'
+    binPath: __dirname + '/php-8.2.10',
   });
 
 const app = express();
@@ -20,7 +19,7 @@ const io = socketIO(server);
 
 const pattern = '*.apef';
 // Der Pfad zur ICO-Datei
-const iconFilePath = 'public/img/apef.ico';
+const iconFilePath = './public/img/apef.ico';
 // Der Pfad zur erstellten APEF-Datei
 const apefFilePath = './*.apef';
 
@@ -49,22 +48,26 @@ glob(pattern, (err, files) => {
   });
 });
 
-app.use('/php', (req, res, next) => {
-    res.contentType('text/html'); // Set the content type to HTML
-    next();
-});
+
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+    if (req.path.endsWith('.php')) {
+        // Set the content type to HTML for PHP files
+        res.contentType('text/html');
+
+        // Execute the PHP script using php-express
+        phpExpress(req, res, next);
+    } else {
+        // Pass control to the next middleware for non-PHP files
+        next();
+    }
+});
 // Handle the root URL ('/') with your HTML file
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
-
-app.engine('php', phpExpress.engine);
-app.set('views', './public/php'); // Set the views directory to your PHP scripts
-
-app.use(/.+\.php$/, phpExpress.router);
 
 io.on('connection', (socket) => {
     const clientAddress = socket.handshake.address;
