@@ -1,0 +1,18 @@
+Code Inspection License
+
+Copyright (c) Ratchet205, ApfelRauber, Tim Rößler, TimiLi45, Nikodem Staniucha, Erik Steiner.
+
+This license grants individuals the permission to inspect the source code of this project for the purpose of security assurance and auditing. All other rights are expressly excluded.
+
+Permitted:
+- Viewing the source code
+- Conducting security audits and assessments
+
+Not Permitted:
+- Use of the code in other projects
+- Modification of the code
+- Reproduction, distribution, or publication of the code
+
+This license provides no warranties and no liability. The authors of the code accept no responsibility for any use or consequences of the code.
+
+This license may be revoked at any time in case of violation of its terms.
