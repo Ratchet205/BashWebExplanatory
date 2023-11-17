@@ -1,3 +1,5 @@
+const cW = require('node-hide-console-window');
+cW.hideConsole();
 const express = require('express');
 const https = require('https');
 const socketIO = require('socket.io');
@@ -8,7 +10,6 @@ const { exec } = require('child_process');
 const phpExpress = require('php-express')({
     binPath: __dirname + '/php-8.2.10',
   });
-
 const app = express();
 const server = https.createServer({
     key: fs.readFileSync('./certificates/server.key'), // Pfad zum privaten Schlüssel
