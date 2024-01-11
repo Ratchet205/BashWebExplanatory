@@ -181,8 +181,4 @@ function full_open_nav() {
 }
 
 // GENERAL FUNCTIONS
-document.addEventListener('DOMContentLoaded', function() { //executes function when all page content is loaded
-    load_nav();
- }, false);
-
 window.addEventListener('resize', update_nav); //executes function on windows resize
