@@ -67,6 +67,7 @@ app.use((req, res, next) => {
 // Handle the root URL ('/') with your HTML file
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.php');
+    res.sendFile(__dirname + '/public/index.php');
 });
 
 io.on('connection', (socket) => {
