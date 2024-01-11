@@ -25,7 +25,7 @@ function switch_nav_level() { //switches betweens categories and pages navs
 }
 
 var pages = {
-    "home-button" : ["html/manipulation/home.html", "Home"],
+    "home-button" : ["home.html", "Home"],
     "split" : ["html/manipulation/split.html", "Split"],
     "comparison" : ["html/manipulation/comparison.html", "Comparison"],
     "multi-line" : ["html/manipulation/multi-line.html", "Multi-Line"],
@@ -63,7 +63,7 @@ function change_page_content(self) { //switches page nav
             currentNavItem.style.backgroundColor = "#292929";
         }
 
-        self.style.backgroundColor = '#303030'; 
+        if(self.id != "home-button") self.style.backgroundColor = '#303030'; 
 
         window.setTimeout(function(){
             content_border.style.backgroundColor = "#29292900";
