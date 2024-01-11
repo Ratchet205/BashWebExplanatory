@@ -3,188 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="img/Bash_Logo_white_icon_only.svg.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico">
     <link rel="stylesheet" href="css/index.css">
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
     <script src="js/jqeury.min.js"></script>
     <script src="js/index.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
         window.onbeforeunload = function() {
-            CloseBashFunktion();
+            close_bash_shell_window();
         }
     </script>
-    <title>String Maniküre</title>
+    <title>Bash Web Explanatory</title>
 </head>
-<body onload="loadContent()">
-    <div id="page-header">
-        <nav id="burger-area">
-            <svg class="full-burger" id="full-burger" viewBox="0 0 100 100" width="80" onclick="interactNav(this)">
+<body>
+    <div id="nav">
+        <div id="categories">
+            <h3 onclick="switch_nav_level()" class="nav-header">&#x25C4; Kategorien</h3>
+            <hr>
+            <ul>
+                <li onclick="switch_nav_category('string-manikure')">String Maniküre</li>
+                <li onclick="switch_nav_category('files-directories')">Files and Directories</li>
+                <li onclick="switch_nav_category('adrian-tim')">Adrian Tim</li>
+                <li onclick="" id="" class="page-list-item summary-page"></li>
+            </ul>
+        </div>
+        <div id="string-manikure" class="page">
+            <h3 onclick="switch_nav_level()" class="nav-header">String Maniküre &#9658;</h3>
+            <hr>
+            <ul>
+                <li onclick="change_page_content(this)" id="split" class="page-list-item">Split</li>
+                <li onclick="change_page_content(this)" id="comparison" class="page-list-item">Comparison</li>
+                <li onclick="change_page_content(this)" id="multi-line" class="page-list-item">Multi-Line</li>
+                <li onclick="change_page_content(this)" id="replacement" class="page-list-item">Replacement</li>
+                <li onclick="change_page_content(this)" id="substring-extraction" class="page-list-item">Substring-Extraction</li>
+                <li onclick="change_page_content(this)" id="manipulations-bibliothek" class="page-list-item summary-page"><span>Manipulations-Bibliothek</span></li>
+            </ul>
+        </div>
+        <div id="files-directories" class="page">
+            <h3 onclick="switch_nav_level()" class="nav-header">Files & Directories &#9658;</h3>
+            <hr>
+            <ul>
+                <li onclick="change_page_content(this)" id="append-file" class="page-list-item">Append to File</li>
+                <li onclick="change_page_content(this)" id="check-dir-exists" class="page-list-item">Check if Directories exist</li>
+                <li onclick="change_page_content(this)" id="check-file-exists" class="page-list-item">Check if Files exist</li>
+                <li onclick="change_page_content(this)" id="files-and-dir" class="page-list-item">Files and Directories</li>
+                <li onclick="change_page_content(this)" id="read-file-line-by-line" class="page-list-item">Read File Line by Line</li>
+                <li onclick="" id="" class="page-list-item summary-page"></li>
+            </ul>
+        </div>
+        <div id="adrian-tim" class="page">
+            <h3 onclick="switch_nav_level()" class="nav-header">Adrian Tim &#9658;</h3>
+            <hr>
+            <ul>
+                <li onclick="change_page_content(this)" id="" class="page-list-item"></li>
+                <li onclick="change_page_content(this)" id="" class="page-list-item"></li>
+                <li onclick="change_page_content(this)" id="" class="page-list-item"></li>
+                <li onclick="change_page_content(this)" id="" class="page-list-item"></li>
+                <li onclick="change_page_content(this)" id="" class="page-list-item"></li>
+                <li onclick="" id="" class="page-list-item summary-page"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="page-content">
+        <iframe src="html/manipulation/home.html" width="100%" height="100%" frameborder="0" zoom="100%" id="content-iframe"></iframe>
+    </div>
+    <div id="bash-shell-button">
+        <button type="button" onclick="open_bash_shell_window()">Interaktive Bash Shell</button>
+    </div>
+    <div id="header">
+        <div id="nav-button" onclick="interact_nav_button()">
+            <svg id="full-burger" viewBox="0 0 100 100">
                 <path class="burger-part" id="burger-top" d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
                 <path class="burger-part" id="burger-middle" d="m 30,50 h 40" />
                 <path class="burger-part" id="burger-bottom" d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
             </svg>
-        </nav>
-        <div id="icon">
-            <img src="img/Bash_Logo_white_icon_only.svg.png" alt="BashIcon" title="Home" onclick="changeIframeSource('html/manipulation/home.html','Home', 'Home')" style="position: absolute;">
-            <span style="display: none;" id="Home">Home</span>
         </div>
-            <div id="title">
-                <div id="title-head">
-                    Aktuelles Dokument:
-                </div>
-                <div id="title-page">
-                    Home
-                </div>
+        <div id="title">
+            <div id="title-head">
+                <span>Aktuelles Dokument:</span>
             </div>
-    </div>
-
-    <!--
-                <span>
-                    <h3>Kategorien</h3>
-                    <svg>
-                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39"/>
-                    </svg>
-                </span>
-
-                <span>
-                    <svg>
-                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
-                    </svg>
-                    <h3>String Maniküre</h3>
-                </span>
-
-                <span>
-                    <svg>
-                        <path d="M 40 13 L 20 22 C 16 24 16 24 20 26 L 40 39" />
-                    </svg>
-                    <h3>File Directories</h3>
-                </span>
-    -->
-
-    <div id="nav">
-        <div id="top-level-nav">
-                <div onclick="switchTLNandCN()" class="navHeader">
-                        <h3>&#x25C4; Kategorien</h3>
-                </div>
-                <hr>
-            <ul>
-                <li>
-                    <span onclick="changeNavCategory('stringManikure')">String Maniküre</span>
-                </li>
-                <li>
-                    <span onclick="changeNavCategory('filesDirectiories')">Files and Directories</span>
-                </li>
-                <li>
-                    <span onclick="changeNavCategory('adrianTim')">Adrian Tim</span>
-                </li>
-            </ul>
-        </div>
-        <div id="stringManikure" class="content-nav">
-                <div onclick="switchTLNandCN()" class="navHeader">
-                        <h3>String Maniküre &#9658;</h3>
-                </div>
-                <hr>
-            <ul>
-                <li onclick="changeIframeSource('html/manipulation/split.html','Split', 'split')" id="split" class="content-nav-item">
-                    <span>Split</span>
-                </li>
-                <li onclick="changeIframeSource('html/manipulation/comparison.html','Comparison', 'comparison')" id="comparison" class="content-nav-item">
-                    <span>Comparison</span>
-                </li>
-                <li onclick="changeIframeSource('html/manipulation/multi-line.html','Multi-Line', 'multiLine')" id="multiLine" class="content-nav-item">
-                    <span>Multi-Line</span>
-                </li>
-                <li onclick="changeIframeSource('html/manipulation/replacement.html','Replacement', 'replacement')" id="replacement" class="content-nav-item">
-                    <span>Replacement</span>
-                </li>
-                <li onclick="changeIframeSource('html/manipulation/subextraction.html','Substring-Extraction', 'substringExtraction')" id="substringExtraction" class="content-nav-item">
-                    <span>Substring-Extraction</span>
-                </li>
-                <hr>
-                <li onclick="changeIframeSource('html/manipulation/gesamtmanp.html','Manipulations-Bibliothek', 'manipulationsBibliothek')" id="manipulationsBibliothek" class="content-nav-item">
-                    <span>Manipulations-Bibliothek</span>
-                </li>
-            </ul>
-        </div>
-        <div id="adrianTim" class="content-nav">
-            <div onclick="switchTLNandCN()" class="navHeader">
-                    <h3>Adrian Tim &#9658;</h3>
+            <div id="title-page">
+                <span>Home</span>
             </div>
-            <hr>
-            <ul>
-                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
-                    <span>1</span>
-                </li>
-                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
-                    <span>2</span>
-                </li>
-                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
-                    <span>3-Line</span>
-                </li>
-                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
-                    <span>4</span>
-                </li>
-                <li onclick="changeIframeSource('','','')" id="" class="content-nav-item">
-                    <span>Substring-5</span>
-                </li>
-            </ul>
         </div>
-        <div id="filesDirectiories" class="content-nav">
-            <div onclick="switchTLNandCN()" class="navHeader">
-                    <h3>Files & Directories &#9658;</h3>
-            </div>
-            <hr>
-            <ul>
-                <li onclick="changeIframeSource('html/files_directories/Bash_Append_to_File.html','Append to File','appendFile')" id="appendFile" class="content-nav-item">
-                    <span>Append to File</span>
-                </li>
-                <li onclick="changeIframeSource('html/files_directories/Bash_Check_if_Directories_exist.html','Check if Directories Exist','checkDirsExist')" id="checkDirsExist" class="content-nav-item">
-                    <span>Check if Directories exist</span>
-                </li>
-                <li onclick="changeIframeSource('html/files_directories/Bash_Check_if_Files_exist.html','Check if Files Exist','checkFilesExist')" id="checkFilesExist" class="content-nav-item">
-                    <span>Check if Files exist</span>
-                </li>
-                <li onclick="changeIframeSource('html/files_directories/Bash_Files_and_Directories.html','Files and Directories','filesAndDirs')" id="filesAndDirs" class="content-nav-item">
-                    <span>Files and Directories</span>
-                </li>
-                <li onclick="changeIframeSource('html/files_directories/Bash_Read_File_Line_by_Line.html','Read File Line by Line','readFileLineByLine')" id="readFileLineByLine" class="content-nav-item">
-                    <span>Read File Line by Line</span>
-                </li>
-            </ul>
+        <div id="home-button" onclick="change_page_content(this)">
+            <img src="img/logo.png" alt="BashIcon" title="Home">
         </div>
     </div>
-
-    <div id="page-content">
-        <div id="iframe-cover"></div>
-        <div id="bash-shell-button">
-            <button type="button" onclick="PopBashFunktion()">Interaktive Bash Shell</button>
-        </div>
-        <iframe src="html/manipulation/home.html" width="100%" height="100%" frameborder="0" zoom="100%" id="content-iframe"></iframe>
-    </div>
-
-    <!--
-    <div>
-        <button type="button" onclick="changeIframeSource('html/ServerSettings.html','Einstellungen')">
-            Einstellungen
-        </button>
-    </div>
-    -->
-
-    <footer>
-
-    </footer>
-    <script>
-        // Function to handle the hotkey action
-        function handleHotkey(event) {
-            if (event.ctrlKey && event.altKey && event.key === 's') {
-                alert('Hotkey pressed: Ctrl+Alt+S');
-            }
-        }
-
-        // Attach a keydown event listener to the window object
-        window.addEventListener('keydown', handleHotkey);
-    </script>
+    <div id="content-border"></div>
 </body>
 </html>
