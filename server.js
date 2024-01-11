@@ -1,6 +1,3 @@
-const cW = require('node-hide-console-window');
-const showingWindow = false;
-cW.hideConsole();
 const express = require('express');
 const https = require('https');
 const socketIO = require('socket.io');
@@ -69,7 +66,7 @@ app.use((req, res, next) => {
 });
 // Handle the root URL ('/') with your HTML file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/index.php');
 });
 
 io.on('connection', (socket) => {
@@ -198,29 +195,4 @@ io.on('connection', (socket) => {
 const port = 443;
 server.listen(port, () => {
     console.log(`Server listening on http://localhost`);
-});
-
-const NetServer = net.createServer((netsocket) => {
-  netsocket.on('switchingConsoleVisib', (msg) => {
-    if (msg == 'close') {
-      if (showingWindow == false) {
-        console.log('tries to show');
-        showingWindow = true;
-        cW.showConsole();
-      } else {
-        console.log('tries to hide');
-        showingWindow = false;
-        cW.hideConsole();
-      }
-    }
-  });
-
-  netsocket.on('disconnect', () => {
-    console.log('Shocon executed')
-  });
-});
-
-const PORT = 9999;
-NetServer.listen(PORT, () => {
-  console.log('running "Shocon"...');
 });
