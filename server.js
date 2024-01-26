@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
                       });*/
                 }
             });
-            console.log(`IP:\t${ipAddress}\t\tconnected`);
+            console.log(`IP:\t${ipAddress}\t\tconnected | [${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
         }
     } catch (error) {
         console.error('Error parsing IP:', error);
@@ -174,7 +174,7 @@ io.on('connection', (socket) => {
                               console.error(`Error deleting file: ${err}`);
                             } else {
                               console.log(`File:\t${path}\tdeleted`);
-                              console.log(`IP:\t${ipAddress}\t\tdisconnected`);
+                              console.log(`IP:\t${ipAddress}\t\tdisconnected | [${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                             }
                           });
                     } else {

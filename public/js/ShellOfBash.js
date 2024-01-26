@@ -30,11 +30,13 @@ window.onload = function() {
           output.innerHTML = null;
           inputfield.value = null;
           return;
-        } else {
-          if (inputfield.value === 'exit') {
-            //stop docker maschine
-            window.close();
-          }
+        }
+        if (inputfield.value === 'scp') {
+          document.getElementById("scp").style.display = "block";
+        }
+        if (inputfield.value === 'exit') {
+          //stop docker maschine
+          window.close();
         }
         try {
           const toremove = output.querySelector("#bottom");
