@@ -36,7 +36,8 @@ var pages = {
     "check-dir-exists" : ["html/files_directories/Bash_Check_if_Directories_exist.html", "Check if Directories Exist"],
     "check-file-exists" : ["html/files_directories/Bash_Check_if_Files_exist.html", "Check if Files Exist"],
     "files-and-dir" : ["html/files_directories/Bash_Files_and_Directories.html", "Files and Directories"],
-    "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"]
+    "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
+    "awk" : ["html/advanced_level/awk.html", "AWK"]
 };
 
 function change_page_content(self) { //switches page nav
