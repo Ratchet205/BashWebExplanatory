@@ -192,8 +192,19 @@ io.on('connection', (socket) => {
     });
 });
 
-// Start the server on port 80
+const httpApp = express();
+const http = require('http');
+
+httpApp.get("*", function(req, res, next) {
+    res.redirect("https://" + req.headers.host + req.path);
+});
+
+http.createServer(httpApp).listen(80, function() {
+    console.log("Express TTP server listening on port 80");
+});
+
+// Start the server on port 443
 const port = 443;
 server.listen(port, () => {
-    console.log(`Server listening on http://localhost`);
+    console.log(`Server listening on https://localhost`);
 });
