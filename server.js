@@ -11,8 +11,8 @@ const phpExpress = require('php-express')({
   });
 const app = express();
 const server = https.createServer({
-    key: fs.readFileSync('./certificates/server.key'), // Pfad zum privaten Schlüssel
-    cert: fs.readFileSync('./certificates/server.crt') // Pfad zum Zertifikat
+    key: fs.readFileSync('/etc/ssl/certs/koboldhoehle/privkey.pem'), // Pfad zum privaten Schlüssel
+    cert: fs.readFileSync('/etc/ssl/certs/koboldhoehle/fullchain.pem') // Pfad zum Zertifikat
 }, app);
 
 const io = socketIO(server);
