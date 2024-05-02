@@ -37,7 +37,9 @@ var pages = {
     "check-file-exists" : ["html/files_directories/Bash_Check_if_Files_exist.html", "Check if Files Exist"],
     "files-and-dir" : ["html/files_directories/Bash_Files_and_Directories.html", "Files and Directories"],
     "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
-    "awk" : ["html/advanced_level/awk.html", "AWK"]
+    "awk" : ["html/advanced_level/awk.html", "AWK"],
+    "pipes": ["html/pipes_buffering/pipes.html", "Pipes"],
+    "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };
 
 function change_page_content(self) { //switches page nav
