@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 15% 75% 10%;
+    grid-template-areas:
+    "terminal-banner"
+    "terminal-output"
+    "terminal-input";
+}
+
+#banner {
+    grid-area: terminal-banner;
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+}
+
+#output {
+    grid-area: terminal-output;
+    height: 100%;
+    width: 100%;
+    background-color: #222;
+}
+
+#input {
+    grid-area: terminal-input;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+}

@@ -6,70 +6,31 @@
     <title>Interactive Bash Shell</title>
     <link rel="stylesheet" href="../../css/ShellOfBash.css">
     <link rel="icon" href="data:,">
+    <script src="../../js/ShellOfBash.js"></script>
 </head>
 <body>
     <iframe id="scp" src="https://scipnet-terminal.web.app/" style="display: none; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-    
     <div id="output">
-        <!-- This div will display output from the WebSocket server -->
     </div>
-    
-    <form id="command-form" onsubmit="return false;">
-        <label id="prompt" for="command-input">Guest@PC~$ </label>
-        <input type="text" id="command-input" name="command-input" autofocus autocomplete="off">
+    <form id="hid">
+        <label id="maschname" for="eingabe">Guest@PC~$ </label>
+        <input type="text" id="eingabe" name="eingabe" autofocus>
     </form>
-
     <script>
-        let ws;
-
-        function connectWebSocket() {
-            ws = new WebSocket("ws://localhost:8765/");
-
-            ws.onopen = function() {
-                console.log("Connected to WebSocket server");
-            };
-
-            ws.onmessage = function(event) {
-                const data = JSON.parse(event.data);
-                displayOutput(data.response);
-            };
-
-            ws.onclose = function() {
-                console.log("Disconnected from WebSocket server");
-            };
-        }
-
-        function displayOutput(message) {
-            const outputDiv = document.getElementById("output");
-            const newLine = document.createElement("div");
-            newLine.textContent = message;
-            outputDiv.appendChild(newLine);
-            outputDiv.scrollTop = outputDiv.scrollHeight;  // Scroll to the bottom
-        }
-
-        document.getElementById("command-form").onsubmit = function() {
-            if (ws && ws.readyState === WebSocket.OPEN) {
-                const command = document.getElementById("command-input").value;
-                ws.send(command);
-                displayOutput("Guest@PC~$ " + command);  // Display the command itself
-                document.getElementById("command-input").value = "";  // Clear input
-            }
-        };
-
-        // Attach a keydown event listener to the document for your hotkey
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.altKey && event.key === 's') {
-                CloseHereFunktion();
-            }
-        });
-
-        // Establish the WebSocket connection when the page loads
-        window.addEventListener("load", connectWebSocket);
-
-        // Function to close the document (from your existing code)
         function CloseHereFunktion() {
             document.close();
         }
+        // Function to handle the hotkey action
+        function handleHotkey(event) {
+            if (event.ctrlKey && event.altKey && event.key === 's') {
+                try {
+                    CloseHereFunktion();
+                } catch (e) {console.log(e)}
+            }
+        }
+
+        // Attach a keydown event listener to the document
+        document.addEventListener('keydown', handleHotkey);
     </script>
 </body>
 </html>
