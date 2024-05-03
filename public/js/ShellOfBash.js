@@ -1,22 +1,4 @@
-var shellOutput = "";
-
-/*const socket = new WebSocket('ws://192.168.2.106:8081');
-
-socket.onopen = (event) => {
-  console.log("WebSocket connection opened:", event);
-};
-
-socket.onmessage = (event) => {
-  console.log("Received message:", event.data);
-};
-
-socket.onclose = (event) => {
-  console.log("WebSocket connection closed:", event);
-};
-
-function sendMessage(message) {
-  socket.send(message);
-}*/
+const websocket = new WebSocket("ws://localhost:8765");
 
 window.onload = function() {
   function term() {
@@ -33,10 +15,6 @@ window.onload = function() {
         }
         if (inputfield.value === 'scp') {
           document.getElementById("scp").style.display = "block";
-        }
-        if (inputfield.value === 'exit') {
-          //stop docker maschine
-          window.close();
         }
         try {
           const toremove = output.querySelector("#bottom");

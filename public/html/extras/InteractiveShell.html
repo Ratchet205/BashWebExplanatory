@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/InteractiveShell.css">
+    <title>Interactive Shell</title>
+</head>
+<body>
+    <div id="banner">
+        <span>
+            Interactive Bash Shell
+        </span>
+    </div>
+    <div id="output"></div>
+    <form action="" method="post"><span style="margin-left: 5px;">guest@explanatory~$</span><input type="text" id="input" autocomplete="off" autofocus></form>
+</body>
+<script>
+    const socket = new WebSocket("ws://localhost:8765");
+
+    socket.onopen = function (event) {
+        console.log("WebSocket connection opened.");
+    };
+    
+    socket.onclose = function (event) {
+        console.log("WebSocket connection closed.");
+    };
+
+
+    document.addEventListener("keydown", (event) => {
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            const output = document.getElementById("output");
+            const input = document.getElementById("input");
+            output.innerHTML += `<span>guest@explanatory~$ ${input.value}</span><br>`
+            input.value = "";
+        }
+    })
+</script>
+</html>
