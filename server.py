@@ -55,15 +55,21 @@ def remove_container(name):
 # WebSocket server handler
 async def websocket_handler(websocket, path):
     # Unique session identifier (WebSocket object)
-    name = websocket
+    name = create_unique_timestamp()
 
     try:
         async for message in websocket:
             if message == "create":
+                try:
+                    remove_container(name)
+                except:
+                    continue
+
                 create_container(name)
                 await websocket.send(f"Container created with name: {name}")
             
             elif message == "exit":
+                remove_container(name)
                 await websocket.close()
 
             else:
