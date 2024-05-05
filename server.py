@@ -85,9 +85,6 @@ async def websocket_handler(websocket, path):
 
     try:
         async for message in websocket:
-            if message.split(" ", 1)[0] == "cd":
-                directory = message.split(" ", 1)[1]
-                await websocket.send(directory)
             if message == "create":
                 try:
                     await async_remove_container(name)
@@ -102,6 +99,10 @@ async def websocket_handler(websocket, path):
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">---Container is terminating---</span><br>")
                 await async_remove_container(name)
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
+
+            elif message.startswith("cd "):
+                directory = message.split(" ", 1)[1]
+                await websocket.send(directory)
 
             else:
                 await websocket.send(execute_command(name, message))
