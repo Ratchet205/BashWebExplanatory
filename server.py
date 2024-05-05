@@ -73,75 +73,44 @@ async def websocket_handler(websocket, path):
     # Unique session identifier (WebSocket object)
     name = create_unique_timestamp()
 
-    # Current working directory in the Docker container
     directory = "/"
 
-    # Manage active command tasks
-    active_task = None
-
-    # Function to execute a command asynchronously and stream results to the client
-    async def execute_and_stream(name, command):
-        nonlocal active_task
-        active_task = asyncio.current_task()
-
-        # Retrieve the container
+    def execute_command(name, command):
         container = sessions.get(name)
-
         if container:
-            # Start the command execution
-            exec_result = container.exec_run(
-                f'/bin/sh -c "cd {directory} && {command}"',
-                stream=True,  # Stream output line-by-line
-                demux=True,  # Separate stdout and stderr
-            )
-
-            # Loop over the output and send each line to the client
-            for stdout, stderr in exec_result:
-                if stdout:
-                    await websocket.send(stdout.decode())
-                if stderr:
-                    await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Error: {stderr.decode()}</span><br>")
-
-        active_task = None
+            exec_result = container.exec_run(f'/bin/sh -c "cd {directory} && {command} &"')
+            return exec_result.output.decode()
+        else:
+            return "Container not found"
 
     try:
         async for message in websocket:
             if message == "create":
                 try:
-                    # Remove existing container with the same name
                     await async_remove_container(name)
                 except:
                     continue
 
-                # Create a new container
                 create_container(name)
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Connected to container {name}</span><br>")
-
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">----Connected to Container----</span><br>")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">--Your ContainerID is {name}--</span><br>")
+            
             elif message == "exit":
-                # Stop and remove the current container
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">---Container is terminating---</span><br>")
                 await async_remove_container(name)
-                await websocket.send("<span style=\"display: flex; justify-content: right; color: #666\">Container terminated.</span><br>")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
 
             elif message.startswith("cd "):
-                # Change directory
                 directory = message.split(" ", 1)[1]
-                await websocket.send(f"{directory}")
-
-            elif message == "stop":
-                # Stop the active task if there's a long-running command
-                if active_task is not None:
-                    active_task.cancel()
-                    await websocket.send("Command execution stopped.")
+                await websocket.send(directory)
 
             else:
-                # Execute the command asynchronously and stream results
-                await execute_and_stream(name, message)
-
+                await websocket.send(execute_command(name, message))
+    
     except websockets.exceptions.ConnectionClosed:
         logging.info(f"Connection closed by client: {websocket.remote_address}")
     finally:
         await async_remove_container(name)
-
 
 # Main coroutine to start the WebSocket server
 async def main():
