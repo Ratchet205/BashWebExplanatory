@@ -93,7 +93,6 @@ async def websocket_handler(websocket, path):
                     continue
 
                 create_container(name)
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">----Connected to Container----</span><br>")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">--Your ContainerID is {name}--</span><br>")
             
             elif message == "exit":
