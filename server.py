@@ -41,10 +41,13 @@ def create_container(name):
     return name
 
 # Function to execute commands in the specified container
-def execute_command(name, command):
+def execute_command(name, command, path = None):
     container = sessions.get(name)
     if container:
-        exec_result = container.exec_run(command)
+        if path is not None:
+            exec_result = container.exec_run(f'/bin/sh -c "cd {path} && {command}')
+            return exec_result.output.decode()
+        exec_result = container.exec_run(f'{command}')
         return exec_result.output.decode()
     else:
         return "Container not found"
@@ -68,8 +71,14 @@ async def websocket_handler(websocket, path):
     # Unique session identifier (WebSocket object)
     name = create_unique_timestamp()
 
+    directory = execute_command(name, "pwd")
+
+
     try:
         async for message in websocket:
+            if message.split(" ", 1)[0] == "cd":
+                directory = message.split(" ", 1)[1]
+                await websocket.send(execute_command(name, "pwd", directory))
             if message == "create":
                 try:
                     await async_remove_container(name)
@@ -83,10 +92,10 @@ async def websocket_handler(websocket, path):
             elif message == "exit":
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">---Container is terminating---</span><br>")
                 await async_remove_container(name)
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">----Connected to Container----</span><br>")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
 
             else:
-                await websocket.send(execute_command(name, message))
+                await websocket.send(execute_command(name, message, directory))
     
     except websockets.exceptions.ConnectionClosed:
         logging.info(f"Connection closed by client: {websocket.remote_address}")
