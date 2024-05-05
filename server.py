@@ -100,7 +100,7 @@ async def websocket_handler(websocket, path):
                 if stdout:
                     await websocket.send(stdout.decode())
                 if stderr:
-                    await websocket.send(f"Error: {stderr.decode()}")
+                    await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Error: {stderr.decode()}</span><br>")
 
         active_task = None
 
@@ -115,17 +115,17 @@ async def websocket_handler(websocket, path):
 
                 # Create a new container
                 create_container(name)
-                await websocket.send(f"Connected to container {name}")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Connected to container {name}</span><br>")
 
             elif message == "exit":
                 # Stop and remove the current container
                 await async_remove_container(name)
-                await websocket.send("Container terminated.")
+                await websocket.send("<span style=\"display: flex; justify-content: right; color: #666\">Container terminated.</span><br>")
 
             elif message.startswith("cd "):
                 # Change directory
                 directory = message.split(" ", 1)[1]
-                await websocket.send(f"Changed directory to {directory}")
+                await websocket.send(f"{directory}")
 
             elif message == "stop":
                 # Stop the active task if there's a long-running command
