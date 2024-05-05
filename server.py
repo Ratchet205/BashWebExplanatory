@@ -1,9 +1,17 @@
+import os
+import ssl
 import asyncio
 import websockets
 import json
 import docker
 from datetime import datetime
 import logging
+
+certfile = "/etc/ssl/certs/koboldhoehle/fullchain.pem"
+keyfile = "/etc/ssl/certs/koboldhoehle/privkey.pem"
+
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ssl_context.load_cert_chain(certfile=certfile, keyfile=keyfile)
 
 # Utility function to generate a unique timestamp
 epoch = datetime.utcfromtimestamp(0)
@@ -87,7 +95,7 @@ async def websocket_handler(websocket, path):
 
 # Main coroutine to start the WebSocket server
 async def main():
-    server = await websockets.serve(websocket_handler, "localhost", 8765)
+    server = await websockets.serve(websocket_handler, "localhost", 8765, ssl=ssl_context)
     logging.info("WebSocket server started on ws://localhost:8765")
     await server.wait_closed()
 
