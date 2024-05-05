@@ -1,7 +1,6 @@
 import os
 import ssl
 import asyncio
-import subprocess
 import websockets
 import json
 import docker
@@ -11,8 +10,7 @@ import logging
 certfile = "/etc/ssl/certs/koboldhoehle/fullchain.pem"
 keyfile = "/etc/ssl/certs/koboldhoehle/privkey.pem"
 
-ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-ssl_context.load_cert_chain(certfile=certfile, keyfile=keyfile)
+
 
 # Utility function to generate a unique timestamp
 epoch = datetime.utcfromtimestamp(0)
@@ -101,17 +99,8 @@ async def websocket_handler(websocket, path):
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
 
             elif message.startswith("cd "):
-                directory = message.split(" ", 1)[1]
+                directory = execute_command(name, f"{message} && pwd").split("\n", 1)[0]
                 await websocket.send(directory)
-
-            elif message.startswith("os "):
-                result = subprocess.run([message.split(" ", 1)[1]], capture_output=True, text=True)
-
-                # Check the exit status
-                if result.returncode == 0:
-                    await websocket.send(result.stdout)
-                else:
-                    await websocket.send(result.stderr)
 
             else:
                 await websocket.send(execute_command(name, message))
@@ -123,9 +112,16 @@ async def websocket_handler(websocket, path):
 
 # Main coroutine to start the WebSocket server
 async def main():
-    server = await websockets.serve(websocket_handler, "0.0.0.0", 8765, ssl=ssl_context)
-    logging.info("WebSocket server started on wss://0.0.0.0:8765")
-    await server.wait_closed()
+    debug = False
+    if not debug:
+        ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        ssl_context.load_cert_chain(certfile=certfile, keyfile=keyfile)
+        server = await websockets.serve(websocket_handler, "0.0.0.0", 8765, ssl=ssl_context)
+        await server.wait_closed()
+    else:    
+        server = await websockets.serve(websocket_handler, "0.0.0.0", 8765)
+        logging.info("WebSocket server started on wss://0.0.0.0:8765")
+        await server.wait_closed()
 
 # Start the WebSocket server
 asyncio.run(main())
