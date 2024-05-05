@@ -5,7 +5,7 @@ function open_bash_shell_window() {
     if (shell_window) {
         shell_window.close();
     }
-    shell_window = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
+    shell_window = window.open('./html/extras/InteractiveShell.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
 }
 
 function close_bash_shell_window() {

@@ -1,3 +1,4 @@
+/* Overall styling */
 * {
     padding: 0;
     margin: 0;
@@ -12,69 +13,70 @@
     background-color: #3e3e3e;
 }
 
-html {
+html, body {
     height: 100%;
     width: 100%;
 }
 
+/* Grid setup */
 body {
-    height: 100%;
-    width: 100%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: calc(9% - 2px) 84% calc(7% - 2px);
+    grid-template-rows: 10% auto 10%; /* Adjusting grid row proportions */
     grid-template-areas:
-    "terminal-banner"
-    "terminal-output"
-    "terminal-input";
+        "terminal-banner"
+        "terminal-output"
+        "terminal-input";
 }
 
-form {
-    outline: none;
-    border: none;
-}
-
+/* Banner at the top */
 #banner {
     z-index: 2;
     grid-area: terminal-banner;
-    height: 100%;
-    min-height: 80px;
-    width: 100%;
     display: flex;
     justify-content: left;
+    align-items: center;
     border-bottom: solid #1e1e1e 2px;
 }
 
-#banner span {
+#banner div {
     margin-left: 5px;
-    margin-top: 20px;
     font-size: 28px;
 }
 
+/* Terminal output with overflow for scrolling */
 #output {
     z-index: 1;
     grid-area: terminal-output;
-    height: 100%;
-    width: 100%;
+    overflow-y: auto; /* Allows scrolling when content overflows */
     border-bottom: solid #1e1e1e 2px;
-    overflow-y: scroll;
 }
 
+/* Stick input bar at the bottom */
 #input {
+    z-index: 3;
     grid-area: terminal-input;
-    height: 100%;
-    min-height: 60px;
-    width: calc(100% - 40px);
-    outline: none;
-    border: none;
-    font-size: 17px;
-
-    margin-left: 40px;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px; /* Adjust padding as needed */
 }
 
 form {
     display: flex;
     align-items: center;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+form input {
+    flex: 1; /* Allow the input field to stretch */
     font-size: 17px;
-    text-decoration: double #1e1e1e 1px;
+    background-color: #222;
+    border: none;
+    color: azure;
+    outline: none;
 }
