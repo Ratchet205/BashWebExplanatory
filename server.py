@@ -40,18 +40,19 @@ def create_container(name):
     logging.info(f"Container {name} created and started.")
     return name
 
+"""
 # Function to execute commands in the specified container
 def execute_command(name, command, path = None):
     container = sessions.get(name)
     if container:
         if path is not None:
-            print(path)
             exec_result = container.exec_run(f'/bin/sh -c "cd {path} && {command}"')
             return exec_result.output.decode()
         exec_result = container.exec_run(f'{command}')
         return exec_result.output.decode()
     else:
         return "Container not found"
+"""
 
 # Function to remove a container by its name
 async def async_remove_container(name):
@@ -74,12 +75,19 @@ async def websocket_handler(websocket, path):
 
     directory = "/"
 
+    def execute_command(name, command):
+        container = sessions.get(name)
+        if container:
+            exec_result = container.exec_run(f'/bin/sh -c "cd {directory} && {command}"')
+            return exec_result.output.decode()
+        else:
+            return "Container not found"
 
     try:
         async for message in websocket:
             if message.split(" ", 1)[0] == "cd":
                 directory = message.split(" ", 1)[1]
-                await websocket.send(execute_command(name, "pwd", directory))
+                await websocket.send(directory)
             if message == "create":
                 try:
                     await async_remove_container(name)
@@ -87,7 +95,6 @@ async def websocket_handler(websocket, path):
                     continue
 
                 create_container(name)
-                directory = execute_command(name, "pwd")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">----Connected to Container----</span><br>")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">--Your ContainerID is {name}--</span><br>")
             
@@ -97,7 +104,7 @@ async def websocket_handler(websocket, path):
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
 
             else:
-                await websocket.send(execute_command(name, message, directory))
+                await websocket.send(execute_command(name, message))
     
     except websockets.exceptions.ConnectionClosed:
         logging.info(f"Connection closed by client: {websocket.remote_address}")
