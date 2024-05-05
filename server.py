@@ -71,7 +71,7 @@ async def websocket_handler(websocket, path):
     # Unique session identifier (WebSocket object)
     name = create_unique_timestamp()
 
-    directory = execute_command(name, "pwd")
+    directory = "/"
 
 
     try:
@@ -86,6 +86,7 @@ async def websocket_handler(websocket, path):
                     continue
 
                 create_container(name)
+                directory = execute_command(name, "pwd")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">----Connected to Container----</span><br>")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">--Your ContainerID is {name}--</span><br>")
             
