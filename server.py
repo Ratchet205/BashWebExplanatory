@@ -95,8 +95,8 @@ async def websocket_handler(websocket, path):
 
 # Main coroutine to start the WebSocket server
 async def main():
-    server = await websockets.serve(websocket_handler, "localhost", 8765, ssl=ssl_context)
-    logging.info("WebSocket server started on ws://localhost:8765")
+    server = await websockets.serve(websocket_handler, "0.0.0.0", 8765, ssl=ssl_context)
+    logging.info("WebSocket server started on wss://0.0.0.0:8765")
     await server.wait_closed()
 
 # Start the WebSocket server
