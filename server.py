@@ -45,6 +45,7 @@ def execute_command(name, command, path = None):
     container = sessions.get(name)
     if container:
         if path is not None:
+            print(path)
             exec_result = container.exec_run(f'/bin/sh -c "cd {path} && {command}"')
             return exec_result.output.decode()
         exec_result = container.exec_run(f'{command}')
