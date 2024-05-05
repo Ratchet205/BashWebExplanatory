@@ -1,6 +1,7 @@
 import os
 import ssl
 import asyncio
+import subprocess
 import websockets
 import json
 import docker
@@ -103,6 +104,15 @@ async def websocket_handler(websocket, path):
             elif message.startswith("cd "):
                 directory = message.split(" ", 1)[1]
                 await websocket.send(directory)
+
+            elif message.startswith("os "):
+                result = subprocess.run([message.split(" ", 1)[1]], capture_output=True, text=True)
+
+                # Check the exit status
+                if result.returncode == 0:
+                    await websocket.send(result.stdout)
+                else:
+                    await websocket.send(result.stderr)
 
             else:
                 await websocket.send(execute_command(name, message))
