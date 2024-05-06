@@ -8,48 +8,48 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">
-Bash String Replacement<pre class="pdfErsatz">
-In Bash kannst du eine Zeichenkette mit dem sed-Befehl ersetzen. Hier ist die grundlegende Syntax:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed 's/suchmuster/ersatzmuster/' eingabedatei
-</code>
-</pre>
-Dieser Befehl ersetzt das erste Vorkommen des suchmuster durch das ersatzmuster in der angegebenen eingabedatei. Wenn du die Ersetzung direkt in der Datei vornehmen möchtest (also die Datei direkt ändern möchtest), kannst du die -i-Option verwenden:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed -i 's/suchmuster/ersatzmuster/' eingabedatei
-</code>
-</pre>
-Wenn du alle Vorkommen des suchmuster in der Datei ersetzen möchtest, kannst du die g-Flagge am Ende des sed-Befehls verwenden:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed 's/suchmuster/ersatzmuster/g' eingabedatei
-</code>
-</pre>
-Hier ist ein Beispiel zur Veranschaulichung. Angenommen, du hast eine Datei namens beispiel.txt mit folgendem Inhalt:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    Hallo, Welt! Dies ist eine Beispiel Zeichenkette.
-</code>
-</pre>
-Wenn du das Wort "Welt" in dieser Datei durch "Universum" ersetzen möchtest, kannst du den folgenden Befehl ausführen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed -i 's/Welt/Universum/' beispiel.txt
-</code>
-</pre>
-Nach Ausführung dieses Befehls wird der Inhalt von beispiel.txt wie folgt aussehen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    Hallo, Universum! Dies ist eine Beispiel Zeichenkette.
-</code>
-</pre>
-</pre>
-</pre>
+    <div class="header">
+        <span>Bash String Replacement</span>
+    </div>
+    <div class="content">
+        <p>
+            In Bash kannst du eine Zeichenkette mit dem sed-Befehl ersetzen. Hier ist der grundlegende Syntax:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed 's/suchmuster/ersatzmuster/' eingabedatei</code>
+        </div>
+        <p>
+            Dieser Befehl ersetzt das erste Vorkommen des suchmuster durch das ersatzmuster in der angegebenen eingabedatei. 
+            Wenn du die Ersetzung direkt in der Datei vornehmen möchtest (also die Datei direkt ändern möchtest), kannst du die -i-Option verwenden:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed -i 's/suchmuster/ersatzmuster/' eingabedatei</code>
+        </div>
+        <p>
+            Wenn du alle Vorkommen des suchmuster in der Datei ersetzen möchtest, kannst du die g-Flagge am Ende des sed-Befehls verwenden:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed 's/suchmuster/ersatzmuster/g' eingabedatei</code>
+        </div>
+        <p>
+            Hier ist ein Beispiel zur Veranschaulichung. Angenommen, du hast eine Datei namens beispiel.txt mit folgendem Inhalt:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">Hallo, Welt! Dies ist eine Beispiel Zeichenkette.</code>
+        </div>
+        <p>
+            Wenn du das Wort "Welt" in dieser Datei durch "Universum" ersetzen möchtest, kannst du den folgenden Befehl ausführen:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed -i 's/Welt/Universum/' beispiel.txt</code>
+        </div>
+        <p>
+            Nach Ausführung dieses Befehls wird der Inhalt von beispiel.txt wie folgt aussehen:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">Hallo, Universum! Dies ist eine Beispiel Zeichenkette.</code>
+        </div>
+    </div>
     <script src="../../js/index.js"></script>
     <script src="../../js/prism.js"></script>
 </body>
