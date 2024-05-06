@@ -5,7 +5,7 @@ function open_bash_shell_window() {
     if (shell_window) {
         shell_window.close();
     }
-    shell_window = window.open('./html/manipulation/ShellOfBash.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
+    shell_window = window.open('./html/extras/InteractiveShell.html', '_blank', 'toolbar=no,scrollbars=no,top=250,left=500,width=850,height=450'); 
 }
 
 function close_bash_shell_window() {
@@ -37,7 +37,9 @@ var pages = {
     "check-file-exists" : ["html/files_directories/Bash_Check_if_Files_exist.html", "Check if Files Exist"],
     "files-and-dir" : ["html/files_directories/Bash_Files_and_Directories.html", "Files and Directories"],
     "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
-    "awk" : ["html/advanced_level/awk.html", "AWK"]
+    "awk" : ["html/advanced_level/awk.html", "AWK"],
+    "pipes": ["html/pipes_buffering/pipes.html", "Pipes"],
+    "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };
 
 function change_page_content(self) { //switches page nav

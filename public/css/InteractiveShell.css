@@ -1,0 +1,82 @@
+/* Overall styling */
+* {
+    padding: 0;
+    margin: 0;
+    background-color: #222;
+    font-family: monospace;
+    font-size: 17px;
+    color: azure;
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background-color: #3e3e3e;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* Grid setup */
+body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% auto 10%; /* Adjusting grid row proportions */
+    grid-template-areas:
+        "terminal-banner"
+        "terminal-output"
+        "terminal-input";
+}
+
+/* Banner at the top */
+#banner {
+    z-index: 2;
+    grid-area: terminal-banner;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-bottom: solid #1e1e1e 2px;
+}
+
+#banner div {
+    margin-left: 5px;
+    font-size: 28px;
+}
+
+/* Terminal output with overflow for scrolling */
+#output {
+    z-index: 1;
+    grid-area: terminal-output;
+    overflow-y: auto; /* Allows scrolling when content overflows */
+    border-bottom: solid #1e1e1e 2px;
+}
+
+/* Stick input bar at the bottom */
+#input {
+    z-index: 3;
+    grid-area: terminal-input;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px; /* Adjust padding as needed */
+}
+
+form {
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+form input {
+    flex: 1; /* Allow the input field to stretch */
+    font-size: 17px;
+    background-color: #222;
+    border: none;
+    color: azure;
+    outline: none;
+}
