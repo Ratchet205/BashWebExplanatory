@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/InteractiveShell.css">
+    <title>Interactive Shell</title>
+</head>
+<body>
+    <div id="banner">
+        <div>
+            Interactive Bash Shell
+            &nbsp;&nbsp;&nbsp;<span style="display: flex; justify-content: right; color: #666">No Data will be saved persistently.</span>
+        </div>
+    </div>
+    <div id="output"></div>
+    <form action="" method="post"><span style="margin-left: 5px;">guest@explanatory~$</span><input type="text" id="input" autocomplete="off" autofocus></form>
+</body>
+<script>
+    let socket = new WebSocket("wss://azrael.koboldhöhle.de:8765");
+    //let socket = new WebSocket("wss://localhost:8765");
+    let containerID = "";
+    const output = document.getElementById("output");
+
+    function scrollToBottom() {
+    output.scrollTop = output.scrollHeight; // Scrolls to the bottom
+    };
+
+    socket.onopen = function (event) {
+        console.log("WebSocket connection opened.");
+        socket.send("create");
+        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">--Connected to Container--</span><br>`
+        scrollToBottom();
+    };
+
+    socket.onmessage = function (event) {
+        console.log("Received Data from Server.");
+        output.innerHTML += `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>${event.data}</span><br>`
+        scrollToBottom();
+    }
+    
+    socket.onclose = function (event) {
+        console.log("WebSocket connection closed.");
+        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">--Connection to Container closed--</span><br>`
+        scrollToBottom();
+    };
+
+
+    document.addEventListener("keydown", (event) => {
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            const output = document.getElementById("output");
+            const input = document.getElementById("input");
+            let data = input.value;
+            input.value = "";
+            if(data == "scp") {
+                document.body.innerHTML = "<iframe id=\"scp\" src=\"https://scipnet-terminal.web.app/\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\"></iframe>";
+                socket.send("exit");
+            }
+            if(data == "clear") {
+                output.innerHTML = "";
+                return;
+            }
+            output.innerHTML += `<span>guest@explanatory~$ ${data}</span><br>`
+            scrollToBottom();
+            socket.send(data);
+            if(data == "exit") {
+                window.close();
+            }
+        }
+    })
+</script>
+</html>

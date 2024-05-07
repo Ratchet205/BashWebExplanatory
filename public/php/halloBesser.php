@@ -6,7 +6,7 @@
 </head>
 <body>
     <?php
-        $NAME="PAUL"
+        $NAME="PAUL";
         echo "Willkommen!" . $NAME;
     ?>
 </body>
