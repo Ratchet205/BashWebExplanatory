@@ -63,12 +63,13 @@ div {
 #nav ul li:not(.summary-page)  {
     height: 50px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 1000ms;
     align-content: center;
     display: grid;
 }
 
 #nav ul li:hover:not(.summary-page) {
+    transition: 250ms;
     transform: translateY(-3px);
 }
 
@@ -80,17 +81,17 @@ div {
     bottom: 5px;
     border-top: 2px solid white;
     height: 50px;
-    transition: 0.5s;
     align-content: center;
     display: grid;
 }
 
 .summary-page span {
-    transition: 0.5s;
+    transition: 1000ms;
     cursor: pointer;
 }
 
 .summary-page:hover span{
+    transition: 250ms;
     transform: translateY(-3px);
 }
 
@@ -176,11 +177,11 @@ body:has(#page-content:hover) #bash-shell-button button {
     width: 75px;
     height: 75px;
     border-radius: 6px;
+    transition: 0.3s;
     cursor: pointer;
 }
 
 #nav-button:hover {
-    transition: 0.3s;
     background-color: #303030;
 }
 
@@ -261,10 +262,10 @@ body:has(#page-content:hover) #bash-shell-button button {
     left: calc(100vw - 75px);
     border-radius: 6px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 #home-button:hover {
-    transition: 0.3s;
     background-color: #303030;
 }
 
