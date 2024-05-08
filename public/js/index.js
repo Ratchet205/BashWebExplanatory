@@ -43,6 +43,11 @@ var pages = {
     "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };
 
+function query_page_change(path) {
+    const iframe = document.getElementById('content-iframe');
+    iframe.src = pages[path][0];
+}
+
 function change_page_content(self) { //switches page nav
     const nav_items = document.getElementsByClassName("page-list-item"); 
     const iframe = document.getElementById('content-iframe');
@@ -97,6 +102,61 @@ function change_page_content(self) { //switches page nav
         }
     }, typingSpeed);
 }
+
+/*function change_page_content(path) { //switches page nav
+    const nav_items = document.getElementsByClassName("page-list-item"); 
+    const iframe = document.getElementById('content-iframe');
+    const page_title = document.getElementById('title-page');
+    const content_border = document.getElementById('content-border');
+    const full_burger = document.getElementById("full-burger");
+    const bash_shell_button = document.getElementById("bash-shell-button");
+
+    var typingSpeed = 30;
+    var typingProgress;
+    var removalProgress;
+    var oldLength;
+    var removedText = false;
+
+    bash_shell_button.style.top = "0px";
+    content_border.style.backgroundColor = "#292929";
+
+    window.setTimeout(function(){
+        iframe.src = pages[path][0];
+
+        for (let currentNavItem of nav_items) {
+            currentNavItem.style.backgroundColor = "#292929";
+        }
+
+        if(path != "home-button") document.getElementById(path).style.backgroundColor = '#303030'; 
+
+        window.setTimeout(function(){
+            content_border.style.backgroundColor = "#29292900";
+            bash_shell_button.style.top = "70px";
+        }, 100);
+    }, 500);
+
+    full_burger.classList.remove('active');
+    close_nav();
+
+    typingProgress = 0;
+    removalProgress = 0;
+    oldLength = page_title.textContent.length;
+    removedText = false;
+    const change = setInterval(function(){
+        if(!removedText){
+            page_title.textContent = page_title.textContent.slice(0, -1);
+            removalProgress++;
+            if(removalProgress > oldLength) removedText = true;
+        } else {
+            page_title.textContent += pages[path][1].charAt(typingProgress);
+            typingProgress++;
+        }
+
+        if (removedText && typingProgress > pages[path][1].length) {
+            clearInterval(change);
+        }
+    }, typingSpeed);
+}*/
 
 function switch_nav_category(navToUse) { //swichtes nav categories
     const navs = document.getElementsByClassName("page"); 
