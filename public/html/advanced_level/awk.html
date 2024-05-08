@@ -8,148 +8,165 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">      AWK
-<pre class="pdfErsatz">Der Befehl awk verwendet eine Reihe benutzerdefinierter Anweisungen, um einen Satz von Dateien zeilenweise mit erweiterten regulären Ausdrücken zu vergleichen, die vom Benutzer bereitgestellt werden. Anschließend werden Aktionen für jede Zeile ausgeführt, die mit den erweiterten regulären Ausdrücken übereinstimmt.
-<ul style="list-style: circle;"><header>Funktionsweise:</header>
-<li>In AWK-Skript verarbeitet seine Eingabedatei zeilenweise und untersucht sie nach Mustern. Findet es eine passende Stelle, führt AWK eine definierte Aktion aus. Hat der Programmierer kein Muster angegeben, führt AWK die Aktion für jede Zeile aus. Bei einfachen Einzeilern bietet sich folgende Aufrufkonvention an.
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;"><code class="language-bash">
-    cat liste.csv
-    DagobertDuck      10.1.1.3    Debian    Kylix        256
-    Goofy1            10.1.1.4    Solaris   Mathematica  512
-    MickeyMouse       10.1.1.5    Debian    Apache       512
-                   
-    awk '$1=="Goofy1" {print $0}' liste.csv
-    Goofy1            10.1.1.4    Solaris   Mathematica  512
-    </code>
-</pre>
-</li><header>Verknüpft und Verbunden:</header>
-<li>Muster lassen sich mit Hilfe von booleschen Operatoren wie  zum Beispiel dem UND-Operator, erweitern und verknüpfen.
-Die logischen Operanden sollten immer in runden Klammern stehen. Gerade bei längeren Verknüpfungen ist das Fehlen der Klammern eine potenzielle Fehlerquelle, da der Code unübersichtlicher wirkt. Neben einer logischen UND-Verknüpfung steht auch eine logische ODER-Verknüpfung »||« zur Verfügung.
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    awk '($3=="OSX") && ($4=="Photoshop") {print $1}' liste
-    </code>
-</pre>
-</li><li>Neben dem Verarbeiten von Strings beherrscht AWK auch numerische Operationen. Die letzte Spalte der Datei in Listing 1 enthält Zahlen, die AWK numerisch oder nicht-numerisch bearbeiten kann. Möchte der Admin zum Beispiel wissen, wie viel Arbeitsspeicher insgesamt sich in seinem Labor befindet, gibt er folgendes Kommando ein:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    awk '{sum+=$1; print $1, sum}' liste
-    </code>
-</pre>
-</li><header>AWK-Operatoren:</header><li><table><tr>
-          <th>Operator</th>
-          <th>Erklärung</th>
-        </tr>
-        <tr>
-          <td>++ --</td>
-          <td>Postfix-Inkrement und -Dekrement</td>
-        </tr>
-        <tr>
-          <td>++ --</td>
-          <td>Präfix-Inkrement und -Dekrement</td>
-        </tr>
-        <tr>
-          <td>^</td>
-          <td>Potenzierung</td>
-        </tr>
-        <tr>
-          <td>!</td>
-          <td>logische Negation</td>
-        </tr>
-        <tr>
-          <td>+ -</td>
-          <td>Vorzeichen-Operationen</td>
-        </tr>
-        <tr>
-          <td>* / %</td>
-          <td>Multiplikation, Division, Modulo-Operation</td>
-        </tr>
-        <tr>
-          <td>+ -</td>
-          <td>Addition, Subtraktion</td>
-        </tr>
-        <tr>
-          <td>&lt;</td>
-          <td>kleiner als</td>
-        </tr>
-        <tr>
-          <td>&lt;=</td>
-          <td>kleiner oder gleich</td>
-        </tr>
-        <tr>
-          <td>==</td>
-          <td>gleich</td>
-        </tr>
-        <tr>
-          <td>!=</td>
-          <td>ungleich</td>
-        </tr>
-        <tr>
-          <td>&gt;=</td>
-          <td>größer oder gleich</td>
-        </tr>
-        <tr>
-          <td>&gt;</td>
-          <td>größer</td>
-        </tr>
-        <tr>
-          <td>~ !~</td>
-          <td>Vergleich mit regulärem Ausdruck</td>
-        </tr>
-        <tr>
-          <td>&amp;&amp;</td>
-          <td>logisches UND</td>
-        </tr>
-        <tr>
-          <td>||</td>
-          <td>logisches ODER</td>
-        </tr>
-        <tr>
-          <td>=</td>
-          <td>Zuweisung</td>
-        </tr>
-        <tr>
-          <td>+=</td>
-          <td>Addition und Zuweisung</td>
-        </tr>
-        <tr>
-          <td>-=</td>
-          <td>Subtraktion und Zuweisung</td>
-        </tr>
-        <tr>
-          <td>*=</td>
-          <td>Multiplikation und Zuweisung</td>
-        </tr>
-        <tr>
-          <td>/=</td>
-          <td>Division und Zuweisung</td>
-        </tr>
-        <tr>
-          <td>%=</td>
-          <td>Modulo-Operation und Zuweisung</td>
-        </tr>
-        <tr>
-          <td>^=</td>
-          <td>Potenzierung und Zuweisung</td>
-        </tr>
-    </table>
-</li><li>Musterabgleich: Bash unterstützt Musterabgleiche mit dem == Operator und der [[ ... ]] Konstruktion. Du kannst Platzhalterzeichen (* und ?) verwenden, um Muster abzugleichen. Zum Beispiel:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [[ "$string" == "Hallo"* ]]; then
-        echo "Die Zeichenkette beginnt mit 'Hallo'"
-    fi
-    </code>
-</pre>
-</li>
-</ul>
-</pre>
-</pre>
+  <div class="header">
+    <span>AWK</span>
 </div>
-</div>
-    <script src="../../js/index.js"></script>
-    <script src="../../js/prism.js"></script>
+<div class="content">
+    <p>
+      Der Befehl awk verwendet eine Reihe benutzerdefinierter Anweisungen, um einen Satz von Dateien zeilenweise mit erweiterten regulären Ausdrücken zu vergleichen, 
+      die vom Benutzer bereitgestellt werden. Anschließend werden Aktionen für jede Zeile ausgeführt, die mit den erweiterten regulären Ausdrücken übereinstimmt.
+    </p> 
+    <span class="list-header">Funktionsweise:</span>
+      <ul style="list-style: circle;">
+        <li>
+        In AWK-Skript verarbeitet seine Eingabedatei zeilenweise und untersucht sie nach Mustern.
+        Findet es eine passende Stelle, führt AWK eine definierte Aktion aus. Hat der Programmierer kein Muster angegeben, 
+        führt AWK die Aktion für jede Zeile aus. Bei einfachen Einzeilern bietet sich folgende Aufrufkonvention an.
+        <div class="code-block">
+          <code class="language-bash">cat liste.csv</code><br>
+          <code class="language-bash">DagobertDuck      10.1.1.3    Debian    Kylix        256</code><br>
+          <code class="language-bash">Goofy1            10.1.1.4    Solaris   Mathematica  512</code><br>
+          <code class="language-bash">MickeyMouse       10.1.1.5    Debian    Apache       512</code><br><br>
+          <code class="language-bash">awk '$1=="Goofy1" {print $0}' liste.csv</code><br>
+          <code class="language-bash">Goofy1            10.1.1.4    Solaris   Mathematica  512</code>
+        </div>
+      </li>
+    </ul>
+    <br>
+    <span class="list-header">Verknüpft und Verbunden:</span>
+    <ul style="list-style: circle;">
+      <li>
+        Muster lassen sich mit Hilfe von booleschen Operatoren wie  zum Beispiel dem UND-Operator, erweitern und verknüpfen.
+        Die logischen Operanden sollten immer in runden Klammern stehen. Gerade bei längeren Verknüpfungen ist das Fehlen der Klammern eine potenzielle Fehlerquelle, 
+        da der Code unübersichtlicher wirkt. Neben einer logischen UND-Verknüpfung steht auch eine logische ODER-Verknüpfung »||« zur Verfügung.
+        <div class="code-block">
+          <code class="language-bash">awk '($3=="OSX") && ($4=="Photoshop") {print $1}' liste</code>
+        </div>
+      </li>
+      <li>
+        Neben dem Verarbeiten von Strings beherrscht AWK auch numerische Operationen. 
+        Die letzte Spalte der Datei in Listing 1 enthält Zahlen, die AWK numerisch oder nicht-numerisch bearbeiten kann. 
+        Möchte der Admin zum Beispiel wissen, wie viel Arbeitsspeicher insgesamt sich in seinem Labor befindet, gibt er folgendes Kommando ein:
+        <div class="code-block">
+          <code class="language-bash">awk '{sum+=$1; print $1, sum}' liste</code>
+        </div>
+      </li>
+    </ul>
+    <br>
+    <span class="list-header">AWK-Operatoren:</span>
+    <ul style="list-style: circle;">
+      <li>
+        <span class="list-header">Operator Erklärung</span>
+        <table>
+          <tr>
+            <td style="min-width:75px;">++ --</td>
+            <td>Postfix-Inkrement und -Dekrement</td>
+          </tr>
+          <tr>
+            <td>++ --</td>
+            <td>Präfix-Inkrement und -Dekrement</td>
+          </tr>
+          <tr>
+            <td>^</td>
+            <td>Potenzierung</td>
+          </tr>
+          <tr>
+            <td>!</td>
+            <td>logische Negation</td>
+          </tr>
+          <tr>
+            <td>+ -</td>
+            <td>Vorzeichen-Operationen</td>
+          </tr>
+          <tr>
+            <td>* / %</td>
+            <td>Multiplikation, Division, Modulo-Operation</td>
+          </tr>
+          <tr>
+            <td>+ -</td>
+            <td>Addition, Subtraktion</td>
+          </tr>
+          <tr>
+            <td>&lt;</td>
+            <td>kleiner als</td>
+          </tr>
+          <tr>
+            <td>&lt;=</td>
+            <td>kleiner oder gleich</td>
+          </tr>
+          <tr>
+            <td>==</td>
+            <td>gleich</td>
+          </tr>
+          <tr>
+            <td>!=</td>
+            <td>ungleich</td>
+          </tr>
+          <tr>
+            <td>&gt;=</td>
+            <td>größer oder gleich</td>
+          </tr>
+          <tr>
+            <td>&gt;</td>
+            <td>größer</td>
+          </tr>
+          <tr>
+            <td>~ !~</td>
+            <td>Vergleich mit regulärem Ausdruck</td>
+          </tr>
+          <tr>
+            <td>&amp;&amp;</td>
+            <td>logisches UND</td>
+          </tr>
+          <tr>
+            <td>||</td>
+            <td>logisches ODER</td>
+          </tr>
+          <tr>
+            <td>=</td>
+            <td>Zuweisung</td>
+          </tr>
+          <tr>
+            <td>+=</td>
+            <td>Addition und Zuweisung</td>
+          </tr>
+          <tr>
+            <td>-=</td>
+            <td>Subtraktion und Zuweisung</td>
+          </tr>
+          <tr>
+            <td>*=</td>
+            <td>Multiplikation und Zuweisung</td>
+          </tr>
+          <tr>
+            <td>/=</td>
+            <td>Division und Zuweisung</td>
+          </tr>
+          <tr>
+            <td>%=</td>
+            <td>Modulo-Operation und Zuweisung</td>
+          </tr>
+          <tr>
+            <td>^=</td>
+            <td>Potenzierung und Zuweisung</td>
+          </tr>
+        </table>
+      </li>
+      <li>
+        <span class="list-header">Musterabgleich:</span>
+        <p>
+          Bash unterstützt Musterabgleiche mit dem == Operator und der [[ ... ]] Konstruktion. Du kannst Platzhalterzeichen (* und ?) verwenden, 
+          um Muster abzugleichen. Zum Beispiel:
+        </p>
+        <div class="code-block">
+          <code class="language-bash">if [[ "$string" == "Hallo"* ]]; then</code><br>
+          <code class="language-bash">  echo "Die Zeichenkette beginnt mit 'Hallo'"</code><br>
+          <code class="language-bash">fi</code><br>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script src="../../js/index.js"></script>
+  <script src="../../js/prism.js"></script>
 </body>
 </html>
