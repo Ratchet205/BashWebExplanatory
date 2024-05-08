@@ -8,28 +8,28 @@
     <link rel="stylesheet" href="../../css/prism.css">
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">      Buffering<pre class="pdfErsatz">
-Pipes und Buffering sind Konzepte, die oft in der Programmierung, insbesondere bei der Arbeit mit Prozessen und Datenströmen, verwendet werden.
-Buffering bezieht sich auf die Zwischenspeicherung von Daten, bevor sie an ein Ziel gesendet werden.
-Hier ist ein Beispiel, wie man das Pufferverhalten bei der Ausgabe in einem Bash-Skript kontrollieren kann:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;"><code class="language-bash">
-    # Deaktiviere das Buffering für die Ausgabe
-    stdbuf -o0 echo "Hallo, Welt!"
- 
-    # Aktiviere das Zeilenpufferverhalten für die Ausgabe
-    stdbuf -oL echo "Hallo, Welt!"
-    cat mypipe
-</code>
-</pre>
-<li>Mit <code>stdbuf -o0</code> wird das Buffering für die Ausgabe deaktiviert, so dass die Ausgabe sofort angezeigt wird.</li>
-<li>Mit <code>stdbuf -oL</code> wird das Zeilenpufferverhalten aktiviert, was bedeutet, dass die Ausgabe zeilenweise erfolgt.</li>
-</pre>
-</pre>
-</div>
-</div> 
+    <div class="header">
+        <span>Buffering</span>
+    </div>
+    <div class="content">
+        <p>
+            Pipes und Buffering sind Konzepte, die oft in der Programmierung, insbesondere bei der Arbeit mit Prozessen und Datenströmen, verwendet werden. <br>
+            Buffering bezieht sich auf die Zwischenspeicherung von Daten, bevor sie an ein Ziel gesendet werden. <br>
+            Hier ist ein Beispiel, wie man das Pufferverhalten bei der Ausgabe in einem Bash-Skript kontrollieren kann:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash"># Deaktiviere das Buffering für die Ausgabe</code><br>
+            <code class="language-bash">stdbuf -o0 echo "Hallo, Welt!"</code><br><br>
+            <code class="language-bash"># Aktiviere das Zeilenpufferverhalten für die Ausgabe</code><br>
+            <code class="language-bash">stdbuf -oL echo "Hallo, Welt!"</code><br>
+            <code class="language-bash">cat mypipe</code>
+        </div>
+        <ul style="list-style: circle;">
+            <li>Mit <code>stdbuf -o0</code> wird das Buffering für die Ausgabe deaktiviert, so dass die Ausgabe sofort angezeigt wird.</li>
+            <li>Mit <code>stdbuf -oL</code> wird das Zeilenpufferverhalten aktiviert, was bedeutet, dass die Ausgabe zeilenweise erfolgt.</li>
+        </ul>
+    </div>
     <script src="../../js/index.js"></script>
-    <script src="../../js/prism.js"></script> 
+    <script src="../../js/prism.js"></script>
 </body>
 </html>

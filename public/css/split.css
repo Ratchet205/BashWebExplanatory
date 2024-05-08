@@ -30,10 +30,6 @@ body {
     background-color: #292929;
 }
 
-code {
-    white-space: pre !important; 
-}
-
 .header {
     margin: 3% 6% 0%;
     width: auto;

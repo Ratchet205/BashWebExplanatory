@@ -8,29 +8,29 @@
     <link rel="stylesheet" href="../../css/prism.css">
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">      Pipe<pre class="pdfErsatz">
-Pipes und Buffering sind Konzepte, die oft in der Programmierung, insbesondere bei der Arbeit mit Prozessen und Datenströmen, verwendet werden.
-Eine Pipe ist eine Verbindung zwischen zwei Prozessen, über die Daten sequenziell von einem Prozess zum anderen übertragen werden können.
-Hier ist ein Beispiel, wie man eine Pipe in einem Bash-Skript erstellt:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-<code class="language-bash">    # Erstelle eine Pipe
-    mkfifo mypipe
-    # Schreibe Daten in die Pipe von einem Prozess
-    echo "Hallo, Welt!" > mypipe
- 
-    # Lese Daten aus der Pipe in einem anderen Prozess
-    cat mypipe
-    </code>
-</pre>
-<li><ul>Die Zeile <code>mkfifo mypipe</code> erstellt eine Pipe mit dem Namen "mypipe".</li></ul>
-<li><ul>Mit <code>echo "Hallo, Welt!" > mypipe</code> wird der Text "Hallo, Welt!" in die Pipe geschrieben.</li></ul>
-<li><ul>Der Inhalt der Pipe wird mit <code>cat mypipe</code> ausgegeben.</li></ul>
-</pre>
-</pre>
-</div>
-</div> 
+    <div class="header">
+        <span>Pipes</span>
+    </div>
+    <div class="content">
+        <p>
+            Pipes und Buffering sind Konzepte, die oft in der Programmierung, insbesondere bei der Arbeit mit Prozessen und Datenströmen, verwendet werden. <br>
+            Eine Pipe ist eine Verbindung zwischen zwei Prozessen, über die Daten sequenziell von einem Prozess zum anderen übertragen werden können. <br>
+            Hier ist ein Beispiel, wie man eine Pipe in einem Bash-Skript erstellt:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash"># Erstelle eine Pipe</code><br>
+            <code class="language-bash">mkfifo mypipe</code><br>
+            <code class="language-bash"># Schreibe Daten in die Pipe von einem Prozess</code><br>
+            <code class="language-bash">echo "Hallo, Welt!" > mypipe</code><br><br>
+            <code class="language-bash"># Lese Daten aus der Pipe in einem anderen Prozess</code><br>
+            <code class="language-bash">cat mypipe</code>
+        </div>
+        <ul style="list-style: circle;">
+            <li>Die Zeile <code>mkfifo mypipe</code> erstellt eine Pipe mit dem Namen "mypipe".</li>
+            <li>Mit <code>echo "Hallo, Welt!" > mypipe</code> wird der Text "Hallo, Welt!" in die Pipe geschrieben.</li>
+            <li>Der Inhalt der Pipe wird mit <code>cat mypipe</code> ausgegeben.</li>
+        </ul>
+    </div>
     <script src="../../js/index.js"></script>
     <script src="../../js/prism.js"></script>
 </body>

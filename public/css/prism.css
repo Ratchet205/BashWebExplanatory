@@ -28,7 +28,6 @@ pre[class*=language-] {
 :not(pre)>code[class*=language-] {
     padding: .1em;
     border-radius: .3em;
-    white-space: normal
 }
 
 .token.block-comment, .token.cdata, .token.comment, .token.doctype, .token.prolog {

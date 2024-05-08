@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
         // Send the contents of the file as the response
         
-        res.send(eval(data));
+        res.send(data);
     });
 });
 
