@@ -8,186 +8,234 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">
-1. Bash String Split<pre class="pdfErsatz">
-In Bash kannst du einen String in ein Array aufteilen, indem du die Variable IFS (Internal Field Separator) und den Befehl read verwendest. Hier ist ein Beispiel:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string="Hallo Welt"
-    IFS=" " read -ra array <<< "$string"
-
-    # Gib jedes Element des Arrays aus
-    for element in "${array[@]}"
-    do
-
-        echo "$element"
-    done
-</code>
-</pre>
-In diesem Beispiel setzen wir die Variable IFS auf ein Leerzeichen, um anzuzeigen, dass wir den String an jeder Leerstelle aufteilen möchten. Dann verwenden wir den Befehl read mit der Option -a, um den Eingabestring zu lesen und die aufgeteilten Teile in einem Array namens array zu speichern. Schließlich durchlaufen wir die Elemente des Arrays in einer Schleife und geben sie aus. Du kannst den Wert von IFS anpassen, um den String mit verschiedenen Trennzeichen, wie Kommas oder Tabs, aufzuteilen. Mit <<< geben wir den Inhalt von string an read weiter, so dass read den String verarbeiten kann. read liest den übergebenen String und teilt ihn an den Trennzeichen, die durch IFS festgelegt sind, auf. Die Optionen -r und -a haben folgende Bedeutungen:
-<ul style="list-style: circle;"><li>-r: Verhindert, dass read den Backslash () als Escape-Zeichen interpretiert. Das bedeutet, dass Backslashes in der Eingabe als normale Zeichen behandelt werden.</li><li>-a array: Weist den aufgeteilten Teilen der Variable array zu. Dabei wird ein Array erstellt, das die einzelnen Teile des aufgeteilten Strings enthält.</li></ul>
-</pre>2. Bash String Comparison<pre class="pdfErsatz">
-In Bash kannst du Zeichenfolgen mithilfe verschiedener Vergleichsoperatoren vergleichen. Hier sind einige gängige Methoden zum Vergleichen von Zeichenfolgen in Bash:
-<ul style="list-style: circle;"><li>Gleichheit (==): Du kannst das doppelte Gleichheitszeichen (==) verwenden, um zu überprüfen, ob zwei Zeichenketten gleich sind:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [ "$string1" == "$string2" ]; then
-        echo "Die Zeichenketten sind gleich"
-    fi
-    </code>
-</pre>
-</li><li>Ungleichheit (!=): Der "Ungleich"-Operator (!=) überprüft, ob zwei Zeichenketten nicht gleich sind:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [ "$string1" != "$string2" ]; then
-        echo "Die Zeichenketten sind nicht gleich"
-    fi
-    </code>
-</pre>
-</li><li>Größer als (>), kleiner als (<), größer oder gleich (>=), kleiner oder gleich (<=): Diese Operatoren vergleichen die Zeichenketten lexikographisch, basierend auf ihrer alphabetischen Reihenfolge. Zum Beispiel:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [[ "$string1" > "$string2"]]; then
-        echo "Zeichenkette 1 ist größer als Zeichenkette 2"
-    fi
-    </code>
-</pre>
-</li><li>Längenvergleich: Du kannst die Längen von zwei Zeichenketten vergleichen, indem du die -z (leer) und -n (nicht leer) Optionen des test-Kommandos verwendest:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [ -z "$string" ]; then
-        echo "Die Zeichenkette ist leer"
-    fi
-
-    if [ -n "$string" ]; then
-        echo "Die Zeichenkette ist nicht leer"
-    fi
-    </code>
-</pre>
-</li><li>Musterabgleich: Bash unterstützt Musterabgleiche mit dem == Operator und der [[ ... ]] Konstruktion. Du kannst Platzhalterzeichen (* und ?) verwenden, um Muster abzugleichen. Zum Beispiel:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [[ "$string" == "Hallo"* ]]; then
-        echo "Die Zeichenkette beginnt mit 'Hallo'"
-    fi
-    </code>
-</pre>
-</li>
-</ul>
-</pre>3. Bash Multi-Line Strings<pre class="pdfErsatz">
-In Bash kannst du Mehrzeilige Strings auf verschiedene Arten erstellen. Hier sind einige Methoden:
-<ul style="list-style: circle;">
-<li>Mit einem einfachen String und Zeilenumbrüchen in einfachen Anführungszeichen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string='Das ist ein mehrzeiliger
-    String in Bash.
-    Du kannst einfache Anführungszeichen
-    verwenden, um Zeilenumbrüche beizubehalten.'
-</code>
-</pre>
-</li><li>Mit einem doppelten String und escaped (maskierten) Zeilenumbrüchen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string="Das ist ein mehrzeiliger \
-    String in Bash \
-    Du kannst doppelte Anführungszeichen \
-    mit escaped Zeilenumbrüchen verwenden."
-</code>
-</pre>
-</li><li>Mit einem sogenannten "Here Document":
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string=$(cat <<&#x200B;EOF
-    Das ist eine mehrzeiliger
-    String in Bash.
-    Du kannst ein Here Document
-    verwenden, um mehrzeilige String zu definieren.
-    EOF
-    )
-</code>
-</pre>
-EOF: Dies ist das Endemarkierungsschlüsselwort des "Here Document". Es gibt an, dass das "Here Document" abgeschlossen ist und der Inhalt bis hierhin in die Variable "string" geschrieben wird. Beachte, dass das Schlüsselwort EOF, das im "Here Document" verwendet wird, beliebig gewählt werden kann, solange es auf beiden Zeilen gleich ist.
-</li>
-</ul>
-</pre>4. Bash String Replacement<pre class="pdfErsatz">
-In Bash kannst du eine Zeichenkette mit dem sed-Befehl ersetzen. Hier ist die grundlegende Syntax:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed 's/suchmuster/ersatzmuster/' eingabedatei
-</code>
-</pre>
-Dieser Befehl ersetzt das erste Vorkommen des suchmuster durch das ersatzmuster in der angegebenen eingabedatei. Wenn du die Ersetzung direkt in der Datei vornehmen möchtest (also die Datei direkt ändern möchtest), kannst du die -i-Option verwenden:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed -i 's/suchmuster/ersatzmuster/' eingabedatei
-</code>
-</pre>
-Wenn du alle Vorkommen des suchmuster in der Datei ersetzen möchtest, kannst du die g-Flagge am Ende des sed-Befehls verwenden:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed 's/suchmuster/ersatzmuster/g' eingabedatei
-</code>
-</pre>
-Hier ist ein Beispiel zur Veranschaulichung. Angenommen, du hast eine Datei namens beispiel.txt mit folgendem Inhalt:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    Hallo, Welt! Dies ist eine Beispiel Zeichenkette.
-</code>
-</pre>
-Wenn du das Wort "Welt" in dieser Datei durch "Universum" ersetzen möchtest, kannst du den folgenden Befehl ausführen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    sed -i 's/Welt/Universum/' beispiel.txt
-</code>
-</pre>
-Nach Ausführung dieses Befehls wird der Inhalt von beispiel.txt wie folgt aussehen:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    Hallo, Universum! Dies ist eine Beispiel Zeichenkette.
-</code>
-</pre>
-</pre>5. Bash Substring-Extraction<pre class="pdfErsatz">
-Hier sind die Beispiele zum Extrahieren von Teilstrings in Bash auf Deutsch:
-<ul style="list-style: circle;"><li>Mit Parameter-Erweiterung:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string="Hallo, Welt!"
-    teilstring=${string:7:5}
-    echo $teilstring
-</code>
-</pre>
-Ausgabe: Welt!
-In diesem Beispiel bedeutet ${string:7:5}, dass ein Teilstring ab dem 7. Index (inklusiv) mit einer Länge von 5 Zeichen extrahiert wird.
-
-</li><li>Mit dem expr-Befehl:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string="Hallo, Welt!"
-    teilstring=$(expr substr "$string" 8 5)
-    echo $teilstring
-</code>
-</pre>
-Ausgabe: Welt!
-Der expr-Befehl ermöglicht es, einen Teilstring mit der Funktion substr zu extrahieren. In diesem Fall wird ab der Position 8 gestartet und es werden 5 Zeichen extrahiert.
-</li><li>Mit dem cut-Befehl:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    string="Hallo, Welt!"
-    teilstring=$(echo "$string" | cut -c 8-12)
-    echo $teilstring
-</code>
-</pre>
-Ausgabe: Welt!
-Der cut-Befehl kann ebenfalls verwendet werden, um einen Teilstring zu extrahieren. -c 8-12 gibt den Bereich der Zeichen an, die extrahiert werden sollen, beginnend ab der 8. Position bis zur 12. Position.
-</li>
-</ul>
-</pre>
-</pre>
-</div>
-</div>
+    <div class="header">
+        <span>1. Bash String Split</span>
+    </div>
+    <div class="content">
+        <p>
+            In Bash kannst du einen String in ein Array aufteilen, 
+            indem du die Variable IFS (Internal Field Separator) und den Befehl read verwendest. 
+            Hier ist ein Beispiel:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">string="Hallo Welt"</code><br>
+            <code class="language-bash">IFS=" " read -ra array <<< "$string"</code><br><br>
+            <code class="language-bash"># Gib jedes Element des Arrays aus</code><br>
+            <code class="language-bash">for element in "${array[@]}"</code><br>
+            <code class="language-bash">do</code><br>
+            <code class="language-bash">    echo "$element"</code><br>
+            <code class="language-bash">done</code>
+        </div>
+        <p>
+            In diesem Beispiel setzen wir die Variable IFS auf ein Leerzeichen, um anzuzeigen,
+            dass wir den String an jeder Leerstelle aufteilen möchten. Dann verwenden wir den Befehl read mit der Option -a, 
+            um den Eingabestring zu lesen und die aufgeteilten Teile in einem Array namens array zu speichern. 
+            Schließlich durchlaufen wir die Elemente des Arrays in einer Schleife und geben sie aus. 
+            Du kannst den Wert von IFS anpassen, um den String mit verschiedenen Trennzeichen, wie Kommas oder Tabs, aufzuteilen. 
+            Mit <<< geben wir den Inhalt von string an read weiter, so dass read den String verarbeiten kann. 
+            Read liest den übergebenen String und teilt ihn an den Trennzeichen, die durch IFS festgelegt sind, auf. 
+            Die Optionen -r und -a haben folgende Bedeutungen:
+        </p>   
+        <ul style="list-style: circle;">
+            <li>-r: Verhindert, dass read den Backslash () als Escape-Zeichen interpretiert. Das bedeutet, dass Backslashes in der Eingabe als normale Zeichen behandelt werden.</li>
+            <li>-a array: Weist den aufgeteilten Teilen der Variable array zu. Dabei wird ein Array erstellt, das die einzelnen Teile des aufgeteilten Strings enthält.</li>
+        </ul>
+    </div>
+    <div class="header">
+        <span>2. Bash String Comparison</span>
+    </div>
+    <div class="content">
+        <p>
+            In Bash kannst du Zeichenfolgen mithilfe verschiedener Vergleichsoperatoren vergleichen. 
+            Hier sind einige gängige Methoden zum Vergleichen von Zeichenfolgen in Bash:
+        </p> 
+        <ul style="list-style: circle;">
+            <li>
+                <span class="list-header">Gleichheit (==)</span>
+                <span>Du kannst das doppelte Gleichheitszeichen (==) verwenden, um zu überprüfen, ob zwei Zeichenketten gleich sind.</span>
+                <div class="code-block">
+                    <code class="language-bash">if [ "$string1" == "$string2" ]; then</code><br>
+                    <code class="language-bash">    echo "Die Zeichenketten sind gleich"</code><br>
+                    <code class="language-bash">fi</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Ungleichheit (!=)</span>
+                <span>Der "Ungleich"-Operator (!=) überprüft, ob zwei Zeichenketten nicht gleich sind.</span>
+                <div class="code-block">
+                    <code class="language-bash">if [ "$string1" != "$string2" ]; then</code><br>
+                    <code class="language-bash">    echo "Die Zeichenketten sind nicht gleich"</code><br>
+                    <code class="language-bash">fi</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Größer als (>), kleiner als (<), größer oder gleich (>=), kleiner oder gleich (<=)</span>
+                <span>Diese Operatoren vergleichen die Zeichenketten lexikographisch, basierend auf ihrer alphabetischen Reihenfolge. Hier ein Beispiel.</span>
+                <div class="code-block">
+                    <code class="language-bash">if [[ "$string1" > "$string2"]]; then</code><br>
+                    <code class="language-bash">    echo "Zeichenkette 1 ist größer als Zeichenkette 2"</code><br>
+                    <code class="language-bash">fi</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Längenvergleich</span>
+                <span>Du kannst die Längen von zwei Zeichenketten vergleichen, indem du die -z (leer) und -n (nicht leer) Optionen des test-Kommandos verwendest.</span>
+                <div class="code-block">
+                    <code class="language-bash">if [ -z "$string" ]; then</code><br>
+                    <code class="language-bash">    echo "Die Zeichenkette ist leer"</code><br>
+                    <code class="language-bash">fi</code><br>
+                    <br>
+                    <code class="language-bash">if [ -n "$string" ]; then</code><br>
+                    <code class="language-bash">    echo "Die Zeichenkette ist nicht leer"</code><br>
+                    <code class="language-bash">fi</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Musterabgleich</span>
+                <span>Bash unterstützt Musterabgleiche mit dem == Operator und der [[ ... ]] Konstruktion. Du kannst Platzhalterzeichen (* und ?) verwenden, um Muster abzugleichen.</span>
+                <div class="code-block">
+                    <code class="language-bash">if [[ "$string" == "Hallo"* ]]; then</code><br>
+                    <code class="language-bash">    echo "Die Zeichenkette beginnt mit 'Hallo'"</code><br>
+                    <code class="language-bash">fi</code>
+                </div> <!-- Mayhaps Regex instead of this? -->
+            </li>
+        </ul> 
+    </div>
+    <div class="header">
+        <span>3. Bash Multi-Line Strings</span>
+    </div>
+    <div class="content">
+        <p>
+            In Bash kannst du Mehrzeilige Strings auf verschiedene Arten erstellen. Hier sind einige Methoden:
+        </p> 
+        <ul style="list-style: circle;">
+            <li>
+                <span class="list-header">Mit einem einfachen String und Zeilenumbrüchen in einfachen Anführungszeichen:</span>
+                <div class="code-block">
+                    <code class="language-bash">string='Das ist ein mehrzeiliger</code><br>
+                    <code class="language-bash">String in Bash.</code><br>
+                    <code class="language-bash">Du kannst einfache Anführungszeichen</code><br>
+                    <code class="language-bash">verwenden, um Zeilenumbrüche beizubehalten.'</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Mit einem doppelten String und escaped (maskierten) Zeilenumbrüchen:</span>
+                <div class="code-block">
+                    <code class="language-bash">string="Das ist ein mehrzeiliger \</code><br>
+                    <code class="language-bash">String in Bash \</code><br>
+                    <code class="language-bash">Du kannst doppelte Anführungszeichen \</code><br>
+                    <code class="language-bash">mit escaped Zeilenumbrüchen verwenden."</code>
+                </div>
+            </li>
+            <li>
+                <span class="list-header">Mit einem sogenannten "Here Document":</span>
+                <div class="code-block">
+                    <code class="language-bash">string=$(cat <<&#x200B;EOF</code><br>
+                    <code class="language-bash">Das ist eine mehrzeiliger</code><br>
+                    <code class="language-bash">String in Bash.</code><br>
+                    <code class="language-bash">Du kannst ein Here Document</code><br>
+                    <code class="language-bash">verwenden, um mehrzeilige String zu definieren.</code><br>
+                    <code class="language-bash">EOF</code><br>
+                    <code class="language-bash">)</code>
+                </div>
+                <p>
+                    EOF: Dies ist das Endemarkierungsschlüsselwort des "Here Document". 
+                    Es gibt an, dass das "Here Document" abgeschlossen ist und der Inhalt bis hierhin in die Variable "string" geschrieben wird. 
+                    Beachte, dass das Schlüsselwort EOF, das im "Here Document" verwendet wird, beliebig gewählt werden kann, solange es auf beiden Zeilen gleich ist.
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <span>4. Bash String Replacement</span>
+    </div>
+    <div class="content">
+        <p>
+            In Bash kannst du eine Zeichenkette mit dem sed-Befehl ersetzen. Hier ist der grundlegende Syntax:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed 's/suchmuster/ersatzmuster/' eingabedatei</code>
+        </div>
+        <p>
+            Dieser Befehl ersetzt das erste Vorkommen des suchmuster durch das ersatzmuster in der angegebenen eingabedatei. 
+            Wenn du die Ersetzung direkt in der Datei vornehmen möchtest (also die Datei direkt ändern möchtest), kannst du die -i-Option verwenden:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed -i 's/suchmuster/ersatzmuster/' eingabedatei</code>
+        </div>
+        <p>
+            Wenn du alle Vorkommen des suchmuster in der Datei ersetzen möchtest, kannst du die g-Flagge am Ende des sed-Befehls verwenden:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed 's/suchmuster/ersatzmuster/g' eingabedatei</code>
+        </div>
+        <p>
+            Hier ist ein Beispiel zur Veranschaulichung. Angenommen, du hast eine Datei namens beispiel.txt mit folgendem Inhalt:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">Hallo, Welt! Dies ist eine Beispiel Zeichenkette.</code>
+        </div>
+        <p>
+            Wenn du das Wort "Welt" in dieser Datei durch "Universum" ersetzen möchtest, kannst du den folgenden Befehl ausführen:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">sed -i 's/Welt/Universum/' beispiel.txt</code>
+        </div>
+        <p>
+            Nach Ausführung dieses Befehls wird der Inhalt von beispiel.txt wie folgt aussehen:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">Hallo, Universum! Dies ist eine Beispiel Zeichenkette.</code>
+        </div>
+    </div>
+    <div class="header">
+        <span>5. Bash Substring-Extraction</span>
+    </div>
+    <div class="content">
+        <p>
+            Hier sind die Beispiele zum Extrahieren von Teilstrings in Bash auf Deutsch:
+        </p> 
+        <ul style="list-style: circle;">
+            <li>
+                <span class="list-header">Mit Parameter-Erweiterung:</span>
+                <div class="code-block">
+                    <code class="language-bash">string="Hallo, Welt!"</code><br>
+                    <code class="language-bash">teilstring=${string:7:5}</code><br>
+                    <code class="language-bash">echo $teilstring</code>
+                </div>
+                <p>
+                    Ausgabe: "Welt!"<br>
+                    In diesem Beispiel bedeutet ${string:7:5}, dass ein Teilstring ab dem 7. Index (inklusiv) mit einer Länge von 5 Zeichen extrahiert wird.
+                </p>
+            </li>
+            <li>
+                <span class="list-header">Mit dem expr-Befehl:</span>
+                <div class="code-block">
+                    <code class="language-bash">string="Hallo, Welt!"</code><br>
+                    <code class="language-bash">teilstring=$(expr substr "$string" 8 5)</code><br>
+                    <code class="language-bash">echo $teilstring</code>
+                </div>
+                <p>
+                    Ausgabe: "Welt!"<br>
+                    Der expr-Befehl ermöglicht es, einen Teilstring mit der Funktion substr zu extrahieren. 
+                    In diesem Fall wird ab der Position 8 gestartet und es werden 5 Zeichen extrahiert.
+                </p>
+            </li>
+            <li>
+                <span class="list-header">Mit dem cut-Befehl:</span>
+                <div class="code-block">
+                    <code class="language-bash">string="Hallo, Welt!"</code><br>
+                    <code class="language-bash">teilstring=$(echo "$string" | cut -c 8-12)</code><br>
+                    <code class="language-bash">echo $teilstring</code>
+                </div>
+                <p>
+                    Ausgabe: "Welt!"<br>
+                    Der cut-Befehl kann ebenfalls verwendet werden, um einen Teilstring zu extrahieren. 
+                    -c 8-12 gibt den Bereich der Zeichen an, die extrahiert werden sollen, beginnend ab der 8. Position bis zur 12. Position.
+                </p>
+            </li>
+        </ul>
+    </div>
     <script src="../../js/index.js"></script>
     <script src="../../js/prism.js"></script>
 </body>

@@ -38,6 +38,7 @@ var pages = {
     "files-and-dir" : ["html/files_directories/Bash_Files_and_Directories.html", "Files and Directories"],
     "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
     "awk" : ["html/advanced_level/awk.html", "AWK"],
+    "debugging": ["html/advanced_level/debugging.html", "Debugging"],
     "pipes": ["html/pipes_buffering/pipes.html", "Pipes"],
     "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };
