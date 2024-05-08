@@ -9,10 +9,40 @@
     <script src="js/index.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        //const socket = io();
         window.onbeforeunload = function() {
             close_bash_shell_window();
         }
+
+        // Ensure the function is called to get query parameters
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryParts = queryString.split('&');
+
+            queryParts.forEach((part) => {
+                const [key, value] = part.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+
+            return params; // Return the parsed parameters
+        }
+
+        // Get the query parameters
+        let params = getQueryParams();
+
+        // If the 'path' query parameter exists, change the page content
+        window.addEventListener("load", function() {
+            if (params["path"]) {
+                const pageId = params["path"];
+                // Access the existing change_page_content function from index.js
+                if (typeof change_page_content === 'function') {
+                    change_page_content(document.getElementById(pageId)); // Change the page content using the path parameter
+                } else {
+                    console.warn("change_page_content function is not defined.");
+                }
+            }
+        });
     </script>
     <title>Bash Web Explanatory</title>
 </head>
