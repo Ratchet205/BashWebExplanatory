@@ -49,6 +49,10 @@ function query_page_change(path) {
 }
 
 function change_page_content(self) { //switches page nav
+    if(self == null) {
+        alert("Kein Dokument mit diesem Namen.");
+        return;
+    }
     const nav_items = document.getElementsByClassName("page-list-item"); 
     const iframe = document.getElementById('content-iframe');
     const page_title = document.getElementById('title-page');
