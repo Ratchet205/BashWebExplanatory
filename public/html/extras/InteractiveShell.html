@@ -28,7 +28,7 @@
     let containerID = "";
     const output = document.getElementById("output");
     const banner = document.getElementById("banner");
-
+    output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">Connecting to Container...</span><br>`
     function scrollToBottom() {
     output.scrollTop = output.scrollHeight; // Scrolls to the bottom
     };
@@ -36,7 +36,6 @@
     socket.onopen = function (event) {
         console.log("WebSocket connection opened.");
         socket.send("create");
-        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">Connecting to Container...</span><br>`
         scrollToBottom();
     };
 
