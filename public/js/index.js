@@ -177,12 +177,5 @@ function close_nav() {
     document.getElementById("content-border").style.width = "calc(100vw - 3px)";
 }
 
-function full_open_nav() {
-    document.getElementById("page-content").style.left = "100%";
-    document.getElementById("content-border").style.left = "100%";
-    document.getElementById("page-content").style.width = "0px";
-    document.getElementById("content-border").style.width = "0px";
-}
-
 // GENERAL FUNCTIONS
 window.addEventListener('resize', update_nav); //executes function on windows resize

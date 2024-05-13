@@ -19,8 +19,7 @@
 <body onload="load_nav()">
     <div id="nav">
         <div id="categories">
-            <h3 onclick="switch_nav_level()" class="nav-header">&#x25C4; Kategorien</h3>
-            <hr>
+            <span onclick="switch_nav_level()" class="nav-header">&#x25C4; Kategorien</span>
             <ul>
                 <li onclick="switch_nav_category('string-manikure')">String Maniküre</li>
                 <li onclick="switch_nav_category('files-directories')">Files and Directories</li>
@@ -30,20 +29,18 @@
             </ul>
         </div>
         <div id="string-manikure" class="page">
-            <h3 onclick="switch_nav_level()" class="nav-header">String Maniküre &#9658;</h3>
-            <hr>
+            <span onclick="switch_nav_level()" class="nav-header">String Maniküre &#9658;</span>
             <ul>
                 <li onclick="change_page_content(this)" id="split" class="page-list-item">Split</li>
                 <li onclick="change_page_content(this)" id="comparison" class="page-list-item">Comparison</li>
                 <li onclick="change_page_content(this)" id="multi-line" class="page-list-item">Multi-Line</li>
                 <li onclick="change_page_content(this)" id="replacement" class="page-list-item">Replacement</li>
                 <li onclick="change_page_content(this)" id="substring-extraction" class="page-list-item">Substring-Extraction</li>
-                <li onclick="change_page_content(this)" id="manipulations-bibliothek" class="page-list-item summary-page"><span>Manipulations-Bibliothek</span></li>
+                <li onclick="change_page_content(this)" id="manipulations-bibliothek" class="page-list-item summary-page">Manipulations-Bibliothek</li>
             </ul>
         </div>
         <div id="files-directories" class="page">
-            <h3 onclick="switch_nav_level()" class="nav-header">Files & Directories &#9658;</h3>
-            <hr>
+            <span onclick="switch_nav_level()" class="nav-header">Files & Directories &#9658;</span>
             <ul>
                 <li onclick="change_page_content(this)" id="append-file" class="page-list-item">Append to File</li>
                 <li onclick="change_page_content(this)" id="check-dir-exists" class="page-list-item">Check if Directories exist</li>
@@ -54,8 +51,7 @@
             </ul>
         </div>
         <div id="adrian-tim" class="page">
-            <h3 onclick="switch_nav_level()" class="nav-header">Adrian Tim &#9658;</h3>
-            <hr>
+            <span onclick="switch_nav_level()" class="nav-header">Adrian Tim &#9658;</span>
             <ul>
                 <li onclick="change_page_content(this)" id="awk" class="page-list-item">AWK</li>
                 <li onclick="change_page_content(this)" id="debugging" class="page-list-item">Debugging</li>
@@ -66,8 +62,7 @@
             </ul>
         </div>
         <div id="pipes_buffering" class="page">
-            <h3 onclick="switch_nav_level()" class="nav-header">Pipes & Buffering &#9658;</h3>
-            <hr>
+            <span onclick="switch_nav_level()" class="nav-header">Pipes & Buffering &#9658;</span>
             <ul>
                 <li onclick="change_page_content(this)" id="pipes" class="page-list-item">Pipes</li>
                 <li onclick="change_page_content(this)" id="buffering" class="page-list-item">Buffering</li>
