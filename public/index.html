@@ -30,7 +30,7 @@
 
         function downloadFile(file) {
             var link = document.createElement('a');
-            link.href = `src/intermediate-bash/${file}`;
+            link.href = `src/${file}`;
             link.download = `${file}`;
             document.body.appendChild(link);
             link.click();
@@ -46,7 +46,7 @@
                 const pageId = params["path"];
                 // Access the existing change_page_content function from index.js
                 try {
-                    fetch(pageId)
+                    fetch("src/"+pageId)
                         .then(response => {
                             if(!response.ok) {
                                 if (typeof change_page_content === 'function') {
