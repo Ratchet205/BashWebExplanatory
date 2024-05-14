@@ -8,39 +8,42 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="Bunten">
-        <div class="pdfInhalt">
-        <pre class="pdfErsatzÜberschrift">
-Bash Check if Files exist<pre class="pdfErsatz">
-Wenn geprüft wird, ob eine Datei existiert, sind die am häufigsten verwendeten FILE-Operatoren -e und -f. Die erste prüft, ob eine Datei existiert, unabhängig vom Typ, während die zweite nur dann true zurückgibt, wenn die FILE eine reguläre Datei ist (kein Verzeichnis oder ein Gerät). Die am besten lesbare Option bei der Überprüfung, ob eine Datei existiert oder nicht, ist die Verwendung des test -Befehls in Verbindung mit der if -Anweisung Jedes der folgenden Snippets überprüft, ob die Datei /etc/resolv.conf existiert:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    FILE=/etc/resolv.conf
-    if test -f "$FILE"; 
-    then
-        echo "$FILE existiert."
-    fi
-</code>
-</pre> <!--Ende des ersten Abschnitts-->
-Sie können den test-Befehl auch ohne die if-Anweisung verwenden. Der Befehl nach dem &&-Operator wird nur ausgeführt, wenn der Exit-Status des test-Befehls wahr ist:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    test -f /etc/resolv.conf && echo "$FILE existiert."
-</code>
-</pre> <!--Ende des zweiten Abschnitts-->
-Anstatt komplizierte geschachtelte if/else Konstrukte zu verwenden, können Sie - a (oder && mit [[)) verwenden, um zu testen, ob mehrere Dateien existieren:
-<pre style="background-color: black; border: solid #bebebe 2px; border-radius: 6px;">
-    <code class="language-bash">
-    if [ -f /etc/resolv.conf -a -f /etc/hosts ];
-    then
-        echo "Beide Files existieren."
-    fi
-</code>
-</pre> <!--Ende des dritten Abschnitts-->
-</pre>
-</pre>
-</div>
-</div>
+    <div class="header">
+        <span>Bash Check if Files exist</span>
+    </div>
+    <div class="content">
+        <p>
+            Wenn geprüft wird, ob eine Datei existiert, sind die am häufigsten verwendeten FILE-Operatoren -e und -f. 
+            Die erste prüft, ob eine Datei existiert, unabhängig vom Typ, während die zweite nur dann true zurückgibt, 
+            wenn die FILE eine reguläre Datei ist (kein Verzeichnis oder ein Gerät). Die am besten lesbare Option bei der Überprüfung, 
+            ob eine Datei existiert oder nicht, ist die Verwendung des test -Befehls in Verbindung mit der if -Anweisung Jedes der folgenden Snippets überprüft, 
+            ob die Datei /etc/resolv.conf existiert:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">FILE=/etc/resolv.conf</code><br>
+            <code class="language-bash">if test -f "$FILE";</code><br>
+            <code class="language-bash">then</code><br>
+            <code class="language-bash">    echo "$FILE existiert."</code><br>
+            <code class="language-bash">fi</code>
+        </div>
+        <p>
+            Sie können den test-Befehl auch ohne die if-Anweisung verwenden. Der Befehl nach dem &&-Operator wird nur ausgeführt, 
+            wenn der Exit-Status des test-Befehls wahr ist:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">test -f /etc/resolv.conf && echo "$FILE existiert."</code>
+        </div>
+        <p>
+            Anstatt komplizierte geschachtelte if/else Konstrukte zu verwenden, können Sie - a (oder && mit [[)) verwenden, 
+            um zu testen, ob mehrere Dateien existieren:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">if [ -f /etc/resolv.conf -a -f /etc/hosts ];</code><br>
+            <code class="language-bash">then</code><br>
+            <code class="language-bash">    echo "Beide Files existieren."</code><br>
+            <code class="language-bash">fi</code>
+        </div>
+    </div>  
     <script src="../../js/index.js"></script>
     <script src="../../js/prism.js"></script>
 </body>

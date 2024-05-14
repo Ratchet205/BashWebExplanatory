@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übersicht über Pipe und Buffering</title>
+    <link rel="stylesheet" type="text/css" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+</head>
+<body>
+    <div class="header">
+        <span>Pipes</span>
+    </div>
+    <div class="content">
+        <p>
+            Pipes und Buffering sind Konzepte, die oft in der Programmierung, insbesondere bei der Arbeit mit Prozessen und Datenströmen, verwendet werden. <br>
+            Eine Pipe ist eine Verbindung zwischen zwei Prozessen, über die Daten sequenziell von einem Prozess zum anderen übertragen werden können. <br>
+            Hier ist ein Beispiel, wie man eine Pipe in einem Bash-Skript erstellt:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash"># Erstelle eine Pipe</code><br>
+            <code class="language-bash">mkfifo mypipe</code><br>
+            <code class="language-bash"># Schreibe Daten in die Pipe von einem Prozess</code><br>
+            <code class="language-bash">echo "Hallo, Welt!" > mypipe</code><br><br>
+            <code class="language-bash"># Lese Daten aus der Pipe in einem anderen Prozess</code><br>
+            <code class="language-bash">cat mypipe</code>
+        </div>
+        <ul style="list-style: circle;">
+            <li>Die Zeile <code>mkfifo mypipe</code> erstellt eine Pipe mit dem Namen "mypipe".</li>
+            <li>Mit <code>echo "Hallo, Welt!" > mypipe</code> wird der Text "Hallo, Welt!" in die Pipe geschrieben.</li>
+            <li>Der Inhalt der Pipe wird mit <code>cat mypipe</code> ausgegeben.</li>
+        </ul>
+    </div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+</html>

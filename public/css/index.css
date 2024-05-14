@@ -46,7 +46,7 @@ div {
     text-align: center;
     top: 75px;
     left: 0px;
-    background-color: #29292900;
+    background-color: #292929;
     width: 500px;
     height: calc(100vh - 75px);
     transition: 0.5s;
@@ -58,17 +58,24 @@ div {
     padding: 0;
     margin: 0;
     width: 100%;
+    height: calc(100vh - 75px - 70px - 50px);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #3b3b3b transparent;
+    background-color: #292929;
 }
 
 #nav ul li:not(.summary-page)  {
     height: 50px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 1000ms;
     align-content: center;
     display: grid;
 }
 
 #nav ul li:hover:not(.summary-page) {
+    transition: 250ms;
     transform: translateY(-3px);
 }
 
@@ -78,19 +85,21 @@ div {
     transform: translateX(-50%);
     width: 100%;
     bottom: 5px;
-    border-top: 2px solid white;
     height: 50px;
-    transition: 0.5s;
     align-content: center;
     display: grid;
+    border-top: 1px solid #bebebe;
+    border-collapse: collapse;
+    background-color: #292929;
 }
 
 .summary-page span {
-    transition: 0.5s;
+    transition: 1000ms;
     cursor: pointer;
 }
 
 .summary-page:hover span{
+    transition: 250ms;
     transform: translateY(-3px);
 }
 
@@ -102,6 +111,12 @@ div {
 
 .nav-header {
     cursor: pointer;
+    border-bottom: 1px solid #bebebe;
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .page {
@@ -176,11 +191,11 @@ body:has(#page-content:hover) #bash-shell-button button {
     width: 75px;
     height: 75px;
     border-radius: 6px;
+    transition: 0.3s;
     cursor: pointer;
 }
 
 #nav-button:hover {
-    transition: 0.3s;
     background-color: #303030;
 }
 
@@ -261,10 +276,10 @@ body:has(#page-content:hover) #bash-shell-button button {
     left: calc(100vw - 75px);
     border-radius: 6px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 #home-button:hover {
-    transition: 0.3s;
     background-color: #303030;
 }
 

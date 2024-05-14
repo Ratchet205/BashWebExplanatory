@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>nohub</title>
+</head>
+<body>
+    <header class="FileHeader">
+        <h1>Lernseite</h1>
+        <h2>Bash Returncodes, Regex, Grep, SED, SET, AWK und nohup</h2>
+    </header>
+    
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../allgemein/nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+
+    <div class="MainBody">
+    <div>
+        <h1>NOHUB</h1>
+        <h4>"nohup" (Abkürzung für "no hang up") ist ein Befehl, um ein Programm auszuführen, wobei dieses dann das HUP-Signal unterdrückt. Dadurch kann man ein Programm starten und weiter laufen lassen, auch wenn man sich vom System abgemeldet hat.</h4>
+    </div>
+    <div>
+        <p>
+            Üblicherweise nutzt man nohup, um Dienste im Hintergrund zu starten und diese so von der Login-Shell zu trennen. Ausgaben des aufgerufenen Programms werden automatisch in die Datei nohup.out geleitet, die im Verzeichnis angelegt wird, von dem aus der Befehl ausgeführt wurde. Um zu verhindern, dass das Programm nicht weiterläuft, weil es auf Eingaben wartet, ist es außerdem manchmal notwendig, auch die Standard-Eingabe etwa mit >/dev/null umzulenken.
+        </p>
+        <h3  style="text-align: left;">Aufruf:</h3>
+        <div class="codeblock">
+            <pre><code> nohup pfad/zum/programm </code></pre>
+        </div>
+        <h3  style="text-align: left;">Anwendungsbeispiele:</h3>
+        <div class="codeblock">
+            <pre><code> nohup ./mein_programm > ausgabe.log  </code></pre>
+        </div>
+
+        <p>
+            Hier wird die Standardausgabe des Programms in die Datei "ausgabe.log" umgeleitet. Das Programm läuft im Hintergrund, und seine Ausgabe wird in der Datei gespeichert.
+        </p>
+        <h4  style="text-align: left;">Fortsetzen eines Prozesses nach der Abmeldung:</h4>
+        <p>
+            Sie können nohup verwenden, um sicherzustellen, dass ein Prozess nach der Abmeldung fortgesetzt wird, z.B., wenn Sie sich von einem SSH-Server abmelden möchten:
+        </p>
+        <div class="codeblock">
+            <pre><code> nohup ./mein_programm /dev/null 2>&1 </code></pre>
+        </div>
+        
+        
+        <p>Dies leitet die Eingabe, Ausgabe und Fehlerausgabe des Programms um, so dass es nach der Abmeldung fortgesetzt wird.</p>
+        <h4  style="text-align: left;">Wiederholte Ausführung mit einer Schleife und Pausen:</h4>
+        <div class="codeblock">
+            <pre><code> while true; do
+    nohup ./mein_programm &
+    sleep 3600  # Warten Sie eine Stunde, bevor Sie das Programm erneut starten
+ done            </code></pre>
+        </div>
+        <p>Dies startet das Programm in einer Endlosschleife immer wieder neu und wartet eine Stunde zwischen den Wiederholungen.</p>
+    
+    <footer>
+        &copy; 2023 Lernseite - Linux - Adrian, Tim - All Rights Reserved
+    </footer>
+</body>
+</html>
