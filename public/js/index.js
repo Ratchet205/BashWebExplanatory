@@ -39,6 +39,11 @@ var pages = {
     "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
     "awk" : ["html/advanced_level/awk.html", "AWK"],
     "debugging": ["html/advanced_level/debugging.html", "Debugging"],
+    "grep": ["html/advanced_level/grep.html", "GREP"],
+    "nohup": ["html/advanced_level/nohup.html", "NoHup"],
+    "regex": ["html/advanced_level/regex.html", "REGEX"],
+    "returncodes": ["html/advanced_level/returncodes.html", "Returncodes"],
+    "sed": ["html/advanced_level/sed.html", "SED"],
     "pipes": ["html/pipes_buffering/pipes.html", "Pipes"],
     "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };
@@ -235,13 +240,6 @@ function close_nav() {
     document.getElementById("content-border").style.left = "1px";
     document.getElementById("page-content").style.width = "calc(100vw - 2px)";
     document.getElementById("content-border").style.width = "calc(100vw - 3px)";
-}
-
-function full_open_nav() {
-    document.getElementById("page-content").style.left = "100%";
-    document.getElementById("content-border").style.left = "100%";
-    document.getElementById("page-content").style.width = "0px";
-    document.getElementById("content-border").style.width = "0px";
 }
 
 // GENERAL FUNCTIONS

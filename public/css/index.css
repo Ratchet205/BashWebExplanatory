@@ -46,7 +46,7 @@ div {
     text-align: center;
     top: 75px;
     left: 0px;
-    background-color: #29292900;
+    background-color: #292929;
     width: 500px;
     height: calc(100vh - 75px);
     transition: 0.5s;
@@ -58,6 +58,12 @@ div {
     padding: 0;
     margin: 0;
     width: 100%;
+    height: calc(100vh - 75px - 70px - 50px);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #3b3b3b transparent;
+    background-color: #292929;
 }
 
 #nav ul li:not(.summary-page)  {
@@ -79,10 +85,12 @@ div {
     transform: translateX(-50%);
     width: 100%;
     bottom: 5px;
-    border-top: 2px solid white;
     height: 50px;
     align-content: center;
     display: grid;
+    border-top: 1px solid #bebebe;
+    border-collapse: collapse;
+    background-color: #292929;
 }
 
 .summary-page span {
@@ -103,6 +111,12 @@ div {
 
 .nav-header {
     cursor: pointer;
+    border-bottom: 1px solid #bebebe;
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .page {

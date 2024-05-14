@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Regex - Erklärung</title>
+</head>
+<body>
+    <header class="FileHeader">
+        <h1>Lernseite</h1>
+        <h2>Bash Returncodes, Regex, Grep, SED, SET, AWK und nohup</h2>
+    </header>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../allgemein/nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+<div class="MainBody">
+    <div>
+        <h1>Bash Regex</h1>
+        <h4>Eine Bash Regex (Regular Expression) ist ein mächtiges Werkzeug zur Mustererkennung und -manipulation in Textzeichenketten. Sie ermöglicht es, komplexe Suchmuster in Texten zu definieren und entsprechende Aktionen auszuführen, wenn Übereinstimmungen gefunden werden.
+            Bash selbst bietet die Möglichkeit, Regex-Muster in verschiedenen Kontexten zu verwenden, wie zum Beispiel beim Filtern von Dateilisten, beim Extrahieren von Informationen aus Textdateien oder beim Überprüfen von Eingabevalidierungen.</h4>
+    </div>
+    <div>
+        <p>
+            Hier ein beispiel zur Eingabeprüfung des Benutzernamen:          
+            <p>
+                #!/bin/bash<br>
+            
+                # Benutzer zur Eingabe eines Benutzernamens auffordern<br>
+                read -p "Geben Sie einen Benutzernamen ein: " username<br>
+                <br>
+                # Regulärer Ausdruck zur Überprüfung des Benutzernamens<br>
+                regex="^[A-Z][a-z][A-Z][a-z][0-9]{2}$"<br>
+                <br>
+                # Überprüfen, ob der eingegebene Benutzername dem Muster entspricht<br>
+                if [[ $username =~ $regex ]]; then<br>
+                    echo "Der Benutzername $username ist gültig."<br>
+                else<br>
+                    echo "Der Benutzername $username entspricht nicht dem erforderlichen Muster."<br>
+                fi
+            </p>  
+        </p>
+    </div>
+    <div>
+        <p>Grundlegenden Regex-Operatoren:
+            <ul>
+                <li>. (Punkt): Steht für jedes einzelne Zeichen außer einem Zeilenumbruch.</li>
+                <li>*: Quantifizierer für null oder mehr Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>+: Quantifizierer für eins oder mehr Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>?: Quantifizierer für null oder ein Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>[ ]: Zeichenklasse; definiert eine Menge von Zeichen, die an dieser Position auftreten können.</li>
+                <li>[^ ]: Negierte Zeichenklasse; steht für ein Zeichen, das nicht in der angegebenen Menge enthalten ist.</li>
+                <li>() Klammern: Gruppieren Teilmuster, um auf sie Quantifizierer oder Operatoren anzuwenden.</li>
+                <li>|: Alternation; steht für "oder" und ermöglicht die Auswahl zwischen verschiedenen möglichen Mustern.</li>
+                <li>^: Steht für den Anfang einer Zeile (oder negiert in einer Zeichenklasse).</li>
+                <li>$: Steht für das Ende einer Zeile.</li>
+                <li>\: Escape-Zeichen; hebt die spezielle Bedeutung eines Zeichens auf.</li>
+                <li>{n}: Quantifizierer; genau n Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>{n,}: Quantifizierer; mindestens n Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>{n,m}: Quantifizierer; zwischen n und m Vorkommen des vorherigen Zeichens oder der vorherigen Gruppe.</li>
+                <li>{d}: Steht für Dezimal.</li>
+            </ul>
+            <p>Dier ist nur eine kurze Übersicht, eine vollständige Liste findest du unter:<br>
+                <a href="https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html">https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html</a></p>
+        </p>
+    </div>
+    <br>
+    <div>
+        <p>
+            Beispiele:
+            <p>
+                Hier suchen wir jeden String, der ein großes A enthält:
+                <br>
+                ->  [A]
+            </p>
+            <p>
+                Hier suchen wir jeden String, der ein großes A enthält, gefolgt von einem großen B:
+                <br>
+                -> ^[A]           
+            </p>
+            <p>
+                Hier suchen wir jeden String, der nicht mit einem großen A anfängt:
+                <br>
+                -> ^[^A]
+            </p>
+            <p>
+                Hier suchen wir jeden String, der mit A oder a anfängt:
+                <br>
+                -> ^[aA]
+            </p>
+            <p>
+                Hier suchen wir jeden String, der einen Buchstaben enthält, unabhängig von der Großschreibung:
+                <br>
+                -> [a-zA-Z]
+            </p>
+            <p>
+                Hier suchen wir jeden String, der einen der folgenden Buchstaben enthält a|b|c|d
+                <br>
+                -> [a-d]
+            </p>
+            <p>
+                Hier suchen wir jeden String, der nur aus einem a besteht:
+                <br>
+                -> ^[a]$
+            </p>
+            <p>
+                Hier suchen wir jeden String, der mit einem "c" anfängt, einen unbestimten Zeichen in der mitte und mit "t" endet:
+                <br>
+                -> c.t
+            </p>
+            <p>
+                Hier suchen wir eine 4-stellige Zahl, 1. Stelle ungleich "0" (Bsp: 7344):
+                <br>
+                -> ^[1-9][0-9]{3}$
+            </p>
+            <p>
+                Hier suchen wir eine Zahl (1. Stelle ungleich "0") mit Einheit (" Stück") (Bsp: 60 Stück):
+                <br>
+                -> ^[1-9][0-9]* Stück$
+            </p>
+            <p>
+                Hier wird jede Zeile mit einer "@gmail.com" oder "@gmail.de" Adresse ausgegen:
+                <br>
+                -> @gmail.com|@gmail.de
+            </p>
+            <p>
+                Hier ist ein Beispiel mit dem wir ein  Datum prüfen können: ("TT MM JJJJ" und mögliche Trennzeichen: ". / -"):
+                <br>
+                -> 0([1-9]|[12][0-9]|3[01])(\.|\/|-)(0[1-9]|1[0-2])(\.|\/|-)((?:19|20)\d{2})
+            </p>
+        </p>
+    </div>
+</div>
+    <footer>
+        &copy; 2023 Lernseite - Linux - Adrian, Tim - All Rights Reserved
+    </footer>
+</body>
+</html>

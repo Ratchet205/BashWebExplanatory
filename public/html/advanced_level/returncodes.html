@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Returncodes - Erklärung</title>
+</head>
+<body>
+    <header class="FileHeader">
+        <h1>Lernseite</h1>
+        <h2>Bash Returncodes, Regex, Grep, SED, SET, AWK und nohup</h2>
+    </header>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../allgemein/nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+<div class="MainBody">
+    <div>
+        <h1>Returncodes auf Linux</h1>
+        <h4>Returncodes, auch bekannt als Exitcodes oder Exit-Status, sind numerische Werte, die ein Linux-Programm zurückgibt, wenn es beendet wird. Diese Codes geben an, ob das Programm erfolgreich ausgeführt wurde oder ob es während der Ausführung auf Probleme gestoßen ist. Ein Returncode von 0 zeigt an, dass das Programm erfolgreich beendet wurde, während andere Werte auf verschiedene Fehler oder Situationen hinweisen.</h4>
+    </div>
+    <div>
+        <p>
+            <ul>
+                <header>Die wichtigsten Returncodes: </header>
+                <li>0: Erfolgreiche Ausführung ohne Fehler.</li>
+                <li>1: Allgemeiner Fehler. Dies wird oft verwendet, wenn keine spezifische Information verfügbar ist.</li>
+                <li>2: Fehler aufgrund unzulässiger Befehlszeilenargumente.</li>
+                <li>126: Das aufgerufene Programm konnte nicht ausgeführt werden. Dies kann auf Berechtigungsprobleme hinweisen.</li>
+                <li>127: Das aufgerufene Programm wurde nicht gefunden.</li>
+                <li>128 + N: Das Programm wurde durch ein Signal N beendet (z. B. 128 + 9 für SIGKILL).</li>
+                <li>130: Das Programm wurde durch Benutzerabbruch (Ctrl+C) beendet.</li>
+                <li>255: Ungültiger Exit-Code.</li>
+            </ul>
+        </p>
+    </div>
+    <br>
+    <div>
+        <h4>Beispiele:</h4>
+            <div class="codeblock">
+                <pre><code> if [ $? -eq 0 ];
+ then 
+     echo "Erfolgreich";
+ else 
+     echo "Fehler";
+ fi             </code></pre>
+            </div>
+
+            <div class="codeblock">
+                <pre><code> #!/usr/bin/expect
+ # Das Programm aufrufen
+ spawn ./mein_programm
+
+ # Warten auf das Ende des Programms
+ expect eof
+
+  # Den Returncode überprüfen
+ set return_code [wait]
+
+ if {[lindex $return_code 3] == 0} {
+     puts "Das Programm wurde erfolgreich ausgeführt."
+ } else {
+     puts "Beim Ausführen des Programms ist ein Fehler aufgetreten."
+ }              </code></pre>
+            </div>
+
+    </div>
+</div>
+    <footer>
+        &copy; 2023 Lernseite - Linux - Adrian, Tim - All Rights Reserved
+    </footer>
+</body>
+</html>

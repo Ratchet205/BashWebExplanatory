@@ -8,40 +8,102 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="header">
-    <span>Bash String Split</span>
-  </div>
-  <div class="content">
-    <p>
-        In Bash kannst du einen String in ein Array aufteilen, 
-        indem du die Variable IFS (Internal Field Separator) und den Befehl read verwendest. 
-        Hier ist ein Beispiel:
-    </p> 
-    <div class="code-block">
-        <code class="language-bash">string="Hallo Welt"</code><br>
-        <code class="language-bash">IFS=" " read -ra array <<< "$string"</code><br><br>
-        <code class="language-bash"># Gib jedes Element des Arrays aus</code><br>
-        <code class="language-bash">for element in "${array[@]}"</code><br>
-        <code class="language-bash">do</code><br>
-        <code class="language-bash">    echo "$element"</code><br>
-        <code class="language-bash">done</code>
+    <div class="header">
+        <span>Debugging mit SET</span>
     </div>
-    <p>
-        In diesem Beispiel setzen wir die Variable IFS auf ein Leerzeichen, um anzuzeigen,
-        dass wir den String an jeder Leerstelle aufteilen möchten. Dann verwenden wir den Befehl read mit der Option -a, 
-        um den Eingabestring zu lesen und die aufgeteilten Teile in einem Array namens array zu speichern. 
-        Schließlich durchlaufen wir die Elemente des Arrays in einer Schleife und geben sie aus. 
-        Du kannst den Wert von IFS anpassen, um den String mit verschiedenen Trennzeichen, wie Kommas oder Tabs, aufzuteilen. 
-        Mit <<< geben wir den Inhalt von string an read weiter, so dass read den String verarbeiten kann. 
-        Read liest den übergebenen String und teilt ihn an den Trennzeichen, die durch IFS festgelegt sind, auf. 
-        Die Optionen -r und -a haben folgende Bedeutungen:
-    </p>   
-    <ul style="list-style: circle;">
-        <li>-r: Verhindert, dass read den Backslash () als Escape-Zeichen interpretiert. Das bedeutet, dass Backslashes in der Eingabe als normale Zeichen behandelt werden.</li>
-        <li>-a array: Weist den aufgeteilten Teilen der Variable array zu. Dabei wird ein Array erstellt, das die einzelnen Teile des aufgeteilten Strings enthält.</li>
-    </ul>
-  </div>
-  <script src="../../js/index.js"></script>
-  <script src="../../js/prism.js"></script>
+    <div class="content">
+        <p>
+            Set ist ein Bash-Kommando, das verwendet wird, um die Einstellungen und Optionen der aktuellen Shell-Sitzung zu steuern. 
+            Sie können set verwenden, um verschiedene Aspekte des Shell-Verhaltens anzupassen. Das set-Kommando hat verschiedene Optionen und Verwendungszwecke, 
+            und hier werde ich Ihnen die wichtigsten davon erläutern. Der grundlegende Syntax des set-Befehls lautet wie folgt:
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">set [Optionen] [Name] ...</code>
+        </div>
+        <ul style="list-style: circle;">
+            <li>Optionen: Dies sind die Flags, die das Verhalten des 'set'-Befehls ändern. Beispiele sind '-o', '-e', '-u', usw.</li>
+            <li>Name: Der Name bezieht sich auf die Option, die Sie festlegen möchten, und der Wert ist der Wert, den Sie zuweisen möchten.</li>
+        </ul>
+        <ul style="list-style: circle;">
+            <span class="list-header">Grundlegenden SET-Operatoren::</span>    
+            <li>
+                <span>set -e oder set -o errexit:</span>
+                <p>
+                    Mit dieser Option wird erreicht, dass das Skript sofort beendet wird, wenn ein Befehl einen Nicht-Null-Exit-Code zurückgibt (also bei einem Fehler). 
+                    Dies ist nützlich, um Skripte sicherer zu gestalten. 
+                </p> 
+            </li>
+            <li>
+                <span>-u oder set -o nounset:</span>
+                <p>
+                    Diese Option bewirkt, dass ein Skript bei einem Versuch, auf eine undefinierte Variable zuzugreifen, 
+                    sofort beendet wird. Das hilft, Fehler durch den Zugriff auf nicht existierende Variablen zu verhindern. 
+                </p> 
+            </li>
+            <li>
+                <span>set -x oder set -o xtrace:</span>
+                <p>
+                    Der Debugging-Modus aktiviert die Anzeige jedes ausgeführten Befehls auf der Konsole, 
+                    einschließlich der Variablenwerte und der Ausgabe der Befehle. Dies ist nützlich, um den Skriptverlauf zu verfolgen und Fehler zu finden. 
+                </p> 
+            </li>
+            <li>
+                <span>set -o pipefail:</span>
+                <p>
+                    Diese Option bewirkt, dass der Exit-Code einer Pipeline den Wert des letzten fehlgeschlagenen Befehls in der Pipeline hat. 
+                    Das ist hilfreich, um Fehler in Pipelines korrekt zu behandeln. 
+                </p> 
+            </li>
+            <li>
+                <span>set -v oder set -o verbose:</span>
+                <p>
+                    Mit dieser Option wird eine ausführlichere Ausgabe generiert, die ähnlich wie bei set -x ist, 
+                    aber weniger detailliert. Sie zeigt die Zeile des Skripts an, die gerade ausgeführt wird. 
+                </p> 
+            </li>
+            <li>
+                <span>set +o:</span>
+                <p>
+                    Um eine Option zu deaktivieren oder auf ihren Standardwert zurückzusetzen, verwenden Sie set +o gefolgt von der Option.
+                </p> 
+            </li>
+            <li>
+                <span>set -:</span>
+                <p>
+                    Um alle Optionen auf ihre Standardwerte zurückzusetzen, verwenden Sie set -. 
+                </p> 
+            </li>
+            <li>
+                <span>set -o:</span>
+                <p>
+                    Um die Liste der verfügbaren Optionen anzuzeigen, verwenden Sie set -o ohne Argumente.
+                </p> 
+            </li>
+        </ul>
+        <p>
+            Das set-Kommando ist besonders nützlich beim Schreiben von Bash-Skripten, um das gewünschte Verhalten und die Sicherheit des Skripts zu steuern. 
+            Je nach den Anforderungen Ihres Skripts können Sie verschiedene Optionen verwenden, um sicherzustellen, 
+            dass es wie erwartet funktioniert und robust gegen Fehler ist.
+        </p> 
+        <span class="list-header">Beispiel : Debugging mit xtrace und Ausgabe in eine Protokolldatei</span>
+        <p>
+            Hier wird set -x verwendet, um den Debugging-Modus zu aktivieren, und die Ausgabe wird in eine Protokolldatei umgeleitet.
+        </p> 
+        <div class="code-block">
+            <code class="language-bash">#!/bin/bash</code><br><br>
+            <code class="language-bash"># Debugging-Modus aktivieren und Ausgabe in Protokolldatei schreiben</code><br>
+            <code class="language-bash">set -x</code><br>
+            <code class="language-bash">logfile="debug.log"</code><br>
+            <code class="language-bash">exec > "$logfile" 2>&1</code><br><br>
+            <code class="language-bash"># Ihr Skript hier</code><br>
+            <code class="language-bash">echo "Dies ist ein Test"</code>
+        </div>
+        <p>
+            In diesem Beispiel wird die Ausgabe aller Befehle und deren Ergebnisse in die Datei "debug.log" geschrieben, 
+            was nützlich sein kann, um den Verlauf des Skripts zu analysieren.
+        </p> 
+    </div>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/prism.js"></script>
 </body>
 </html>

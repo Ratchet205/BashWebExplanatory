@@ -31,7 +31,7 @@ body {
 }
 
 .header {
-    margin: 3% 6% 0%;
+    margin: 55px 6% 0;
     width: auto;
     height: auto;
 }
@@ -44,7 +44,7 @@ body {
 }
 
 .content {
-    margin: 0% 15% 5%;
+    margin: 0 15% 95px;
     width: auto;
     height: auto;
 }
@@ -57,4 +57,20 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 110%;
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #3b3b3b transparent;
+}
+
+.code-block::-webkit-scrollbar {
+    width: 3px;
+}
+
+.code-block::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+    background-color: #3b3b3b;
+    border-radius: 15px;
 }
