@@ -30,7 +30,7 @@
 
         function downloadFile(file) {
             var link = document.createElement('a');
-            link.href = `src/intermediate-bash/${file}`;
+            link.href = `src/${file}`;
             link.download = `${file}`;
             document.body.appendChild(link);
             link.click();
@@ -46,7 +46,7 @@
                 const pageId = params["path"];
                 // Access the existing change_page_content function from index.js
                 try {
-                    fetch(pageId)
+                    fetch("src/"+pageId)
                         .then(response => {
                             if(!response.ok) {
                                 if (typeof change_page_content === 'function') {
@@ -74,7 +74,7 @@
                 <li onclick="switch_nav_category('string-manikure')">String Maniküre</li>
                 <li onclick="switch_nav_category('files-directories')">Files and Directories</li>
                 <li onclick="switch_nav_category('pipes_buffering')">Pipes and Buffering</li>
-                <li><a href="src/intermediate-bash/dialogquiz.sh" download="dialogquiz.sh" style="text-decoration: none; color: #bebebe;">Intermediate Bash</a></li>
+                <li><a href="src/intermediate-bash/dialogquiz.sh" download="intermediate-bash-commands.sh" style="text-decoration: none; color: #bebebe;">Intermediate Bash</a></li>
                 <li onclick="switch_nav_category('adrian-tim')">Advanced</li>
                 <li onclick="" id="" class="page-list-item summary-page"></li>
             </ul>
