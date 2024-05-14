@@ -28,6 +28,15 @@
             return params; // Return the parsed parameters
         }
 
+        function downloadIntermediate(file) {
+            var link = document.createElement('a');
+            link.href = `src/intermediate-bash/${file}`;
+            link.download = `${file}`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         // Get the query parameters
         let params = getQueryParams();
 
@@ -36,6 +45,16 @@
             if (params["path"]) {
                 const pageId = params["path"];
                 // Access the existing change_page_content function from index.js
+                try {
+                    fetch(pageId)
+                        .then(response => {
+                            if(!response.ok) {
+                                
+                            }
+                        })
+                } catch {
+
+                }
                 if (typeof change_page_content === 'function') {
                     change_page_content(document.getElementById(pageId)); // Change the page content using the path parameter
                 } else {
@@ -55,6 +74,7 @@
                 <li onclick="switch_nav_category('string-manikure')">String Maniküre</li>
                 <li onclick="switch_nav_category('files-directories')">Files and Directories</li>
                 <li onclick="switch_nav_category('pipes_buffering')">Pipes and Buffering</li>
+                <li><a href="src/intermediate-bash/dialogquiz.sh" download="dialogquiz.sh" style="text-decoration: none; color: #bebebe;">Intermediate Bash</a></li>
                 <li onclick="switch_nav_category('adrian-tim')">Advanced</li>
                 <li onclick="" id="" class="page-list-item summary-page"></li>
             </ul>
