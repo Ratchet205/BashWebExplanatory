@@ -39,6 +39,11 @@ var pages = {
     "read-file-line-by-line" : ["html/files_directories/Bash_Read_File_Line_by_Line.html", "Read File Line by Line"],
     "awk" : ["html/advanced_level/awk.html", "AWK"],
     "debugging": ["html/advanced_level/debugging.html", "Debugging"],
+    "grep": ["html/advanced_level/grep.html", "GREP"],
+    "nohup": ["html/advanced_level/nohup.html", "NoHup"],
+    "regex": ["html/advanced_level/regex.html", "REGEX"],
+    "returncodes": ["html/advanced_level/returncodes.html", "Returncodes"],
+    "sed": ["html/advanced_level/sed.html", "SED"],
     "pipes": ["html/pipes_buffering/pipes.html", "Pipes"],
     "buffering": ["html/pipes_buffering/buffering.html", "Buffering"]
 };

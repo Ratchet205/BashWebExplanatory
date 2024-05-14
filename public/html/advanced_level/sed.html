@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>SED-Scripting - Erklärung</title>
+</head>
+<body>
+    <header class="FileHeader">
+        <h1>Lernseite</h1>
+        <h2>Bash Returncodes, Regex, Grep, SED, SET, AWK und nohup</h2>
+    </header>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../allgemein/nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+<div class="MainBody">
+    <div>
+        <h1>SED-Scripting</h1>
+        <h4>Sed (Stream Editor) ist ein Textverarbeitungswerkzeug in Unix-ähnlichen Betriebssystemen wie Linux. Es wird verwendet, um Text in Strömen (Streams) zu bearbeiten, was normalerweise bedeutet, dass es Zeilen in einem Textdokument sequenziell verarbeitet. Sed verwendet reguläre Ausdrücke, um Textmuster zu suchen und zu manipulieren, was es zu einem nützlichen Werkzeug für die Automatisierung von Textverarbeitungsaufgaben macht.</h4>
+    </div>
+    <div>
+        <p>Einige Parameter:
+            <ul>
+                <li>-n 	--quiet, --silent 	Verhindert das automatische Ausgeben des Ergebnisses. Ausgaben erfolgen nur über das Kommando p.</li>
+                <li>-e Skript 	--expression=Skript 	Angeben eines sed-Skriptes, mehrere sed-Skripte sind möglich. Bei nur einem sed-Skript kann -e weggelassen werden.</li>
+                <li>-f Skriptdatei 	--file=Skriptdatei 	Das sed-Skript steht in der Skriptdatei, nicht auf der Kommandozeile.</li>
+                <li>-i 	--in-place 	Die Textdatei wird verändert, anstatt das Ergebnis auf Standardausgabe auszugeben.</li>
+                <li>-E Dieses Flag aktiviert erweiterte reguläre Ausdrücke (ERE)</li>
+            </ul>
+        </p>
+    </div>
+    <br>
+    <div>
+        <p>
+            <h3 style="text-align: left;">Anwendungsbeispiele:</h5>
+            <p>
+                <h4 style="text-align: left;">Ersetzen von Text in einer Datei</h5>
+                <p>
+                    sed s/Anton/Berta/g Textdatei
+                    <br><br>
+                    Jedes Auftreten von "Anton" wird durch "Berta" ersetzt (aber auch "Antonius" wird zu "Bertaius"). Wird g (global) weggelassen, wird nur das erste Auftreten in einer Zeile ersetzt.
+                </p>
+                <br>
+                <p>
+                    sed /Name/s/\bAnton\b/Berta/g Textdatei
+                    <br><br>
+                    Alle Wörter "Anton" werden durch "Berta" ersetzt (nicht "Antonius"), aber nur in Zeilen, die "Name" enthalten
+                </p>
+                <br>
+                <p>
+                    sed -n s/Anton/Berta/gp Textdatei
+                    <br><br>
+                    Ersetzt alle "Anton" durch "Berta" und gibt nur die betroffenen Zeilen aus.
+                </p>
+            </p>
+            <br>
+            <p>
+                <h4 style="text-align: left;">Entfernen von Zeilen</h4>
+                <p>
+                    sed '/^#/d' Textdatei
+                    <br><br>
+                    Zeilen die mit # anfangen, werden entfernt.
+                </p>
+            </p>
+            <br>
+            <p>
+                <h4 style="text-align: left;">Zeilen einfügen</h5>
+                <p>
+                    sed '3iNeue Zeile' Textdatei
+                    <br><br>
+                    Vor der dritten Zeile wird "Neue Zeile" eingefügt.
+                </p>
+                <br>
+                <p>
+                    sed '4aNeue Zeile' Textdatei
+                    <br><br>
+                    Hier wird "Neue Zeile" nach der vierten Zeile eingefügt.
+                </p>
+                <br>
+                <p>
+                    sed '$aNeue Zeile' Textdatei
+                    <br><br>
+                    Hier wird "Neue Zeile" nach der letzten Zeile eingefügt.
+                </p>
+            </p>
+            <br>
+            <p>
+                <h4 style="text-align: left;">Reguläre Ausdrücke</h5>
+                <p>
+                    sed 's/^E-Mail:.*$/E-Mail-Adresse ist privat/' Textdatei
+                    <br><br>
+                    Alle Zeilen, die mit "E-Mail:" anfangen, werden ersetzt.
+                </p>
+            </p>
+            <br>
+            <p>
+                <h4 style="text-align: left;">Bearbeiten von Dateinamen</h5>
+                    <p>
+                        sed 's!/home/anton/!/home/berta/!' Textdatei
+                        <br><br>
+                        Normalerweise wird "/" als Trennzeichen verwendet. Es lässt sich aber beliebig austauschen, was beim Bearbeiten von Dateinamen nützlich ist.
+                    </p>
+            </p>
+        </p>
+    </div>
+</div>
+    <footer>
+        &copy; 2023 Lernseite - Linux - Adrian, Tim - All Rights Reserved
+    </footer>
+</body>
+</html>

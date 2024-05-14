@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/split.css">
+    <link rel="stylesheet" href="../../css/prism.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Grep - Erklärung</title>
+</head>
+<body>
+    <header class="FileHeader">
+        <h1>Lernseite</h1>
+        <h2>Bash Returncodes, Regex, Grep, SED, SET, AWK und nohup</h2>
+    </header>
+    
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../allgemein/nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+
+    <div class="MainBody">
+    <div>
+        <h1>GREP</h1>
+        <h4>Grep steht für "Global Regular Expression Print". Es ist ein Befehlszeilen-Tool unter Linux und anderen Unix-ähnlichen Betriebssystemen, das dazu verwendet wird, Text in Dateien oder Ausgaben zu durchsuchen und nach Zeichenfolgen (auch als Muster oder regulärer Ausdruck bezeichnet) zu suchen. Grep gibt dann die Zeilen aus, die das gesuchte Muster enthalten.</h4>
+    </div>
+    <div>
+        <p>Aufruf von grep<br>
+            grep [Optionen] Muster [Datei...]<br>
+            oder<br>
+            grep [Optionen] [-e Muster | -f Datei] [Datei...]<br>
+        </p>
+    </div>
+    <div>
+        <p>Paramether
+            <ul>
+                <li>-F 	--fixed-strings 	interpretiert das übergebene Muster als eine Liste von festen Zeichenketten, die durch Zeilenumbrüche voneinander getrennt sind.</li>
+                <li>-f Datei 	--file=Datei 	beziehe die Muster aus Datei, eines je Zeile. Eine leere Datei enthält keine Muster und passt somit auf keinen String.</li>
+                <li>-H 	--with-filename 	gibt den Dateinamen vor jedem Treffer aus.</li>
+                <li>-h 	--no-filename 	unterdrückt die Ausgabe des Dateinamens, wenn mehrere Dateien durchsucht werden.</li>
+                <li>-I 	--binary-files=without-match 	schließt Binärdateien aus.</li>
+                <li>-i 	--ignore-case 	unterscheide nicht zwischen Groß- und Kleinschreibung.</li>
+                <li>-L 	--files-without-match 	unterdrückt die normale Ausgabe und gibt stattdessen die Dateinamen von allen Dateien, die keine Treffer enthalten aus. Die Bearbeitung stoppt, sobald ein Treffer auftritt.</li>
+                <li>-l 	--files-with-match 	unterdrückt die normale Ausgabe und gibt stattdessen die Dateinamen von allen Dateien, die Treffer enthalten aus. Die Bearbeitung stoppt, sobald ein Treffer auftritt.</li>
+                <li>-n 	--line-number 	gibt die Zeilennummer vor jedem Treffer aus.</li>
+                <li>-o 	--only-matching 	gibt nur die passende Zeichenkette aus.</li>
+                <li>-P 	--perl-regexp 	verwendet Perl regular expressions.</li>
+                <li>-q 	--quiet, --silent 	schreibt nichts auf die Standardausgabe und stoppt beim ersten Treffer.</li>
+                <li>-r 	--recursive 	liest alle Dateien unter jedem Verzeichnis rekursiv. Symbolischen Links werden nur verfolgt, wenn explizit angegeben.</li>
+                <li>-R 	--dereference-recursive 	liest alle Dateien unter jedem Verzeichnis rekursiv. Symbolischen Links werden verfolgt.</li>
+                <li>-v 	--invert-match 	Invertiert die Suche und liefert alle Zeilen die nicht auf das gesuchte Muster passen.</li>
+                <li>-w 	--word-regexp 	wählt nur solche Zeilen aus, deren Treffer aus vollständigen Wörtern bestehen.</li>
+                <li>-E 	--extended-regexp 	Verwendet die extended Variante beim Interpretieren der übergebenen regular expression. (ERE)</li>
+            </ul>
+        </p>
+    </div>
+    <br>
+    <div>
+        <p>
+            Beispiele:
+            <p>
+                In Kombination mit regulären Ausdrücken um alle txt Dteien in einem Ordner aufzulisten
+                <br>
+                -> ls | grep "\.txt$"
+            </p>
+            <p>
+                Gibt alle Zeilen der Datei "bar" aus, in welchen keines der in der Datei "foo" gelisteten Muster enthalten ist.
+                <br>
+                -> grep -vf foo bar                
+            </p>
+            <p>
+                Zeigt laufenden Prozesse auf deinem System anzeigen, die den Namen "firefox" enthalten. Du könntest den folgenden Befehl verwenden:
+                <br>
+                -> ps aux | grep firefox
+            </p>
+        </p>
+    </div>
+    <hr>
+    <div>
+        <h2>egrep</h2>
+        <h4>Im Gegensatz zur Standard-Version von grep erweitert egrep die Fähigkeiten der regulären Ausdrücke und ermöglicht die Verwendung komplexer Muster ohne zusätzliche Escape-Zeichen. EREs unterstützen auch erweiterte , um die Anzahl der Vorkommen von Zeichen oder Mustern anzugeben.Dies macht egrep besonders nützlich für die Suche nach komplexen Mustern wie E-Mail-Adressen, URLs oder HTML-Tags in Textdateien.</h4>    
+    </div>
+    <div>
+        <p>
+            Beispiel:
+            <p>
+                Findet rekursiv (-r) alle Dateien im Verzeichnis /var/www, in denen die Zeichenkette ubuntuusers auftritt, unabhängig von Groß- und Kleinschreibung (Option -i). Die Treffer werden unter Angabe der Datei und der Zeilennummer (Option -n) auf der Standardausgabe ausgegeben.
+                <br>
+                -> egrep -rni -e "ubuntuusers" /var/www
+                <br>
+                Gibt an, wie oft (Option -c) die Zeichenkette toll in welchen Dateien im Verzeichnis /usr/src vorkommt.
+            </p>
+        </p>
+    </div>
+</div>
+    <footer>
+        &copy; 2023 Lernseite - Linux - Adrian, Tim - All Rights Reserved
+    </footer>
+</body>
+</html>
