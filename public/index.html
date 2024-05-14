@@ -28,7 +28,7 @@
             return params; // Return the parsed parameters
         }
 
-        function downloadIntermediate(file) {
+        function downloadFile(file) {
             var link = document.createElement('a');
             link.href = `src/intermediate-bash/${file}`;
             link.download = `${file}`;
@@ -49,16 +49,17 @@
                     fetch(pageId)
                         .then(response => {
                             if(!response.ok) {
-                                
+                                if (typeof change_page_content === 'function') {
+                                    change_page_content(document.getElementById(pageId)); // Change the page content using the path parameter
+                                } else {
+                                    console.warn("change_page_content function is not defined.");
+                                }
+                            } else {
+                                downloadFile(pageId);
                             }
                         })
                 } catch {
 
-                }
-                if (typeof change_page_content === 'function') {
-                    change_page_content(document.getElementById(pageId)); // Change the page content using the path parameter
-                } else {
-                    console.warn("change_page_content function is not defined.");
                 }
             }
         });
