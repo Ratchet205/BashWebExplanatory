@@ -57,6 +57,10 @@
                 document.body.innerHTML = "<iframe id=\"scp\" src=\"https://scipnet-terminal.web.app/\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\"></iframe>";
                 socket.send("exit");
             }
+            if(data == "schusti") {
+                document.body.innerHTML = "<iframe id=\"schusti\" src=\"ascii-art.html\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\" onload=\"centerAndScaleIframeContent(this)\"></iframe>";
+                socket.send("exit");
+            }
             if(data == "clear") {
                 output.innerHTML = "";
                 return;
@@ -69,5 +73,38 @@
             }
         }
     })
+
+    function centerAndScaleIframeContent(iframe) {
+            document.body.style.overflow = "hidden";
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            if (!iframeDocument) return;
+
+            // Access the body within the iframe
+            const contentBody = iframeDocument.body;
+            // Ensure the content uses flex layout for centering
+            contentBody.style.display = 'flex';
+            contentBody.style.justifyContent = 'center';
+            contentBody.style.height = '100%'; // To ensure proper flex centering
+            contentBody.style.width = '100%';  // To ensure proper flex centering
+
+            // Get the dimensions of the content within the iframe
+            const contentWidth = contentBody.scrollWidth;
+            const contentHeight = contentBody.scrollHeight;
+
+            // Get the dimensions of the parent container
+            const containerWidth = iframe.parentElement.clientWidth;
+            const containerHeight = iframe.parentElement.clientHeight;
+
+            // Calculate the scale to fit the content within the container
+            const scaleX = containerWidth / contentWidth;
+            const scaleY = containerHeight / contentHeight;
+
+            // Use the smaller scale to ensure the entire content is visible
+            const scale = Math.min(scaleX, scaleY);
+
+            // Apply scaling and set the origin to the center
+            contentBody.style.transform = `scale(${scale})`;
+            contentBody.style.transformOrigin = "50% 0"; // Scale from the center
+        }
 </script>
 </html>
