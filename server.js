@@ -64,11 +64,6 @@ app.use((req, res, next) => {
         next();
     }
 });
-// Handle the root URL ('/') with your HTML file
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.php');
-    res.sendFile(__dirname + '/public/index.php');
-});
 
 io.on('connection', (socket) => {
     const clientAddress = socket.handshake.address;
@@ -123,7 +118,7 @@ io.on('connection', (socket) => {
         console.error('Error parsing IP:', error);
     }
 
-    socket.on('save settings', (settingsJson) => {
+    /*socket.on('save settings', (settingsJson) => {
         console.log(`Received settings: ${settingsJson}`);
 
         // Parse the incoming JSON string to a JavaScript object
@@ -142,11 +137,7 @@ io.on('connection', (socket) => {
         } catch (error) {
             console.error('Error parsing settings:', error);
         }
-    });
-
-    socket.on('derBefehl', (befehl) => {
-        console.log(`folgender Befehl: ${befehl}`);
-    })
+    });*/
 
     socket.on('disconnect', () => {
         const path = `./${ipAddress}.apef`
