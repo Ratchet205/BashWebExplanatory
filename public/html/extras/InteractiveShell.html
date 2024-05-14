@@ -10,18 +10,25 @@
     <div id="banner">
         <div>
             Interactive Bash Shell
-            &nbsp;&nbsp;&nbsp;<span style="display: flex; justify-content: right; color: #666">No Data will be saved persistently.</span>
+            <span style="display: flex; justify-content: left; margin-left: 50px; color: #666">No Data will be saved persistently.</span>
         </div>
     </div>
     <div id="output"></div>
     <form action="" method="post"><span style="margin-left: 5px;">guest@explanatory~$</span><input type="text" id="input" autocomplete="off" autofocus></form>
 </body>
 <script>
-    let socket = new WebSocket("wss://azrael.koboldhöhle.de:8765");
+    let debug = true
+    let socket;
+    if(debug) {
+        socket = new WebSocket("ws://localhost:8765");
+    } else {
+        socket = new WebSocket("wss://azrael.koboldhöhle.de:8765");
+    }
     //let socket = new WebSocket("wss://localhost:8765");
     let containerID = "";
     const output = document.getElementById("output");
-
+    const banner = document.getElementById("banner");
+    output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">Connecting to Container...</span><br>`
     function scrollToBottom() {
     output.scrollTop = output.scrollHeight; // Scrolls to the bottom
     };
@@ -29,7 +36,6 @@
     socket.onopen = function (event) {
         console.log("WebSocket connection opened.");
         socket.send("create");
-        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">--Connected to Container--</span><br>`
         scrollToBottom();
     };
 
@@ -41,7 +47,7 @@
     
     socket.onclose = function (event) {
         console.log("WebSocket connection closed.");
-        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">--Connection to Container closed--</span><br>`
+        output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">Connection to Container closed</span><br>`
         scrollToBottom();
     };
 
@@ -51,6 +57,7 @@
             event.preventDefault();
             const output = document.getElementById("output");
             const input = document.getElementById("input");
+            const banner = document.getElementById("banner");
             let data = input.value;
             input.value = "";
             if(data == "scp") {
@@ -61,6 +68,30 @@
                 document.body.innerHTML = "<iframe id=\"schusti\" src=\"ascii-art.html\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\" onload=\"centerAndScaleIframeContent(this)\"></iframe>";
                 socket.send("exit");
             }
+            if(data == "paulaner") {
+                document.body.innerHTML = "<iframe id=\"paulaner\" src=\"spezi.html\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\" onload=\"centerAndScaleIframeContent(this)\"></iframe>";
+                socket.send("exit");
+            }
+            if(data == "apef") {
+                const existingIcon = document.getElementById("apef-icon");
+                if (!existingIcon) {
+                    // Create and style the image
+                    const apefIcon = document.createElement("img");
+                    apefIcon.src = "/img/apef.ico";
+                    apefIcon.id = "apef-icon";
+
+                    // Adjust style to fit the banner
+                    apefIcon.style.height = "80%"; // Leave some space around the icon
+                    apefIcon.style.width = "auto"; // Maintain aspect ratio
+                    apefIcon.style.position = "block";
+                    apefIcon.style.top = "10%";  // Center the icon vertically within the banner
+                    apefIcon.style.right = "10px"; // Keep a small margin from the right edge
+
+                    // Append to the banner
+                    banner.appendChild(apefIcon);
+                }
+                return;
+            }
             if(data == "clear") {
                 output.innerHTML = "";
                 return;
@@ -68,9 +99,6 @@
             output.innerHTML += `<span>guest@explanatory~$ ${data}</span><br>`
             scrollToBottom();
             socket.send(data);
-            if(data == "exit") {
-                window.close();
-            }
         }
     })
 

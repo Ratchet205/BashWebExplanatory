@@ -32,7 +32,8 @@ def create_container(name):
         name=name,
         detach=True,
         tty=True,
-        stdin_open=True  # Allow interaction via standard input
+        stdin_open=True,  # Allow interaction via standard input
+        network_mode='none'
     )
     container.start()
     sessions[name] = container
@@ -91,12 +92,13 @@ async def websocket_handler(websocket, path):
                     continue
 
                 create_container(name)
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">--Your ContainerID is {name}--</span><br>")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Connected to Container {name}</span><br>")
             
             elif message == "exit":
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">---Container is terminating---</span><br>")
+                print(f"terminating {name}")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Container is terminating</span><br>")
                 await async_remove_container(name)
-                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">-Connection to Container lost-</span><br>")
+                await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Connection to Container lost</span><br>")
 
             elif message.startswith("cd "):
                 directory = execute_command(name, f"{message} && pwd").split("\n", 1)[0]
@@ -112,7 +114,7 @@ async def websocket_handler(websocket, path):
 
 # Main coroutine to start the WebSocket server
 async def main():
-    debug = False
+    debug = True
     if not debug:
         ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         ssl_context.load_cert_chain(certfile=certfile, keyfile=keyfile)
