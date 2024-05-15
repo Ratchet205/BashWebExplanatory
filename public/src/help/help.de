@@ -1,0 +1,26 @@
+-- Interaktive Shell getrennte Befehle --
+
+-- Wichtiger Hinweis, dieses Hilfsdokument ist nur verfügbar wenn "help", in einer getrennten Shell geschrieben wird --
+
+
+--	exit
+
+	-	Exit trennt einen vom momentan aktiven Kontainer.
+	-	Dieser Befehl wird automatisch beim schließen des Shell HTML Dokuments.
+
+
+--	create
+
+	-	Während man getrennt, "create" im Terminal versendet, wird ein Kontainer erstellt und man mit diesem Verbunden.
+	-	Dieser Befehl wird automatisch beim Öffnen des Shell HTML Dokuments versendet.
+
+
+--	help
+
+	-	Zeigt diese Nachricht an. (Nur wenn keine Kontainer Verbindung besteht!)
+
+
+-- Disclaimer --
+Vielleicht, (vielleicht auch nicht)
+
+sind über die gesamte Website, Easter Eggs verteil.

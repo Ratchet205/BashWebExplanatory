@@ -1,0 +1,26 @@
+-- Interactive Shell Disconnected Commands --
+
+-- Important Notice, this help Document is only available when typing help, without being connected --
+
+
+--	exit
+
+	-	exit disconnects you from the currently connected container
+	-	this command is automatically sent when closing the shell HTML document
+
+
+--	create
+
+	-	while disconnected you can use create to create and connect to a new container
+	-	this command is automatically sent when the shell HTML document is loaded
+
+
+--	help
+
+	-	displays this message (Only when disconnected!)
+
+
+-- Disclaimer --
+There might be (or not) 
+
+secrets spread over the website

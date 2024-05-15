@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jqeury.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/get.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
@@ -15,18 +16,7 @@
         }
 
         // Ensure the function is called to get query parameters
-        function getQueryParams() {
-            const params = {};
-            const queryString = window.location.search.substring(1);
-            const queryParts = queryString.split('&');
-
-            queryParts.forEach((part) => {
-                const [key, value] = part.split('=');
-                params[key] = decodeURIComponent(value);
-            });
-
-            return params; // Return the parsed parameters
-        }
+        
 
         function downloadFile(file) {
             var link = document.createElement('a');

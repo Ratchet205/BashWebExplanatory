@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="../../css/InteractiveShell.css">
     <title>Interactive Shell</title>
 </head>
+<script>
+
+</script>
 <body>
     <div id="banner">
         <div>
@@ -16,16 +19,40 @@
     <div id="output"></div>
     <form action="" method="post"><span style="margin-left: 5px;">guest@explanatory~$</span><input type="text" id="input" autocomplete="off" autofocus></form>
 </body>
+<script src="../../js/get.js"></script>
 <script>
     let debug = true
     let socket;
+    let params
     if(debug) {
         socket = new WebSocket("ws://localhost:8765");
     } else {
         socket = new WebSocket("wss://azrael.koboldhöhle.de:8765");
     }
-    //let socket = new WebSocket("wss://localhost:8765");
-    let containerID = "";
+
+    params = getQueryParams();
+
+    window.addEventListener("load", function() {
+            if (params["help"]) {
+                const ext = params["help"];
+                // Access the existing change_page_content function from index.js
+                try {
+                    fetch("/src/help/help."+ext)
+                        .then(response => {
+                            if(!response.ok) {
+                                alert("Kein Hilfsdokument in dieser Sprache.")
+                            } else {
+                                response.text().then(function(text) {
+                                    output.innerHTML += '<pre style="color: #bebebe;">'+text+'</pre>'
+                                })
+                            }
+                        })
+                } catch {
+
+                }
+            }
+        });
+
     const output = document.getElementById("output");
     const banner = document.getElementById("banner");
     output.innerHTML += `<span style="display: flex; justify-content: right; color: #666">Connecting to Container...</span><br>`
@@ -60,6 +87,9 @@
             const banner = document.getElementById("banner");
             let data = input.value;
             input.value = "";
+            if(data === "help") {
+                window.location.href = this.location.href+"/?help=de";
+            }
             if(data == "scp") {
                 document.body.innerHTML = "<iframe id=\"scp\" src=\"https://scipnet-terminal.web.app/\" style=\"display: block; position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;\"></iframe>";
                 socket.send("exit");
