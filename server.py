@@ -91,7 +91,8 @@ async def websocket_handler(websocket, path):
                 except:
                     continue
 
-                create_container(name)
+                containerID = create_container(name)
+                await websocket.send(f"Container ID: {containerID}")
                 await websocket.send(f"<span style=\"display: flex; justify-content: right; color: #666\">Connected to Container {name}</span><br>")
             
             elif message == "exit":

@@ -50,6 +50,7 @@ body {
     z-index: 1;
     grid-area: terminal-output;
     overflow-y: auto; /* Allows scrolling when content overflows */
+    overflow-wrap: break-word;
     border-bottom: solid #1e1e1e 2px;
 }
 
