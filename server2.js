@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
             path = `./${ipAddress}.apef`
             fs.readFile(path, 'utf8', (err, data) => {
                 if (err) {
-                    console.error(`Fehler beim Lesen der Datei: ${err}`);
+                    console.error(`Fehler beim Lesen der Datei: ${err}\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                     return;
                 }
 
@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
                 // Das erhöhte Ergebnis in die Datei schreiben
                 fs.writeFile(path, newValue.toString(), (writeErr) => {
                     if (writeErr) {
-                        console.error(`Fehler beim Schreiben in die Datei: ${writeErr}`);
+                        console.error(`Fehler beim Schreiben in die Datei: ${writeErr}\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                         return;
                     }
                 });
@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
                 if (error) {
                     console.error('Error saving IP:', error);
                 } else {
-                    console.log(`File:\t./${filename}\tcreated`);
+                    console.log(`File:\t./${filename}\tcreated\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                     /*const command = `assoc .apef=BashWebExp.APEFFileType && ftype BashWebExp.APEFFileType="${iconFilePath}" "./${filename}"`;
                     exec(command, (error, stdout, stderr) => {
                         if (error) {
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
                       });*/
                 }
             });
-            console.log(`IP:\t${ipAddress}\t\tconnected | [${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
+            console.log(`IP:\t${ipAddress}\t\tconnected\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
         }
     } catch (error) {
         console.error('Error parsing IP:', error);
@@ -128,7 +128,7 @@ io.on('connection', (socket) => {
                   });*/
                 fs.readFile(path, 'utf8', (err, data) => {
                     if (err) {
-                        console.error(`Fehler beim Lesen der Datei: ${err}`);
+                        console.error(`Fehler beim Lesen der Datei: ${err}\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                         return;
                     }
 
@@ -138,10 +138,10 @@ io.on('connection', (socket) => {
                     if (newValue <= 0) {
                         fs.unlink(path, (err) => {
                             if (err) {
-                              console.error(`Error deleting file: ${err}`);
+                              console.error(`Error deleting file: ${err}\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                             } else {
                               console.log(`File:\t${path}\tdeleted`);
-                              console.log(`IP:\t${ipAddress}\t\tdisconnected | [${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
+                              console.log(`IP:\t${ipAddress}\t\tdisconnected\t\t|\t[${new Date().toLocaleTimeString()} : ${new Date().toLocaleDateString()}]`);
                             }
                           });
                     } else {
