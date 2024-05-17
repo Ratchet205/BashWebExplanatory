@@ -9,6 +9,10 @@
     <script src="js/index.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        if (window.location.host == "curtis.io") {
+			window.location.href="about:blank";
+		}
+        
         const socket = io();
         window.onbeforeunload = function() {
             close_bash_shell_window();
