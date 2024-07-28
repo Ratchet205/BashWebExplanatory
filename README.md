@@ -7,6 +7,8 @@ The primary codebase for this project has been contributed by Ratchet205 and Apf
     Nikodem Staniucha
     TimiLi45
     Erik Steiner
+    Werbename
+    Paul Gempel
 
 Thank you for your contributions to the BashWebExplanatory project.
 
